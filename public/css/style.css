@@ -1,6 +1,6 @@
 .navbar {
-    background: linear-gradient(rgb(64, 224, 219) 30%, rgb(39 184 119) 100%);
-    padding: .8rem 3rem !important;
+    /* background: linear-gradient(rgb(64, 224, 219) 30%, rgb(39 184 119) 100%); */
+    padding: 0 3rem !important;
     display: flex !important;
     justify-content: space-between !important;
     align-items: center !important;
@@ -23,11 +23,18 @@
     position: relative;
 }
 
+.nav-left h5 {
+    color: #16d3ca;
+    font-weight: 600;
+    font-size: 2.25rem;
+}
+
 .navbar a, .bottom .btn, .btn-outline{
-    color: #000 !important;
+    color: #16d3ca !important;
     text-decoration: none !important;
-    font-weight: 500 !important;
+    font-weight: 600 !important;
     transition: color 0.3s ease;
+    font-size: 1.125rem;
 }
 
 .navbar-nav .dropdown-item, .form-submit-btn {
