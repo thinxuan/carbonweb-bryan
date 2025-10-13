@@ -63,14 +63,29 @@
         </div>
 
         <div class="nav-item">
-            <a href="#" class="nav-link">
+            <div class="nav-link nav-dropdown-toggle {{ request()->routeIs('admin.scope2.*') ? 'active' : '' }}" onclick="toggleDropdown('scope2')">
                 <i class="fas fa-bolt"></i>
                 Scope 2
-            </a>
+                <i class="fas fa-chevron-down nav-dropdown-icon"></i>
+            </div>
+            <div class="nav-dropdown" id="scope2-dropdown">
+                <a href="{{ route('admin.scope2.electricity-usage') }}" class="nav-link nav-dropdown-item {{ request()->routeIs('admin.scope2.electricity-usage') ? 'active' : '' }}">
+                    <i class="fas fa-bolt"></i>
+                    Electricity Usage
+                </a>
+                <a href="{{ route('admin.scope2.heat-steam-usage') }}" class="nav-link nav-dropdown-item {{ request()->routeIs('admin.scope2.heat-steam-usage') ? 'active' : '' }}">
+                    <i class="fas fa-fire"></i>
+                    Heat & Steam Usage
+                </a>
+                <a href="{{ route('admin.scope2.purchased-cooling') }}" class="nav-link nav-dropdown-item {{ request()->routeIs('admin.scope2.purchased-cooling') ? 'active' : '' }}">
+                    <i class="fas fa-snowflake"></i>
+                    Purchased Cooling
+                </a>
+            </div>
         </div>
 
         <div class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{ route('admin.scope3.index') }}" class="nav-link {{ request()->routeIs('admin.scope3.*') ? 'active' : '' }}">
                 <i class="fas fa-truck"></i>
                 Scope 3
             </a>

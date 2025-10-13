@@ -373,6 +373,8 @@
                 currentPath.includes('/admin/vehicles') ||
                 currentPath.includes('/admin/equipment') ||
                 currentPath.includes('/admin/scope1') ||
+                currentPath.includes('/admin/scope2') ||
+                currentPath.includes('/admin/scope3') ||
                 currentPath === '/admin') {
                 // Activate Measure tab
                 document.querySelector('[data-section="measure"]').classList.add('active');
@@ -390,6 +392,11 @@
                 // Auto-expand Scope 1 dropdown if on scope1 pages
                 if (currentPath.includes('/admin/scope1')) {
                     toggleDropdown('scope1');
+                }
+
+                // Auto-expand Scope 2 dropdown if on scope2 pages
+                if (currentPath.includes('/admin/scope2')) {
+                    toggleDropdown('scope2');
                 }
             }
         });
