@@ -7,6 +7,17 @@ use App\Http\Controllers\VehicleController;
 use App\Http\Controllers\EquipmentController;
 use App\Http\Controllers\Auth\SocialAuthController;
 
+// Health check for Railway
+Route::get('/health', function () {
+    return response()->json([
+        'status' => 'ok',
+        'app' => config('app.name'),
+        'env' => config('app.env'),
+        'url' => config('app.url'),
+        'database' => config('database.default'),
+    ]);
+});
+
 Route::get('/', function () {
     return view('home');
 });
