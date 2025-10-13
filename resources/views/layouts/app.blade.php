@@ -6,8 +6,9 @@
     {{-- <title>@yield('title', 'My Laravel App')</title> --}}
     <title>CARBON WALLET</title>
 
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/font.css') }}">
+    <script src="{{ asset('js/app.js') }}" defer></script>
 
     {{-- Font Awesome CDN --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
