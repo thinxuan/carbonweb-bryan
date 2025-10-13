@@ -31,7 +31,11 @@ Route::get('/', function () {
 
 // Test CSS loading
 Route::get('/test-css', function () {
-    return '<html><head><link rel="stylesheet" href="/css/style.css"></head><body><h1>CSS Test</h1><div class="navbar">Navbar Test</div></body></html>';
+    return '<html><head>
+        <link rel="stylesheet" href="/css/style.css">
+        <link rel="stylesheet" href="/css/admin_style.css">
+        <link rel="stylesheet" href="/css/font.css">
+    </head><body><h1>CSS Test</h1><div class="navbar">Navbar Test</div></body></html>';
 });
 
 Route::get('/contact', function () {
