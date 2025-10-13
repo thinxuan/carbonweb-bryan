@@ -37,9 +37,17 @@ RUN composer install --no-dev --optimize-autoloader --no-interaction
 RUN npm install --prefer-offline --no-audit
 RUN npm run build
 
-# Ensure CSS files are accessible
-RUN chmod -R 644 public/css/* public/images/* || true
-RUN chown -R www-data:www-data public/css public/images || true
+# Ensure static assets are accessible (CSS/Images)
+# Set directory permissions to 755 and file permissions to 644 recursively
+RUN if [ -d public/images ]; then \
+      find public/images -type d -exec chmod 755 {} \; && \
+      find public/images -type f -exec chmod 644 {} \; && \
+      chown -R www-data:www-data public/images; \
+    fi
+RUN if [ -d public/css ]; then \
+      chmod 644 public/css/* || true && \
+      chown -R www-data:www-data public/css; \
+    fi
 
 # Create storage directories and set permissions
 RUN mkdir -p storage/framework/{sessions,views,cache} \
