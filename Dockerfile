@@ -62,6 +62,24 @@ RUN echo '<Directory /var/www/html/public>\n\
     Options Indexes FollowSymLinks\n\
     AllowOverride All\n\
     Require all granted\n\
+</Directory>\n\
+\n\
+<Directory /var/www/html/public/css>\n\
+    Options Indexes FollowSymLinks\n\
+    AllowOverride None\n\
+    Require all granted\n\
+</Directory>\n\
+\n\
+<Directory /var/www/html/public/js>\n\
+    Options Indexes FollowSymLinks\n\
+    AllowOverride None\n\
+    Require all granted\n\
+</Directory>\n\
+\n\
+<Directory /var/www/html/public/images>\n\
+    Options Indexes FollowSymLinks\n\
+    AllowOverride None\n\
+    Require all granted\n\
 </Directory>' > /etc/apache2/conf-available/laravel.conf
 
 RUN a2enconf laravel
