@@ -1,3 +1,8 @@
 [build]
-builder = "railpack/php"
-phpVersion = "8.4"
+nixpacksPlan = true
+
+[variables]
+PHP_VERSION = "8.4"
+
+[start]
+cmd = "php artisan serve --host=0.0.0.0 --port=${PORT}"
