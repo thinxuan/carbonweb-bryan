@@ -13,7 +13,7 @@ Route::get('/health', function () {
     if (is_dir(public_path('css'))) {
         $cssFiles = array_values(array_diff(scandir(public_path('css')), ['.', '..']));
     }
-    
+
     return response()->json([
         'status' => 'ok',
         'app' => config('app.name'),

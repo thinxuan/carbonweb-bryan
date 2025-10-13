@@ -38,8 +38,8 @@ RUN npm install --prefer-offline --no-audit
 RUN npm run build
 
 # Ensure CSS files are accessible
-RUN chmod -R 644 public/css/* public/js/* public/images/* || true
-RUN chown -R www-data:www-data public/css public/js public/images
+RUN chmod -R 644 public/css/* public/images/* || true
+RUN chown -R www-data:www-data public/css public/images || true
 
 # Create storage directories and set permissions
 RUN mkdir -p storage/framework/{sessions,views,cache} \
