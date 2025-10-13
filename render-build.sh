@@ -5,9 +5,38 @@ set -e
 
 echo "🚀 Starting Render build process..."
 
+# Install PHP if needed
+echo "🔍 Checking PHP installation..."
+if ! command -v php &> /dev/null; then
+    echo "❌ PHP not found. Please set Environment to 'docker' in Render settings."
+    exit 1
+fi
+
+# Install Composer
+echo "📦 Installing Composer..."
+if ! command -v composer &> /dev/null; then
+    EXPECTED_CHECKSUM="$(php -r 'copy("https://composer.github.io/installer.sig", "php://stdout");')"
+    php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+    ACTUAL_CHECKSUM="$(php -r "echo hash_file('sha384', 'composer-setup.php');")"
+
+    if [ "$EXPECTED_CHECKSUM" != "$ACTUAL_CHECKSUM" ]; then
+        echo "❌ Invalid Composer installer"
+        rm composer-setup.php
+        exit 1
+    fi
+
+    php composer-setup.php --quiet
+    rm composer-setup.php
+    export PATH="$PATH:$PWD"
+    alias composer="php composer.phar"
+    COMPOSER_CMD="php composer.phar"
+else
+    COMPOSER_CMD="composer"
+fi
+
 # Install PHP dependencies
-echo "📦 Installing Composer dependencies..."
-composer install --no-dev --optimize-autoloader --no-interaction
+echo "📦 Installing PHP dependencies..."
+$COMPOSER_CMD install --no-dev --optimize-autoloader --no-interaction
 
 # Install Node dependencies and build assets
 echo "📦 Installing NPM dependencies..."
@@ -40,4 +69,3 @@ echo "🔗 Linking storage..."
 php artisan storage:link || true
 
 echo "✅ Build complete!"
-
