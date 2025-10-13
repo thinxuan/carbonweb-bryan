@@ -8,6 +8,7 @@
 
     @vite(['resources/js/app.js'])
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admin_style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/font.css') }}">
 
     {{-- Font Awesome CDN --}}
