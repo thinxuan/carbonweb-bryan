@@ -1,4 +1,0 @@
-# Force Railway to rebuild - timestamp: 2025-10-13T06:10:00Z
-# This file forces Railway to clear cache and use updated nixpacks.toml
-BUILD_VERSION=2
-
