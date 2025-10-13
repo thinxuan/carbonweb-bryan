@@ -7,9 +7,9 @@
     <title>CARBON WALLET</title>
 
     @vite(['resources/js/app.js'])
-    <link rel="stylesheet" href="{{ secure_asset('css/style.css') }}">
-    <link rel="stylesheet" href="{{ secure_asset('css/admin_style.css') }}">
-    <link rel="stylesheet" href="{{ secure_asset('css/font.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admin_style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/font.css') }}">
 
     {{-- Font Awesome CDN --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
