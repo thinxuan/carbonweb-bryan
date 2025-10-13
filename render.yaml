@@ -1,8 +1,9 @@
 services:
   - type: web
     name: carbonwallet
-    env: docker
+    runtime: docker
     dockerfilePath: ./Dockerfile
+    plan: free
     envVars:
       - key: APP_NAME
         value: CarbonWallet
@@ -12,8 +13,6 @@ services:
         value: base64:ZdoWE9EGrVbNIu4bZ3bWWktww0F2UgSv5yi5up/10W8=
       - key: APP_DEBUG
         value: false
-      - key: APP_URL
-        sync: false
       - key: DB_CONNECTION
         value: sqlite
       - key: DB_DATABASE
