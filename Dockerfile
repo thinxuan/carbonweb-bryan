@@ -37,6 +37,10 @@ RUN composer install --no-dev --optimize-autoloader --no-interaction
 RUN npm install --prefer-offline --no-audit
 RUN npm run build
 
+# Ensure CSS files are accessible
+RUN chmod -R 644 public/css/* public/js/* public/images/* || true
+RUN chown -R www-data:www-data public/css public/js public/images
+
 # Create storage directories and set permissions
 RUN mkdir -p storage/framework/{sessions,views,cache} \
     && mkdir -p storage/logs \
