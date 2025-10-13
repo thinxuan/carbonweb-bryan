@@ -1,3 +1,3 @@
 [build]
 builder = "railpack/php"
-phpVersion = "8.3"
+phpVersion = "8.4"
