@@ -15,7 +15,8 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         SocialiteWasCalled::class => [
             'SocialiteProviders\\Microsoft\\MicrosoftExtendSocialite@handle',
-            'SocialiteProviders\\Apple\\AppleExtendSocialite@handle',
+            // Apple provider temporarily removed for PHP 8.2 compatibility
+            // 'SocialiteProviders\\Apple\\AppleExtendSocialite@handle',
         ],
     ];
 

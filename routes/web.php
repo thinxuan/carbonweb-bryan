@@ -31,8 +31,9 @@ Route::get('/auth/google', [SocialAuthController::class, 'redirectToGoogle'])->n
 Route::get('/auth/google/callback', [SocialAuthController::class, 'handleGoogleCallback']);
 Route::get('/auth/microsoft', [SocialAuthController::class, 'redirectToMicrosoft'])->name('auth.microsoft');
 Route::get('/auth/microsoft/callback', [SocialAuthController::class, 'handleMicrosoftCallback']);
-Route::get('/auth/apple', [SocialAuthController::class, 'redirectToApple'])->name('auth.apple');
-Route::get('/auth/apple/callback', [SocialAuthController::class, 'handleAppleCallback']);
+// Apple auth temporarily disabled for PHP 8.2 compatibility
+// Route::get('/auth/apple', [SocialAuthController::class, 'redirectToApple'])->name('auth.apple');
+// Route::get('/auth/apple/callback', [SocialAuthController::class, 'handleAppleCallback']);
 
 // Admin Dashboard Routes - Temporarily without authentication
 Route::prefix('admin')->name('admin.')->group(function () {
