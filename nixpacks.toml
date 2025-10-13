@@ -3,13 +3,13 @@ nixPkgs = ['php82', 'php82Packages.composer', 'nodejs_20']
 
 [phases.install]
 cmds = [
-    'composer install --no-dev --optimize-autoloader --no-interaction',
-    'npm install --prefer-offline --no-audit',
-    'npm run build'
+    'composer install --no-dev --optimize-autoloader --no-interaction'
 ]
 
 [phases.build]
 cmds = [
+    'npm install --prefer-offline --no-audit',
+    'npm run build',
     'mkdir -p storage/framework/{sessions,views,cache}',
     'mkdir -p storage/logs',
     'mkdir -p bootstrap/cache',
