@@ -1,21 +1,26 @@
-@extends('layouts.app')
+@extends('admin.layout')
 
 @section('title', 'Footprint Analytics')
 
 @section('content')
+<div class="content-header">
+    <div class="d-flex justify-content-between align-items-center">
+        <div>
+            <h1 class="h3 mb-0">FOOTPRINT ANALYTICS</h1>
+            <p class="text-muted mb-0">View and analyze your total calculated footprint</p>
+        </div>
+    </div>
+</div>
+
 <div class="content-body">
     <div class="container-fluid">
-        <!-- Header Section -->
+        <!-- Controls Section -->
         <div class="d-flex justify-content-between align-items-center mb-4">
-            <div>
-                <h1 class="h2 fw-bold mb-2">2024 Footprint Analytics</h1>
-                <p class="text-muted mb-0">View and analyze your total calculated footprint through different metrics and visualizations. Analytics can take up to 5 minutes to refresh.</p>
+            <div class="text-end">
+                <div class="h4 fw-bold text-primary">{{ $footprintData['total_emissions'] }} tCO₂e</div>
+                <small class="text-muted">Total Emissions</small>
             </div>
             <div class="d-flex align-items-center gap-3">
-                <div class="text-end">
-                    <div class="h4 fw-bold text-primary">{{ $footprintData['total_emissions'] }} tCO₂e</div>
-                    <small class="text-muted">Total Emissions</small>
-                </div>
                 <div class="dropdown">
                     <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
                         Reporting Year: {{ $footprintData['reporting_year'] }}
@@ -43,7 +48,7 @@
                         <div class="mb-3">
                             <small class="text-muted">{{ $footprintData['date_range'] }}</small>
                         </div>
-                        
+
                         <div class="mb-4">
                             <h2 class="h1 fw-bold mb-0">Total Scope 1, Scope 2, and Scope 3 emissions</h2>
                             <div class="h2 fw-bold text-primary">{{ $footprintData['total_emissions'] }} tCO₂e</div>
@@ -65,17 +70,17 @@
                             <small class="text-muted">Data measured in tCO₂e. <a href="#" class="text-primary">Learn more</a></small>
                         </div>
                     </div>
-                    
+
                     <div class="col-lg-6">
                         <!-- Pie Chart Placeholder -->
                         <div class="pie-chart-container text-center">
                             <div class="position-relative d-inline-block">
                                 <svg width="200" height="200" class="pie-chart">
                                     <!-- Scope 1 - Yellow (dominant) -->
-                                    <circle cx="100" cy="100" r="80" fill="none" stroke="#fbbf24" stroke-width="40" 
+                                    <circle cx="100" cy="100" r="80" fill="none" stroke="#fbbf24" stroke-width="40"
                                             stroke-dasharray="502.4 0" transform="rotate(-90 100 100)"></circle>
                                     <!-- Scope 2 - Purple (small slice) -->
-                                    <circle cx="100" cy="100" r="80" fill="none" stroke="#8b5cf6" stroke-width="40" 
+                                    <circle cx="100" cy="100" r="80" fill="none" stroke="#8b5cf6" stroke-width="40"
                                             stroke-dasharray="2.4 500" stroke-dashoffset="-502.4" transform="rotate(-90 100 100)"></circle>
                                     <!-- Scope 3 - Pink (0, so no visible slice) -->
                                 </svg>
@@ -85,7 +90,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="mt-3">
                             <small class="text-muted">Data Updated: {{ $footprintData['last_updated'] }}</small>
                         </div>
