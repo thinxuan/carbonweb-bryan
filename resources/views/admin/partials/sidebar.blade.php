@@ -85,14 +85,14 @@
         </div>
 
         <div class="nav-item">
-            <a href="{{ route('admin.scope3.index') }}" class="nav-link {{ request()->routeIs('admin.scope3.*') ? 'active' : '' }}">
+            <a href="{{ route('admin.scope3.index') }}" class="nav-link" data-route="admin.scope3.index">
                 <i class="fas fa-truck"></i>
                 Scope 3
             </a>
         </div>
 
         <div class="nav-item">
-            <a href="{{ route('admin.scope3.footprint-analytics') }}" class="nav-link {{ request()->routeIs('admin.scope3.footprint-analytics') ? 'active' : '' }}">
+            <a href="{{ route('admin.scope3.footprint-analytics') }}" class="nav-link" data-route="admin.scope3.footprint-analytics">
                 <i class="fas fa-chart-line"></i>
                 Footprint Analytics
             </a>
@@ -104,31 +104,55 @@
         <div class="nav-item">
             <a href="#" class="nav-link">
                 <i class="fas fa-chart-bar"></i>
-                Emissions Report
+                My GHG Metrics Reports
             </a>
         </div>
 
         <div class="nav-item">
             <a href="#" class="nav-link">
-                <i class="fas fa-file-pdf"></i>
-                PDF Reports
-            </a>
-        </div>
-
-        <div class="nav-item">
-            <a href="#" class="nav-link">
-                <i class="fas fa-download"></i>
-                Export Data
-            </a>
-        </div>
-
-        <div class="nav-item">
-            <a href="#" class="nav-link">
-                <i class="fas fa-calendar"></i>
-                Yearly Summary
+                <i class="fas fa-file-alt"></i>
+                Sustainability Reporting
             </a>
         </div>
     </nav>
+
+    {{-- Help Center and Profile Navigation --}}
+    <div class="nav-item" style="position: absolute; bottom: 6.5rem; width: 100%;">
+        <div class="nav-link nav-dropdown-toggle" onclick="toggleHelpCenter()">
+            <i class="fas fa-question-circle"></i>
+            Help Center
+        </div>
+    </div>
+
+    <div class="nav-item" style="position: absolute; bottom: 4rem; width: 100%;">
+        <div class="nav-link nav-dropdown-toggle" onclick="toggleProfileDropdown()">
+            <i class="fas fa-user"></i>
+            Profile
+            <i class="fas fa-chevron-down nav-dropdown-icon"></i>
+        </div>
+        <div class="nav-dropdown" id="profile-dropdown">
+            <div class="profile-dropdown-content">
+                <div class="profile-user-info">
+                    <div class="profile-avatar">FL</div>
+                    <div class="profile-details">
+                        <div class="profile-name">Fiona Lee</div>
+                        <div class="profile-company">Change IT Services Sdn Bhd</div>
+                    </div>
+                </div>
+                <div class="profile-divider"></div>
+                <div class="profile-menu-items">
+                    <a href="#" class="profile-menu-item" onclick="openSettingsModal()">
+                        <i class="fas fa-cog"></i>
+                        Settings
+                    </a>
+                    <a href="#" class="profile-menu-item">
+                        <i class="fas fa-sign-out-alt"></i>
+                        Log out
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="sidebar-footer" style="position: absolute; bottom: 1rem; left: 1rem; right: 1rem;">
         <a href="{{ url('/') }}" class="btn btn-outline-light btn-sm w-100">

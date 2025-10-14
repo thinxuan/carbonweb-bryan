@@ -14,14 +14,14 @@
 
 <div class="content-body">
     <div class="container-fluid">
-        <!-- Controls Section -->
+        <!-- Header Section -->
         <div class="d-flex justify-content-between align-items-center mb-4">
-            <div class="text-end">
-                <div class="h4 fw-bold text-primary">{{ $footprintData['total_emissions'] }} tCO₂e</div>
-                <small class="text-muted">Total Emissions</small>
+            <div>
+                <h1 class="h2 fw-bold mb-2">2024 Footprint Analytics</h1>
+                <p class="text-muted mb-0">View and analyze your total calculated footprint through different metrics and visualizations. Analytics can take up to 5 minutes to refresh.</p>
             </div>
             <div class="d-flex align-items-center gap-3">
-                <div class="dropdown">
+                {{-- <div class="dropdown">
                     <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
                         Reporting Year: {{ $footprintData['reporting_year'] }}
                     </button>
@@ -32,7 +32,7 @@
                 </div>
                 <button class="btn btn-outline-primary">
                     <i class="fas fa-robot me-2"></i>Copilot
-                </button>
+                </button> --}}
                 <button class="btn btn-primary">
                     <i class="fas fa-download me-2"></i>Download
                 </button>
@@ -40,34 +40,39 @@
         </div>
 
         <!-- Your Footprint Section -->
-        <div class="card border-0 shadow-sm mb-4">
+        <div class="card border-0 shadow-sm mb-4" style="background-color: #f8f9fa; border-radius: 12px;">
             <div class="card-body p-4">
                 <div class="row align-items-center">
                     <div class="col-lg-6">
-                        <h3 class="h5 fw-semibold mb-3">Your Footprint</h3>
+                        <h3 class="h5 fw-bold mb-3" style="color: #495057;">Your Footprint</h3>
                         <div class="mb-3">
-                            <small class="text-muted">{{ $footprintData['date_range'] }}</small>
+                            <small class="text-muted" style="color: #6c757d;">{{ $footprintData['date_range'] }}</small>
                         </div>
 
                         <div class="mb-4">
-                            <h2 class="h1 fw-bold mb-0">Total Scope 1, Scope 2, and Scope 3 emissions</h2>
-                            <div class="h2 fw-bold text-primary">{{ $footprintData['total_emissions'] }} tCO₂e</div>
+                            <h2 class="h1 fw-bold mb-0" style="color: #495057; font-size: 1.5rem;">Total Scope 1, Scope 2, and Scope 3 emissions</h2>
+                            <div class="h2 fw-bold" style="color: #495057; font-size: 2.5rem;">{{ $footprintData['total_emissions'] }} tCO₂e<i class="fas fa-info-circle ms-2" style="font-size: 0.8rem; color: #6c757d;"></i></div>
                         </div>
 
                         <!-- Scope Breakdown -->
-                        <div class="scope-breakdown">
-                            @foreach($footprintData['scopes'] as $scope)
-                            <div class="d-flex align-items-center mb-3">
-                                <div class="scope-indicator me-3" style="width: 16px; height: 16px; background-color: {{ $scope['color'] }}; border-radius: 50%;"></div>
-                                <div class="flex-grow-1">
-                                    <strong>{{ $scope['label'] }}:</strong> {{ $scope['value'] }}
+                        <div class="scope-breakdown" style="background: #f8f9fa; border-radius: 8px; padding: 1rem;">
+                            <div class="d-flex align-items-center justify-content-between" style="flex-direction: row; align-content: center;">
+                                @foreach($footprintData['scopes'] as $scope)
+                                <div class="d-flex align-items-center" style="flex: 1;">
+                                    <div class="scope-indicator me-3" style="width: 16px; height: 16px; background-color: {{ $scope['color'] }}; border-radius: 50%;"></div>
+                                    <div>
+                                        <strong style="color: #495057;">{{ $scope['label'] }}:</strong> <span style="color: #495057; font-weight: bold; font-size: 1.1rem;">{{ $scope['value'] }}</span>
+                                    </div>
                                 </div>
+                                @if(!$loop->last)
+                                <div class="border-end" style="height: 40px; margin: 0 15px;"></div>
+                                @endif
+                                @endforeach
                             </div>
-                            @endforeach
                         </div>
 
                         <div class="mt-4">
-                            <small class="text-muted">Data measured in tCO₂e. <a href="#" class="text-primary">Learn more</a></small>
+                            <small class="text-muted" style="color: #6c757d;">Data measured in tCO₂e. <a href="#" class="text-primary">Learn more</a></small>
                         </div>
                     </div>
 
@@ -83,16 +88,19 @@
                                     <circle cx="100" cy="100" r="80" fill="none" stroke="#8b5cf6" stroke-width="40"
                                             stroke-dasharray="2.4 500" stroke-dashoffset="-502.4" transform="rotate(-90 100 100)"></circle>
                                     <!-- Scope 3 - Pink (0, so no visible slice) -->
+                                    <!-- White line indicator -->
+                                    <line x1="100" y1="20" x2="100" y2="0" stroke="white" stroke-width="2"></line>
                                 </svg>
                                 <div class="position-absolute top-50 start-50 translate-middle text-center">
-                                    <div class="h5 fw-bold">{{ $footprintData['total_emissions'] }}</div>
-                                    <div class="small text-muted">tCO₂e</div>
+                                    <div class="h5 fw-bold" style="color: #495057;">{{ $footprintData['total_emissions'] }}</div>
+                                    <div class="small text-muted" style="color: #6c757d;">tCO₂e</div>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="mt-3">
-                            <small class="text-muted">Data Updated: {{ $footprintData['last_updated'] }}</small>
+                        <div class="mt-3 d-flex align-items-center justify-content-center">
+                            <div style="width: 8px; height: 8px; background-color: #20c997; border-radius: 50%; margin-right: 8px;"></div>
+                            <small class="text-muted" style="color: #6c757d;">Data Updated: {{ $footprintData['last_updated'] }}</small>
                         </div>
                     </div>
                 </div>
@@ -102,21 +110,15 @@
         <!-- Additional Footprint Analytics Section -->
         <div class="card border-0 shadow-sm">
             <div class="card-body p-4">
-                <div class="d-flex align-items-start">
-                    <div class="flex-grow-1">
-                        <div class="d-flex align-items-center mb-3">
-                            <span class="badge bg-warning text-dark me-2">Upgrade</span>
-                            <h3 class="h5 fw-semibold mb-0">Additional Footprint Analytics</h3>
-                        </div>
-                        <p class="text-muted mb-3">View a comprehensive breakdown of your footprint by category and GHG footprint category. Understand which aspects of your organization are the top emitters.</p>
-                        <a href="#" class="text-primary text-decoration-none">Learn more about additional footprint analytics</a>
-                    </div>
-                    <div class="ms-4">
-                        <button class="btn btn-primary">
-                            <i class="fas fa-arrow-up me-2"></i>Upgrade to View Metrics
-                        </button>
-                    </div>
+                <div class="d-flex align-items-center mb-3">
+                    <span class="badge bg-warning text-dark me-2">Upgrade</span>
+                    <h3 class="h5 fw-semibold mb-0">Additional Footprint Analytics</h3>
                 </div>
+                <p class="text-muted mb-3">View a comprehensive breakdown of your footprint by category and GHG footprint category. Understand which aspects of your organization are the top emitters.</p>
+                <a href="#" class="text-primary text-decoration-none d-block mb-4">Learn more about additional footprint analytics</a>
+                <button class="btn btn-primary">
+                    <i class="fas fa-arrow-up me-2"></i>Upgrade to View Metrics
+                </button>
             </div>
         </div>
     </div>

@@ -76,28 +76,19 @@
             <p style="margin-bottom: 0; text-align: center; border: 1px solid #ccc; border-radius: 6px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); padding: 1rem 1rem; width: 80%;">Looking for the option to track electricity by equipment? You’ll track your electricity usage in the utilities section when you add a location.</p>
         </div>
 
-        <div class="row">
-            <div class="mb-3">
+        <div class="row" id="equipmentTypeSection" style="display: none;">
+            <div class="my-3">
                 <label for="type" class="form-label">What kind of equipment is this?</label>
-                <select class="form-select @error('type') is-invalid @enderror"
-                        id="type" name="type" required>
-                    <option value="">Select equipment type</option>
-                    <option value="boiler" {{ old('type') == 'boiler' ? 'selected' : '' }}>Boiler</option>
-                    <option value="burner" {{ old('type') == 'burner' ? 'selected' : '' }}>Burner</option>
-                    <option value="dryer" {{ old('type') == 'dryer' ? 'selected' : '' }}>Dryer</option>
-                    <option value="flare" {{ old('type') == 'flare' ? 'selected' : '' }}>Flare</option>
-                    <option value="furnace" {{ old('type') == 'furnace' ? 'selected' : '' }}>Furnace</option>
-                    <option value="generator" {{ old('type') == 'generator' ? 'selected' : '' }}>Generator</option>
-                    <option value="heater" {{ old('type') == 'heater' ? 'selected' : '' }}>Heater</option>
-                    <option value="incinerator" {{ old('type') == 'incinerator' ? 'selected' : '' }}>Incinerator</option>
-                    <option value="internal_combustion_engine" {{ old('type') == 'internal_combustion_engine' ? 'selected' : '' }}>Internal Combustion Engine</option>
-                    <option value="kiln" {{ old('type') == 'kiln' ? 'selected' : '' }}>Kiln</option>
-                    <option value="open_burning" {{ old('type') == 'open_burning' ? 'selected' : '' }}>Open Burning</option>
-                    <option value="other" {{ old('type') == 'other' ? 'selected' : '' }}>Other</option>
-                    <option value="oven" {{ old('type') == 'oven' ? 'selected' : '' }}>Oven</option>
-                    <option value="thermal_oxidizer" {{ old('type') == 'thermal_oxidizer' ? 'selected' : '' }}>Thermal Oxidizer</option>
-                    <option value="turbine" {{ old('type') == 'turbine' ? 'selected' : '' }}>Turbine</option>
-                </select>
+                <div class="custom-dropdown @error('type') is-invalid @enderror">
+                    <button type="button" class="custom-dropdown-toggle" aria-expanded="false">
+                        <span class="dropdown-text">Select equipment type</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <input type="hidden" id="type" name="type" value="" required>
+                    <ul class="dropdown-menu" id="equipmentTypeDropdown">
+                        <!-- Options will be populated dynamically based on checkbox selection -->
+                    </ul>
+                </div>
                 @error('type')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
@@ -123,17 +114,48 @@
         </div>
 
         <div class="row">
-            <div class="mb-3">
+            <div class="my-3">
                 <label for="location_id" class="form-label">Where is this equipment located?</label>
-                <select class="form-select @error('location_id') is-invalid @enderror"
-                        id="location_id" name="location_id">
-                    <option value="">Select a location</option>
-                    @foreach($locations as $location)
-                        <option value="{{ $location->id }}" {{ old('location_id') == $location->id ? 'selected' : '' }}>
-                            {{ $location->name }}
-                        </option>
-                    @endforeach
-                </select>
+                <div class="custom-dropdown @error('location_id') is-invalid @enderror">
+                    <button type="button" class="custom-dropdown-toggle" id="locationDropdownToggle" aria-expanded="false">
+                        <span class="dropdown-text">
+                            @if(old('location_id'))
+                                @foreach($locations as $location)
+                                    @if(old('location_id') == $location->id)
+                                        {{ $location->name }}
+                                    @endif
+                                @endforeach
+                            @else
+                                Select a location
+                            @endif
+                        </span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <input type="hidden" id="location_id" name="location_id" value="{{ old('location_id') ?: '' }}">
+                    <ul class="dropdown-menu" id="locationDropdownMenu">
+                        <li><a class="dropdown-item" href="#" data-value="">Select a location</a></li>
+                        @if(isset($locations) && count($locations) > 0)
+                            @foreach($locations as $location)
+                                <li><a class="dropdown-item" href="#" data-value="{{ $location->id }}">
+                                    <div class="location-option">
+                                        <div class="location-name">{{ $location->name }}</div>
+                                        @if($location->address || $location->city || $location->state || $location->postal_code || $location->country)
+                                            <div class="location-address text-muted small">
+                                                @if($location->address){{ $location->address }}, @endif
+                                                @if($location->city){{ $location->city }}, @endif
+                                                @if($location->state){{ $location->state }} @endif
+                                                @if($location->postal_code){{ $location->postal_code }} @endif
+                                                @if($location->country){{ $location->country }}@endif
+                                            </div>
+                                        @endif
+                                    </div>
+                                </a></li>
+                            @endforeach
+                        @else
+                            <li><a class="dropdown-item" href="#" data-value="" style="color: #6c757d; font-style: italic;">No locations available</a></li>
+                        @endif
+                    </ul>
+                </div>
                 @error('location_id')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
@@ -300,6 +322,240 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Initialize on page load
     showEquipmentIcon();
+});
+
+// Equipment type options based on checkbox selection
+const equipmentTypeOptions = {
+    fuel: [
+        { value: 'boiler', text: 'Boiler' },
+        { value: 'burner', text: 'Burner' },
+        { value: 'dryer', text: 'Dryer' },
+        { value: 'flare', text: 'Flare' },
+        { value: 'furnace', text: 'Furnace' },
+        { value: 'generator', text: 'Generator' },
+        { value: 'heater', text: 'Heater' },
+        { value: 'incinerator', text: 'Incinerator' },
+        { value: 'internal_combustion_engine', text: 'Internal Combustion Engine' },
+        { value: 'kiln', text: 'Kiln' },
+        { value: 'open_burning', text: 'Open Burning' },
+        { value: 'other', text: 'Other' },
+        { value: 'oven', text: 'Oven' },
+        { value: 'thermal_oxidizer', text: 'Thermal Oxidizer' },
+        { value: 'turbine', text: 'Turbine' }
+    ],
+    refrigerant: [
+        { value: 'chillers', text: 'Chillers' },
+        { value: 'domestic_refrigeration', text: 'Domestic Refrigeration' },
+        { value: 'industrial_refrigeration', text: 'Industrial Refrigeration including Food Processing and Cold Storage' },
+        { value: 'medium_large_commercial_refrigeration', text: 'Medium & Large Commercial Refrigeration' },
+        { value: 'mobile_air_conditioning', text: 'Mobile Air Conditioning' },
+        { value: 'other', text: 'Other' },
+        { value: 'residential_commercial_ac', text: 'Residential & Commercial A/C including Heat Pumps' },
+        { value: 'stand_alone_commercial_applications', text: 'Stand Alone Commercial Applications' },
+        { value: 'transport_refrigeration', text: 'Transport Refrigeration' }
+    ],
+    industrial_gas: [
+        { value: 'fixed_fire_suppression_equipment', text: 'Fixed Fire Suppression Equipment' },
+        { value: 'other', text: 'Other' },
+        { value: 'portable_fire_suppression_equipment', text: 'Portable Fire Suppression Equipment' }
+    ]
+};
+
+// Function to populate dropdown options
+function populateEquipmentTypeDropdown(selectedTypes) {
+    const dropdown = document.getElementById('equipmentTypeDropdown');
+    const dropdownText = document.querySelector('#equipmentTypeSection .dropdown-text');
+    const hiddenInput = document.getElementById('type');
+
+    // Clear existing options
+    dropdown.innerHTML = '';
+
+    // Determine which options to show based on selected checkboxes
+    let optionsToShow = [];
+
+    if (selectedTypes.includes('fuel')) {
+        optionsToShow = [...optionsToShow, ...equipmentTypeOptions.fuel];
+    }
+    if (selectedTypes.includes('refrigerant')) {
+        optionsToShow = [...optionsToShow, ...equipmentTypeOptions.refrigerant];
+    }
+    if (selectedTypes.includes('industrial_gas')) {
+        optionsToShow = [...optionsToShow, ...equipmentTypeOptions.industrial_gas];
+    }
+
+    // Remove duplicates (in case 'other' appears multiple times)
+    const uniqueOptions = optionsToShow.filter((option, index, self) =>
+        index === self.findIndex(o => o.value === option.value)
+    );
+
+    // Populate dropdown
+    uniqueOptions.forEach(option => {
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+        a.className = 'dropdown-item';
+        a.href = '#';
+        a.dataset.value = option.value;
+        a.textContent = option.text;
+        li.appendChild(a);
+        dropdown.appendChild(li);
+    });
+
+
+    // Reset dropdown text and value
+    dropdownText.textContent = 'Select equipment type';
+    hiddenInput.value = '';
+
+    // Reattach event listeners to new dropdown items
+    attachDropdownItemListeners();
+}
+
+// Function to handle checkbox changes
+function handleCheckboxChange() {
+    const checkboxes = document.querySelectorAll('input[name="equipment[]"]:checked');
+    const selectedTypes = Array.from(checkboxes).map(cb => {
+        // Map checkbox values to equipment types
+        switch(cb.value) {
+            case 'equipment_a': return 'fuel';
+            case 'equipment_b': return 'refrigerant';
+            case 'equipment_c': return 'industrial_gas';
+            default: return null;
+        }
+    }).filter(type => type !== null);
+
+
+    if (selectedTypes.length > 0) {
+        document.getElementById('equipmentTypeSection').style.display = 'block';
+        populateEquipmentTypeDropdown(selectedTypes);
+    } else {
+        document.getElementById('equipmentTypeSection').style.display = 'none';
+    }
+}
+
+// Function to attach event listeners to dropdown items
+function attachDropdownItemListeners() {
+    document.querySelectorAll('#equipmentTypeDropdown .dropdown-item').forEach(function(item) {
+        item.addEventListener('click', function(e) {
+            e.preventDefault();
+
+            const dropdown = this.closest('.custom-dropdown');
+            const toggle = dropdown.querySelector('.custom-dropdown-toggle');
+            const hiddenInput = dropdown.querySelector('input[type="hidden"]');
+            const dropdownText = toggle.querySelector('.dropdown-text');
+
+            // Update the button text
+            dropdownText.textContent = this.textContent;
+
+            // Update the hidden input value
+            hiddenInput.value = this.dataset.value;
+
+            // Close the dropdown
+            const dropdownMenu = dropdown.querySelector('.dropdown-menu');
+            dropdownMenu.classList.remove('show');
+            toggle.setAttribute('aria-expanded', 'false');
+        });
+    });
+
+    // Handle location dropdown items
+    document.querySelectorAll('.custom-dropdown .dropdown-item').forEach(function(item) {
+        item.addEventListener('click', function(e) {
+            e.preventDefault();
+
+            const dropdown = this.closest('.custom-dropdown');
+            const toggle = dropdown.querySelector('.custom-dropdown-toggle');
+            const hiddenInput = dropdown.querySelector('input[type="hidden"]');
+            const dropdownText = toggle.querySelector('.dropdown-text');
+
+            // Get location name from the location-option structure
+            const locationName = this.querySelector('.location-name');
+            const displayText = locationName ? locationName.textContent : this.textContent;
+
+            // Update the button text
+            dropdownText.textContent = displayText;
+
+            // Update the hidden input value
+            hiddenInput.value = this.dataset.value;
+
+            // Close the dropdown
+            const dropdownMenu = dropdown.querySelector('.dropdown-menu');
+            dropdownMenu.classList.remove('show');
+            toggle.setAttribute('aria-expanded', 'false');
+        });
+    });
+}
+
+// Custom dropdown functionality
+document.addEventListener('DOMContentLoaded', function() {
+
+    // Handle location dropdown specifically
+    const locationToggle = document.getElementById('locationDropdownToggle');
+    if (locationToggle) {
+        locationToggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            const dropdownMenu = document.getElementById('locationDropdownMenu');
+            const isOpen = dropdownMenu.classList.contains('show');
+
+            // Close all other dropdowns first
+            document.querySelectorAll('.custom-dropdown .dropdown-menu').forEach(function(menu) {
+                menu.classList.remove('show');
+            });
+            document.querySelectorAll('.custom-dropdown-toggle').forEach(function(toggle) {
+                toggle.setAttribute('aria-expanded', 'false');
+            });
+
+            // Toggle location dropdown
+            if (!isOpen) {
+                dropdownMenu.classList.add('show');
+                this.setAttribute('aria-expanded', 'true');
+            }
+        });
+    }
+
+    // Handle checkbox changes
+    document.querySelectorAll('input[name="equipment[]"]').forEach(function(checkbox) {
+        checkbox.addEventListener('change', function() {
+            handleCheckboxChange();
+        });
+    });
+
+    // Handle dropdown toggle
+    document.querySelectorAll('.custom-dropdown-toggle').forEach(function(toggle) {
+        toggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            const dropdown = this.closest('.custom-dropdown');
+            const dropdownMenu = dropdown.querySelector('.dropdown-menu');
+            const isOpen = dropdownMenu.classList.contains('show');
+
+            // Close all other dropdowns
+            document.querySelectorAll('.custom-dropdown .dropdown-menu').forEach(function(menu) {
+                menu.classList.remove('show');
+            });
+            document.querySelectorAll('.custom-dropdown-toggle').forEach(function(toggle) {
+                toggle.setAttribute('aria-expanded', 'false');
+            });
+
+            // Toggle current dropdown
+            if (!isOpen) {
+                dropdownMenu.classList.add('show');
+                this.setAttribute('aria-expanded', 'true');
+            }
+        });
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('.custom-dropdown')) {
+            document.querySelectorAll('.custom-dropdown .dropdown-menu').forEach(function(menu) {
+                menu.classList.remove('show');
+            });
+            document.querySelectorAll('.custom-dropdown-toggle').forEach(function(toggle) {
+                toggle.setAttribute('aria-expanded', 'false');
+            });
+        }
+    });
 });
 </script>
 @endsection

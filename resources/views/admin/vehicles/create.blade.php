@@ -73,93 +73,127 @@
                 <div id="makeModelContent" style="display: block; margin-top: 1rem;">
                 <div class="mb-3">
                     <label for="year" class="form-label">Year (Optional)</label>
-                    <select class="form-select @error('year') is-invalid @enderror" id="year" name="year">
-                        <option value="">Select Year</option>
-                        @for($year = date('Y') + 1; $year >= 1990; $year--)
-                            <option value="{{ $year }}" {{ old('year') == $year ? 'selected' : '' }}>{{ $year }}</option>
-                        @endfor
-                    </select>
+                    <div class="custom-dropdown @error('year') is-invalid @enderror">
+                        <button type="button" class="custom-dropdown-toggle" id="yearDropdownToggle" aria-expanded="false">
+                            <span class="dropdown-text">
+                                @if(old('year'))
+                                    {{ old('year') }}
+                                @else
+                                    Select Year
+                                @endif
+                            </span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <input type="hidden" id="year" name="year" value="{{ old('year') ?: '' }}">
+                        <ul class="dropdown-menu" id="yearDropdownMenu">
+                            <li><a class="dropdown-item" href="#" data-value="">Select Year</a></li>
+                            @for($year = date('Y') + 1; $year >= 1990; $year--)
+                                <li><a class="dropdown-item" href="#" data-value="{{ $year }}">{{ $year }}</a></li>
+                            @endfor
+                        </ul>
+                    </div>
                     @error('year')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
                 <div class="mb-3">
                     <label for="make_optional" class="form-label">Make (Optional)</label>
-                    <select class="form-select" id="make_optional" name="make_optional">
-                        <option value="">Select Make</option>
-                        <option value="Toyota" {{ old('make') == 'Toyota' ? 'selected' : '' }}>Toyota</option>
-                        <option value="Honda" {{ old('make') == 'Honda' ? 'selected' : '' }}>Honda</option>
-                        <option value="Ford" {{ old('make') == 'Ford' ? 'selected' : '' }}>Ford</option>
-                        <option value="Chevrolet" {{ old('make') == 'Chevrolet' ? 'selected' : '' }}>Chevrolet</option>
-                        <option value="Nissan" {{ old('make') == 'Nissan' ? 'selected' : '' }}>Nissan</option>
-                        <option value="BMW" {{ old('make') == 'BMW' ? 'selected' : '' }}>BMW</option>
-                        <option value="Mercedes-Benz" {{ old('make') == 'Mercedes-Benz' ? 'selected' : '' }}>Mercedes-Benz</option>
-                        <option value="Audi" {{ old('make') == 'Audi' ? 'selected' : '' }}>Audi</option>
-                        <option value="Volkswagen" {{ old('make') == 'Volkswagen' ? 'selected' : '' }}>Volkswagen</option>
-                        <option value="Hyundai" {{ old('make') == 'Hyundai' ? 'selected' : '' }}>Hyundai</option>
-                        <option value="Kia" {{ old('make') == 'Kia' ? 'selected' : '' }}>Kia</option>
-                        <option value="Mazda" {{ old('make') == 'Mazda' ? 'selected' : '' }}>Mazda</option>
-                        <option value="Subaru" {{ old('make') == 'Subaru' ? 'selected' : '' }}>Subaru</option>
-                        <option value="Lexus" {{ old('make') == 'Lexus' ? 'selected' : '' }}>Lexus</option>
-                        <option value="Acura" {{ old('make') == 'Acura' ? 'selected' : '' }}>Acura</option>
-                        <option value="Infiniti" {{ old('make') == 'Infiniti' ? 'selected' : '' }}>Infiniti</option>
-                        <option value="Volvo" {{ old('make') == 'Volvo' ? 'selected' : '' }}>Volvo</option>
-                        <option value="Jaguar" {{ old('make') == 'Jaguar' ? 'selected' : '' }}>Jaguar</option>
-                        <option value="Land Rover" {{ old('make') == 'Land Rover' ? 'selected' : '' }}>Land Rover</option>
-                        <option value="Porsche" {{ old('make') == 'Porsche' ? 'selected' : '' }}>Porsche</option>
-                        <option value="Tesla" {{ old('make') == 'Tesla' ? 'selected' : '' }}>Tesla</option>
-                        <option value="Other" {{ old('make') == 'Other' ? 'selected' : '' }}>Other</option>
-                    </select>
+                    <div class="custom-dropdown">
+                        <button type="button" class="custom-dropdown-toggle" id="makeDropdownToggle" aria-expanded="false">
+                            <span class="dropdown-text">
+                                @if(old('make_optional'))
+                                    {{ old('make_optional') }}
+                                @else
+                                    Select Make
+                                @endif
+                            </span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <input type="hidden" id="make_optional" name="make_optional" value="{{ old('make_optional') ?: '' }}">
+                        <ul class="dropdown-menu" id="makeDropdownMenu">
+                            <li><a class="dropdown-item" href="#" data-value="">Select Make</a></li>
+                            <li><a class="dropdown-item" href="#" data-value="Toyota">Toyota</a></li>
+                            <li><a class="dropdown-item" href="#" data-value="Honda">Honda</a></li>
+                            <li><a class="dropdown-item" href="#" data-value="Ford">Ford</a></li>
+                            <li><a class="dropdown-item" href="#" data-value="Chevrolet">Chevrolet</a></li>
+                            <li><a class="dropdown-item" href="#" data-value="Nissan">Nissan</a></li>
+                            <li><a class="dropdown-item" href="#" data-value="BMW">BMW</a></li>
+                            <li><a class="dropdown-item" href="#" data-value="Mercedes-Benz">Mercedes-Benz</a></li>
+                            <li><a class="dropdown-item" href="#" data-value="Audi">Audi</a></li>
+                            <li><a class="dropdown-item" href="#" data-value="Volkswagen">Volkswagen</a></li>
+                            <li><a class="dropdown-item" href="#" data-value="Hyundai">Hyundai</a></li>
+                            <li><a class="dropdown-item" href="#" data-value="Kia">Kia</a></li>
+                            <li><a class="dropdown-item" href="#" data-value="Mazda">Mazda</a></li>
+                            <li><a class="dropdown-item" href="#" data-value="Subaru">Subaru</a></li>
+                            <li><a class="dropdown-item" href="#" data-value="Lexus">Lexus</a></li>
+                            <li><a class="dropdown-item" href="#" data-value="Acura">Acura</a></li>
+                            <li><a class="dropdown-item" href="#" data-value="Infiniti">Infiniti</a></li>
+                            <li><a class="dropdown-item" href="#" data-value="Volvo">Volvo</a></li>
+                            <li><a class="dropdown-item" href="#" data-value="Jaguar">Jaguar</a></li>
+                            <li><a class="dropdown-item" href="#" data-value="Land Rover">Land Rover</a></li>
+                            <li><a class="dropdown-item" href="#" data-value="Porsche">Porsche</a></li>
+                            <li><a class="dropdown-item" href="#" data-value="Tesla">Tesla</a></li>
+                            <li><a class="dropdown-item" href="#" data-value="Other">Other</a></li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="mb-3">
                     <label for="model_optional" class="form-label">Model (Optional)</label>
-                    <select class="form-select" id="model_optional" name="model_optional">
-                        <option value="">Select Model</option>
-                        <!-- Toyota Models -->
-                        <optgroup label="Toyota">
-                            <option value="Camry" {{ old('model') == 'Camry' ? 'selected' : '' }}>Camry</option>
-                            <option value="Corolla" {{ old('model') == 'Corolla' ? 'selected' : '' }}>Corolla</option>
-                            <option value="RAV4" {{ old('model') == 'RAV4' ? 'selected' : '' }}>RAV4</option>
-                            <option value="Highlander" {{ old('model') == 'Highlander' ? 'selected' : '' }}>Highlander</option>
-                            <option value="Prius" {{ old('model') == 'Prius' ? 'selected' : '' }}>Prius</option>
-                            <option value="Tacoma" {{ old('model') == 'Tacoma' ? 'selected' : '' }}>Tacoma</option>
-                            <option value="Tundra" {{ old('model') == 'Tundra' ? 'selected' : '' }}>Tundra</option>
-                        </optgroup>
-                        <!-- Honda Models -->
-                        <optgroup label="Honda">
-                            <option value="Civic" {{ old('model') == 'Civic' ? 'selected' : '' }}>Civic</option>
-                            <option value="Accord" {{ old('model') == 'Accord' ? 'selected' : '' }}>Accord</option>
-                            <option value="CR-V" {{ old('model') == 'CR-V' ? 'selected' : '' }}>CR-V</option>
-                            <option value="Pilot" {{ old('model') == 'Pilot' ? 'selected' : '' }}>Pilot</option>
-                            <option value="Odyssey" {{ old('model') == 'Odyssey' ? 'selected' : '' }}>Odyssey</option>
-                            <option value="HR-V" {{ old('model') == 'HR-V' ? 'selected' : '' }}>HR-V</option>
-                        </optgroup>
-                        <!-- Ford Models -->
-                        <optgroup label="Ford">
-                            <option value="F-150" {{ old('model') == 'F-150' ? 'selected' : '' }}>F-150</option>
-                            <option value="Escape" {{ old('model') == 'Escape' ? 'selected' : '' }}>Escape</option>
-                            <option value="Explorer" {{ old('model') == 'Explorer' ? 'selected' : '' }}>Explorer</option>
-                            <option value="Focus" {{ old('model') == 'Focus' ? 'selected' : '' }}>Focus</option>
-                            <option value="Fusion" {{ old('model') == 'Fusion' ? 'selected' : '' }}>Fusion</option>
-                            <option value="Mustang" {{ old('model') == 'Mustang' ? 'selected' : '' }}>Mustang</option>
-                        </optgroup>
-                        <!-- BMW Models -->
-                        <optgroup label="BMW">
-                            <option value="3 Series" {{ old('model') == '3 Series' ? 'selected' : '' }}>3 Series</option>
-                            <option value="5 Series" {{ old('model') == '5 Series' ? 'selected' : '' }}>5 Series</option>
-                            <option value="X3" {{ old('model') == 'X3' ? 'selected' : '' }}>X3</option>
-                            <option value="X5" {{ old('model') == 'X5' ? 'selected' : '' }}>X5</option>
-                            <option value="X1" {{ old('model') == 'X1' ? 'selected' : '' }}>X1</option>
-                        </optgroup>
-                        <!-- Tesla Models -->
-                        <optgroup label="Tesla">
-                            <option value="Model S" {{ old('model') == 'Model S' ? 'selected' : '' }}>Model S</option>
-                            <option value="Model 3" {{ old('model') == 'Model 3' ? 'selected' : '' }}>Model 3</option>
-                            <option value="Model X" {{ old('model') == 'Model X' ? 'selected' : '' }}>Model X</option>
-                            <option value="Model Y" {{ old('model') == 'Model Y' ? 'selected' : '' }}>Model Y</option>
-                        </optgroup>
-                        <option value="Other" {{ old('model') == 'Other' ? 'selected' : '' }}>Other</option>
-                    </select>
+                    <div class="custom-dropdown">
+                        <button type="button" class="custom-dropdown-toggle" id="modelDropdownToggle" aria-expanded="false">
+                            <span class="dropdown-text">
+                                @if(old('model_optional'))
+                                    {{ old('model_optional') }}
+                                @else
+                                    Select Model
+                                @endif
+                            </span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <input type="hidden" id="model_optional" name="model_optional" value="{{ old('model_optional') ?: '' }}">
+                        <ul class="dropdown-menu" id="modelDropdownMenu">
+                            <li><a class="dropdown-item" href="#" data-value="">Select Model</a></li>
+                            <!-- Toyota Models -->
+                            <li class="dropdown-header">Toyota</li>
+                            <li><a class="dropdown-item" href="#" data-value="Camry">Camry</a></li>
+                            <li><a class="dropdown-item" href="#" data-value="Corolla">Corolla</a></li>
+                            <li><a class="dropdown-item" href="#" data-value="RAV4">RAV4</a></li>
+                            <li><a class="dropdown-item" href="#" data-value="Highlander">Highlander</a></li>
+                            <li><a class="dropdown-item" href="#" data-value="Prius">Prius</a></li>
+                            <li><a class="dropdown-item" href="#" data-value="Tacoma">Tacoma</a></li>
+                            <li><a class="dropdown-item" href="#" data-value="Tundra">Tundra</a></li>
+                            <!-- Honda Models -->
+                            <li class="dropdown-header">Honda</li>
+                            <li><a class="dropdown-item" href="#" data-value="Civic">Civic</a></li>
+                            <li><a class="dropdown-item" href="#" data-value="Accord">Accord</a></li>
+                            <li><a class="dropdown-item" href="#" data-value="CR-V">CR-V</a></li>
+                            <li><a class="dropdown-item" href="#" data-value="Pilot">Pilot</a></li>
+                            <li><a class="dropdown-item" href="#" data-value="Odyssey">Odyssey</a></li>
+                            <li><a class="dropdown-item" href="#" data-value="HR-V">HR-V</a></li>
+                            <!-- Ford Models -->
+                            <li class="dropdown-header">Ford</li>
+                            <li><a class="dropdown-item" href="#" data-value="F-150">F-150</a></li>
+                            <li><a class="dropdown-item" href="#" data-value="Escape">Escape</a></li>
+                            <li><a class="dropdown-item" href="#" data-value="Explorer">Explorer</a></li>
+                            <li><a class="dropdown-item" href="#" data-value="Focus">Focus</a></li>
+                            <li><a class="dropdown-item" href="#" data-value="Fusion">Fusion</a></li>
+                            <li><a class="dropdown-item" href="#" data-value="Mustang">Mustang</a></li>
+                            <!-- BMW Models -->
+                            <li class="dropdown-header">BMW</li>
+                            <li><a class="dropdown-item" href="#" data-value="3 Series">3 Series</a></li>
+                            <li><a class="dropdown-item" href="#" data-value="5 Series">5 Series</a></li>
+                            <li><a class="dropdown-item" href="#" data-value="X3">X3</a></li>
+                            <li><a class="dropdown-item" href="#" data-value="X5">X5</a></li>
+                            <li><a class="dropdown-item" href="#" data-value="X1">X1</a></li>
+                            <!-- Tesla Models -->
+                            <li class="dropdown-header">Tesla</li>
+                            <li><a class="dropdown-item" href="#" data-value="Model S">Model S</a></li>
+                            <li><a class="dropdown-item" href="#" data-value="Model 3">Model 3</a></li>
+                            <li><a class="dropdown-item" href="#" data-value="Model X">Model X</a></li>
+                            <li><a class="dropdown-item" href="#" data-value="Model Y">Model Y</a></li>
+                            <li><a class="dropdown-item" href="#" data-value="Other">Other</a></li>
+                        </ul>
+                    </div>
                 </div>
                 </div>
             </div>
@@ -238,16 +272,46 @@
 
         <div class="mb-3">
             <label for="location_id" class="form-label">Where is this vehicle located?(Optional)</label>
-            <select class="form-select @error('location_id') is-invalid @enderror" id="location_id" name="location_id">
-                <option value="">Select a location</option>
-                @if(isset($locations))
-                    @foreach($locations as $location)
-                        <option value="{{ $location->id }}" {{ old('location_id') == $location->id ? 'selected' : '' }}>
-                            {{ $location->name }}
-                        </option>
-                    @endforeach
-                @endif
-            </select>
+            <div class="custom-dropdown @error('location_id') is-invalid @enderror">
+                <button type="button" class="custom-dropdown-toggle" id="locationDropdownToggle" aria-expanded="false">
+                    <span class="dropdown-text">
+                        @if(old('location_id'))
+                            @foreach($locations as $location)
+                                @if(old('location_id') == $location->id)
+                                    {{ $location->name }}
+                                @endif
+                            @endforeach
+                        @else
+                            Select a location
+                        @endif
+                    </span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <input type="hidden" id="location_id" name="location_id" value="{{ old('location_id') ?: '' }}">
+                <ul class="dropdown-menu" id="locationDropdownMenu">
+                    <li><a class="dropdown-item" href="#" data-value="">Select a location</a></li>
+                    @if(isset($locations))
+                        @foreach($locations as $location)
+                            <li><a class="dropdown-item" href="#" data-value="{{ $location->id }}">
+                                <div class="location-option">
+                                    <div class="location-name">{{ $location->name }}</div>
+                                    @if($location->address || $location->city || $location->state || $location->postal_code || $location->country)
+                                        <div class="location-address text-muted small">
+                                            @if($location->address){{ $location->address }}, @endif
+                                            @if($location->city){{ $location->city }}, @endif
+                                            @if($location->state){{ $location->state }} @endif
+                                            @if($location->postal_code){{ $location->postal_code }} @endif
+                                            @if($location->country){{ $location->country }}@endif
+                                        </div>
+                                    @endif
+                                </div>
+                            </a></li>
+                        @endforeach
+                    @else
+                        <li><a class="dropdown-item" href="#" data-value="" style="color: #6c757d; font-style: italic;">No locations available</a></li>
+                    @endif
+                </ul>
+            </div>
             @error('location_id')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
@@ -438,6 +502,9 @@ document.addEventListener('DOMContentLoaded', function() {
     showVehicleType();
     showVehicleIcon();
 
+    // Custom dropdown functionality
+    setupCustomDropdowns();
+
     // If optional Make/Model are selected and primary fields are empty, copy over on submit
     const form = document.querySelector('form[action*="vehicles"]');
     form.addEventListener('submit', function() {
@@ -476,6 +543,73 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+function setupCustomDropdowns() {
+    // Handle all custom dropdown toggles
+    document.querySelectorAll('.custom-dropdown-toggle').forEach(function(toggle) {
+        toggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            const dropdown = this.closest('.custom-dropdown');
+            const dropdownMenu = dropdown.querySelector('.dropdown-menu');
+            const isOpen = dropdownMenu.classList.contains('show');
+
+            // Close all other dropdowns
+            document.querySelectorAll('.custom-dropdown .dropdown-menu').forEach(function(menu) {
+                menu.classList.remove('show');
+            });
+            document.querySelectorAll('.custom-dropdown-toggle').forEach(function(toggle) {
+                toggle.setAttribute('aria-expanded', 'false');
+            });
+
+            // Toggle current dropdown
+            if (!isOpen) {
+                dropdownMenu.classList.add('show');
+                this.setAttribute('aria-expanded', 'true');
+            }
+        });
+    });
+
+    // Handle dropdown item clicks
+    document.querySelectorAll('.custom-dropdown .dropdown-item').forEach(function(item) {
+        item.addEventListener('click', function(e) {
+            e.preventDefault();
+
+            const dropdown = this.closest('.custom-dropdown');
+            const toggle = dropdown.querySelector('.custom-dropdown-toggle');
+            const hiddenInput = dropdown.querySelector('input[type="hidden"]');
+            const dropdownText = toggle.querySelector('.dropdown-text');
+
+            // Get display text (handle location-option structure)
+            const locationName = this.querySelector('.location-name');
+            const displayText = locationName ? locationName.textContent : this.textContent;
+
+            // Update the button text
+            dropdownText.textContent = displayText;
+
+            // Update the hidden input value
+            hiddenInput.value = this.dataset.value;
+
+            // Close the dropdown
+            const dropdownMenu = dropdown.querySelector('.dropdown-menu');
+            dropdownMenu.classList.remove('show');
+            toggle.setAttribute('aria-expanded', 'false');
+        });
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('.custom-dropdown')) {
+            document.querySelectorAll('.custom-dropdown .dropdown-menu').forEach(function(menu) {
+                menu.classList.remove('show');
+            });
+            document.querySelectorAll('.custom-dropdown-toggle').forEach(function(toggle) {
+                toggle.setAttribute('aria-expanded', 'false');
+            });
+        }
+    });
+}
 </script>
 
 @endsection

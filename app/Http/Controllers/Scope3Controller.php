@@ -574,7 +574,7 @@ class Scope3Controller extends Controller
                     ]
                 ]
             ],
-            'waste_operations' => [
+            'waste-operations' => [
                 'title' => 'Waste Generated in Operations',
                 'scope' => 'Scope 3 - Category 5',
                 'description' => 'This category accounts for emissions from third-party disposal, transport, and treatment / decomposition of waste generated in the reporting year 2024 for the company/s owned or',
@@ -684,8 +684,8 @@ class Scope3Controller extends Controller
                             'description' => 'To calculate your emissions using average data based on the number of nights stayed, the three columns are:',
                             'columns' => [
                                 [
-                                    'title' => 'Country',
-                                    'description' => ' Choose a country where the Hotel Stay took place, not the currency used to purchase the stay. For example, if you paid for a Hotel in Mexico with US Dollars, you would select Mexico for this field, not the US. Note: If your desired Country is not listed, use this tool (https://www.hotelfootprints.org/) and the color-coded map to find a Country with the same color-coding (based on the Carbon Emissions per Room Night [KgCO2e]) and a comparable Rooms Footprint, and use that Country instead. For example, Croatia is not listed in Persefoni, so a Country with a matching color and similar Rooms Footprint (such as Switzerland) can be used in its place.'
+                                    'title' => 'Country -',
+                                    'description' => "Choose a country where the Hotel Stay took place, not the currency used to purchase the stay. For example, if you paid for a Hotel in Mexico with US Dollars, you would select Mexico for this field, not the US.\n\nNote: If your desired Country is not listed, use this tool (https://www.hotelfootprints.org/) and the color-coded map to find a Country with the same color-coding (based on the Carbon Emissions per Room Night [KgCO2e]) and a comparable Rooms Footprint, and use that Country instead. For example, Croatia is not listed in Persefoni, so a Country with a matching color and similar Rooms Footprint (such as Switzerland) can be used in its place."
                                 ],
                                 [
                                     'title' => 'State (optional)',
@@ -947,6 +947,7 @@ class Scope3Controller extends Controller
                                     'description' => 'Choose a Vehicle Type to classify the vehicle driven from the dropdown list.'
                                 ],
                             ]
+                            , 'additional_note' => 'Please note that in order to get an accurate calculation, it is important to calculate each unit of measure of freight transport on a separate line in the file upload data template rather than aggregating. If you must aggregate, then you should either use the total distance traveled and the average shipment weight OR the average distance traveled and the total shipment weight. If you sum both of these, you will overcount emissions.'
                         ]
                     ],
                     'amount_spent' => [

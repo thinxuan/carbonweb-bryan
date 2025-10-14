@@ -211,7 +211,7 @@
                             @foreach($option['learn_more']['columns'] as $index => $column)
                                 <li class="mb-3">
                                     <p class="fw-semibold mb-1">{{ $index + 1 }}. {{ $column['title'] }}</p>
-                                    <p class="text-muted mb-0">{{ $column['description'] }}</p>
+                                    <p class="text-muted mb-0">{!! nl2br(e($column['description'])) !!}</p>
                                 </li>
                             @endforeach
                         </ol>

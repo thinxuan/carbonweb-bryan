@@ -128,11 +128,24 @@
                     <!-- Number input -->
                     <input type="number" class="form-control @error('gross') is-invalid @enderror"
                            id="gross" name="gross" value="{{ old('gross') }}" required placeholder="Enter area">
-                    <!-- Dropdown for units -->
-                    <select class="form-select" id="unit" name="unit" required>
-                        <option value="sqft" {{ old('unit') == 'sqft' ? 'selected' : '' }}>sqft - square foot</option>
-                        <option value="sqm" {{ old('unit') == 'sqm' ? 'selected' : '' }}>sqm - square meter</option>
-                    </select>
+                    <!-- Dropdown for units (custom) -->
+                    <div class="custom-dropdown" style="min-width: 240px;">
+                        <button type="button" class="custom-dropdown-toggle" id="unitDropdownToggle" aria-expanded="false">
+                            <span class="dropdown-text">
+                                @if(old('unit') == 'sqm')
+                                    sqm - square meter
+                                @else
+                                    {{ old('unit') == 'sqft' ? 'sqft - square foot' : 'Select unit' }}
+                                @endif
+                            </span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <input type="hidden" id="unit" name="unit" value="{{ old('unit') ?: '' }}" required>
+                        <ul class="dropdown-menu" id="unitDropdownMenu">
+                            <li><a class="dropdown-item" href="#" data-value="sqft">sqft - square foot</a></li>
+                            <li><a class="dropdown-item" href="#" data-value="sqm">sqm - square meter</a></li>
+                        </ul>
+                    </div>
                 </div>
                 @error('gross')
                     <div class="invalid-feedback">{{ $message }}</div>
@@ -143,29 +156,64 @@
             <div class="mt-3">
                 <label for="primary" class="form-label">What is this location's primary use?</label>
                 <div class="input-group">
-                    <select class="form-select custom-select" id="primary" name="primary" required onchange="showSubCategory()">
-                        <option value="" {{ old('primary') == '' ? 'selected' : '' }}>Please select a primary use</option>
-                        <option value="banking" {{ old('primary') == 'banking' ? 'selected' : '' }}>Banking & Financial Services</option>
-                        <option value="education" {{ old('primary') == 'education' ? 'selected' : '' }}>Education</option>
-                        <option value="entertainment" {{ old('primary') == 'entertainment' ? 'selected' : '' }}>Entertainment & Public Assembly</option>
-                        <option value="food_sales" {{ old('primary') == 'food_sales' ? 'selected' : '' }}>Food Sales</option>
-                        <option value="food_service" {{ old('primary') == 'food_service' ? 'selected' : '' }}>Food Service</option>
-                        <option value="healthcare" {{ old('primary') == 'healthcare' ? 'selected' : '' }}>Healthcare</option>
-                        <option value="lodging" {{ old('primary') == 'lodging' ? 'selected' : '' }}>Lodging</option>
-                        <option value="manufacturing" {{ old('primary') == 'manufacturing' ? 'selected' : '' }}>Manufacturing & Industrial</option>
-                        <option value="mixed_use" {{ old('primary') == 'mixed_use' ? 'selected' : '' }}>Mixed Use</option>
-                        <option value="office" {{ old('primary') == 'office' ? 'selected' : '' }}>Office</option>
-                        <option value="oil_gas" {{ old('primary') == 'oil_gas' ? 'selected' : '' }}>Oil & Natural Gas</option>
-                        <option value="parking" {{ old('primary') == 'parking' ? 'selected' : '' }}>Parking</option>
-                        <option value="public_services" {{ old('primary') == 'public_services' ? 'selected' : '' }}>Public Services</option>
-                        <option value="religious" {{ old('primary') == 'religious' ? 'selected' : '' }}>Religious Worship</option>
-                        <option value="retail" {{ old('primary') == 'retail' ? 'selected' : '' }}>Retail/Merchantile</option>
-                        <option value="services" {{ old('primary') == 'services' ? 'selected' : '' }}>Services</option>
-                        <option value="tech_science" {{ old('primary') == 'tech_science' ? 'selected' : '' }}>Technology & Science</option>
-                        <option value="utility" {{ old('primary') == 'utility' ? 'selected' : '' }}>Utility</option>
-                        <option value="vacant" {{ old('primary') == 'vacant' ? 'selected' : '' }}>Vacant</option>
-                        <option value="warehouse" {{ old('primary') == 'warehouse' ? 'selected' : '' }}>Warehouse & Storage</option>
-                    </select>
+                    <div class="custom-dropdown" style="min-width: 320px;">
+                        <button type="button" class="custom-dropdown-toggle" id="primaryDropdownToggle" aria-expanded="false">
+                            <span class="dropdown-text">
+                                @php
+                                    $primaryMap = [
+                                        '' => 'Please select a primary use',
+                                        'banking' => 'Banking & Financial Services',
+                                        'education' => 'Education',
+                                        'entertainment' => 'Entertainment & Public Assembly',
+                                        'food_sales' => 'Food Sales',
+                                        'food_service' => 'Food Service',
+                                        'healthcare' => 'Healthcare',
+                                        'lodging' => 'Lodging',
+                                        'manufacturing' => 'Manufacturing & Industrial',
+                                        'mixed_use' => 'Mixed Use',
+                                        'office' => 'Office',
+                                        'oil_gas' => 'Oil & Natural Gas',
+                                        'parking' => 'Parking',
+                                        'public_services' => 'Public Services',
+                                        'religious' => 'Religious Worship',
+                                        'retail' => 'Retail/Merchantile',
+                                        'services' => 'Services',
+                                        'tech_science' => 'Technology & Science',
+                                        'utility' => 'Utility',
+                                        'vacant' => 'Vacant',
+                                        'warehouse' => 'Warehouse & Storage'
+                                    ];
+                                    $oldPrimary = old('primary');
+                                @endphp
+                                {{ $primaryMap[$oldPrimary ?? ''] ?? 'Please select a primary use' }}
+                            </span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <input type="hidden" id="primary" name="primary" value="{{ old('primary') ?: '' }}" required>
+                        <ul class="dropdown-menu" id="primaryDropdownMenu">
+                            <li><a class="dropdown-item" href="#" data-value="">Please select a primary use</a></li>
+                            <li><a class="dropdown-item" href="#" data-value="banking">Banking & Financial Services</a></li>
+                            <li><a class="dropdown-item" href="#" data-value="education">Education</a></li>
+                            <li><a class="dropdown-item" href="#" data-value="entertainment">Entertainment & Public Assembly</a></li>
+                            <li><a class="dropdown-item" href="#" data-value="food_sales">Food Sales</a></li>
+                            <li><a class="dropdown-item" href="#" data-value="food_service">Food Service</a></li>
+                            <li><a class="dropdown-item" href="#" data-value="healthcare">Healthcare</a></li>
+                            <li><a class="dropdown-item" href="#" data-value="lodging">Lodging</a></li>
+                            <li><a class="dropdown-item" href="#" data-value="manufacturing">Manufacturing & Industrial</a></li>
+                            <li><a class="dropdown-item" href="#" data-value="mixed_use">Mixed Use</a></li>
+                            <li><a class="dropdown-item" href="#" data-value="office">Office</a></li>
+                            <li><a class="dropdown-item" href="#" data-value="oil_gas">Oil & Natural Gas</a></li>
+                            <li><a class="dropdown-item" href="#" data-value="parking">Parking</a></li>
+                            <li><a class="dropdown-item" href="#" data-value="public_services">Public Services</a></li>
+                            <li><a class="dropdown-item" href="#" data-value="religious">Religious Worship</a></li>
+                            <li><a class="dropdown-item" href="#" data-value="retail">Retail/Merchantile</a></li>
+                            <li><a class="dropdown-item" href="#" data-value="services">Services</a></li>
+                            <li><a class="dropdown-item" href="#" data-value="tech_science">Technology & Science</a></li>
+                            <li><a class="dropdown-item" href="#" data-value="utility">Utility</a></li>
+                            <li><a class="dropdown-item" href="#" data-value="vacant">Vacant</a></li>
+                            <li><a class="dropdown-item" href="#" data-value="warehouse">Warehouse & Storage</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
 
@@ -1048,6 +1096,9 @@ document.addEventListener('DOMContentLoaded', function() {
             toggleBtn.textContent = "I can't find my exact address";
         }
     });
+
+    // Custom dropdowns setup
+    setupCustomDropdowns();
 });
 
 // Function to show/hide sub-categories based on primary use selection
@@ -1075,5 +1126,72 @@ function showSubCategory() {
 document.addEventListener('DOMContentLoaded', function() {
     showSubCategory();
 });
+
+// Custom dropdown utilities (shared style/behavior)
+function setupCustomDropdowns() {
+    // Toggle handlers
+    document.querySelectorAll('.custom-dropdown-toggle').forEach(function(toggle) {
+        toggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            const dropdown = this.closest('.custom-dropdown');
+            const dropdownMenu = dropdown.querySelector('.dropdown-menu');
+            const isOpen = dropdownMenu.classList.contains('show');
+
+            // Close all
+            document.querySelectorAll('.custom-dropdown .dropdown-menu').forEach(function(menu) {
+                menu.classList.remove('show');
+            });
+            document.querySelectorAll('.custom-dropdown-toggle').forEach(function(t) {
+                t.setAttribute('aria-expanded', 'false');
+            });
+
+            if (!isOpen) {
+                dropdownMenu.classList.add('show');
+                this.setAttribute('aria-expanded', 'true');
+            }
+        });
+    });
+
+    // Item selection handlers
+    document.querySelectorAll('.custom-dropdown .dropdown-item').forEach(function(item) {
+        item.addEventListener('click', function(e) {
+            e.preventDefault();
+
+            const dropdown = this.closest('.custom-dropdown');
+            const toggle = dropdown.querySelector('.custom-dropdown-toggle');
+            const hiddenInput = dropdown.querySelector('input[type="hidden"]');
+            const dropdownText = toggle.querySelector('.dropdown-text');
+
+            const locationName = this.querySelector('.location-name');
+            const displayText = locationName ? locationName.textContent : this.textContent;
+
+            dropdownText.textContent = displayText;
+            hiddenInput.value = this.dataset.value;
+
+            // If primary changed, update sub-category visibility
+            if (hiddenInput && hiddenInput.id === 'primary') {
+                showSubCategory();
+            }
+
+            const dropdownMenu = dropdown.querySelector('.dropdown-menu');
+            dropdownMenu.classList.remove('show');
+            toggle.setAttribute('aria-expanded', 'false');
+        });
+    });
+
+    // Close on outside click
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('.custom-dropdown')) {
+            document.querySelectorAll('.custom-dropdown .dropdown-menu').forEach(function(menu) {
+                menu.classList.remove('show');
+            });
+            document.querySelectorAll('.custom-dropdown-toggle').forEach(function(t) {
+                t.setAttribute('aria-expanded', 'false');
+            });
+        }
+    });
+}
 </script>
 @endsection
