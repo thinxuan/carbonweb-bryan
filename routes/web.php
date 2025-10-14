@@ -91,6 +91,13 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('scope3/save-categories', [App\Http\Controllers\Scope3Controller::class, 'saveCategories'])->name('scope3.save-categories');
         Route::get('scope3/category/{category}', [App\Http\Controllers\Scope3Controller::class, 'showCategory'])->name('scope3.category');
         Route::get('scope3/footprint-analytics', [App\Http\Controllers\Scope3Controller::class, 'footprintAnalytics'])->name('scope3.footprint-analytics');
+
+    // Reports inside admin group (ensure only one admin prefix)
+    Route::get('reports/cdp', [App\Http\Controllers\ReportsController::class, 'cdp'])->name('reports.cdp');
+    Route::get('reports/ghg-methodology', [App\Http\Controllers\ReportsController::class, 'methodology'])->name('reports.methodology');
+    Route::get('reports/sustainability', [App\Http\Controllers\ReportsController::class, 'sustainability'])->name('reports.sustainability');
+    Route::get('reports/secr', [App\Http\Controllers\ReportsController::class, 'secr'])->name('reports.secr');
+
 });
 
 Auth::routes();

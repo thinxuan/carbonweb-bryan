@@ -102,14 +102,26 @@
     {{-- Report Section --}}
     <nav class="sidebar-nav sidebar-section" id="report-section">
         <div class="nav-item">
-            <a href="#" class="nav-link">
+            <div class="nav-link nav-dropdown-toggle" onclick="toggleDropdown('ghg-reports')">
                 <i class="fas fa-chart-bar"></i>
                 My GHG Metrics Reports
-            </a>
+                <i class="fas fa-chevron-down nav-dropdown-icon"></i>
+            </div>
+            <div class="nav-dropdown" id="ghg-reports-dropdown">
+                <a href="{{ route('admin.reports.cdp') }}" class="nav-link nav-dropdown-item">
+                    CDP GHG Metrics Report
+                </a>
+                <a href="{{ route('admin.reports.methodology') }}" class="nav-link nav-dropdown-item">
+                    GHG Methodology Report
+                </a>
+                <a href="{{ route('admin.reports.secr') }}" class="nav-link nav-dropdown-item">
+                    SECR GHG Metrics Report
+                </a>
+            </div>
         </div>
 
         <div class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{ route('admin.reports.sustainability') }}" class="nav-link">
                 <i class="fas fa-file-alt"></i>
                 Sustainability Reporting
             </a>
