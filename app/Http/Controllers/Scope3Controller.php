@@ -319,6 +319,36 @@ class Scope3Controller extends Controller
         return view('admin.scope3.category', compact('category', 'categoryData'));
     }
 
+    public function footprintAnalytics()
+    {
+        // Sample data for footprint analytics
+        $footprintData = [
+            'total_emissions' => '7,685.25',
+            'reporting_year' => '2024',
+            'date_range' => '01-01-2024 - 12-31-2024',
+            'last_updated' => 'Sat, Oct 11, 2025, 03:02:28 AM GMT+8',
+            'scopes' => [
+                'scope1' => [
+                    'value' => '7,681.58',
+                    'color' => '#fbbf24', // yellow
+                    'label' => 'Scope 1'
+                ],
+                'scope2' => [
+                    'value' => '3.67',
+                    'color' => '#8b5cf6', // purple
+                    'label' => 'Scope 2'
+                ],
+                'scope3' => [
+                    'value' => '0',
+                    'color' => '#ec4899', // pink
+                    'label' => 'Scope 3'
+                ]
+            ]
+        ];
+
+        return view('admin.scope3.footprint-analytics', compact('footprintData'));
+    }
+
     /**
      * Get all categories configuration
      */

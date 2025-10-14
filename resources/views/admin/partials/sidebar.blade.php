@@ -92,7 +92,7 @@
         </div>
 
         <div class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{ route('admin.scope3.footprint-analytics') }}" class="nav-link {{ request()->routeIs('admin.scope3.footprint-analytics') ? 'active' : '' }}">
                 <i class="fas fa-chart-line"></i>
                 Footprint Analytics
             </a>

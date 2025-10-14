@@ -90,6 +90,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('scope3/restore-source', [App\Http\Controllers\Scope3Controller::class, 'restoreSource'])->name('scope3.restore-source');
         Route::post('scope3/save-categories', [App\Http\Controllers\Scope3Controller::class, 'saveCategories'])->name('scope3.save-categories');
         Route::get('scope3/category/{category}', [App\Http\Controllers\Scope3Controller::class, 'showCategory'])->name('scope3.category');
+        Route::get('scope3/footprint-analytics', [App\Http\Controllers\Scope3Controller::class, 'footprintAnalytics'])->name('scope3.footprint-analytics');
 });
 
 Auth::routes();
