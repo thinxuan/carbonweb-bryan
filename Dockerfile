@@ -37,7 +37,7 @@ RUN composer install --no-dev --optimize-autoloader --no-interaction
 RUN npm install --prefer-offline --no-audit
 RUN npm run build
 
-# Ensure static assets are accessible (CSS/Images)
+# Ensure static assets are accessible (CSS/Images/Fonts)
 # Set directory permissions to 755 and file permissions to 644 recursively
 RUN if [ -d public/images ]; then \
       find public/images -type d -exec chmod 755 {} \; && \
@@ -47,6 +47,10 @@ RUN if [ -d public/images ]; then \
 RUN if [ -d public/css ]; then \
       chmod 644 public/css/* || true && \
       chown -R www-data:www-data public/css; \
+    fi
+RUN if [ -d public/font ]; then \
+      chmod 644 public/font/* || true && \
+      chown -R www-data:www-data public/font; \
     fi
 
 # Create storage directories and set permissions
@@ -89,6 +93,12 @@ RUN echo '<Directory /var/www/html/public>\n\
 </Directory>\n\
 \n\
 <Directory /var/www/html/public/images>\n\
+    Options Indexes FollowSymLinks\n\
+    AllowOverride None\n\
+    Require all granted\n\
+</Directory>\n\
+\n\
+<Directory /var/www/html/public/font>\n\
     Options Indexes FollowSymLinks\n\
     AllowOverride None\n\
     Require all granted\n\
