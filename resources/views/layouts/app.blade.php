@@ -6,6 +6,11 @@
     {{-- <title>@yield('title', 'My Laravel App')</title> --}}
     <title>CARBON WALLET</title>
 
+    {{-- Google Fonts - Montserrat --}}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/admin_style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/font.css') }}">
