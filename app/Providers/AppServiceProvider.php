@@ -20,9 +20,22 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        // Force HTTPS in production to avoid mixed-content issues
-        if (config('app.env') === 'production' && config('app.url') && str_starts_with(config('app.url'), 'https://')) {
+        // Force HTTPS only for production Render deployment, not for local development
+        if (config('app.env') === 'production' &&
+            config('app.url') &&
+            str_starts_with(config('app.url'), 'https://') &&
+            !str_contains(config('app.url'), 'localhost') &&
+            !str_contains(config('app.url'), '127.0.0.1') &&
+            !str_contains(config('app.url'), 'carbonwallet.test')) {
             URL::forceScheme('https');
+        }
+
+        // Force HTTP for local development
+        if (config('app.env') === 'local' ||
+            str_contains(config('app.url'), 'localhost') ||
+            str_contains(config('app.url'), '127.0.0.1') ||
+            str_contains(config('app.url'), 'carbonwallet.test')) {
+            URL::forceScheme('http');
         }
     }
 }

@@ -314,7 +314,7 @@ function saveElectricityData() {
         }
     }
 
-    fetch('{{ route("admin.scope2.electricity-usage.store") }}', {
+    fetch('{{ route("account.scope2.electricity-usage.store") }}', {
         method: 'POST',
         body: formData,
         headers: {

@@ -220,7 +220,7 @@ function saveHeatSteamData() {
         return;
     }
 
-    fetch('{{ route("admin.scope2.heat-steam-usage.store") }}', {
+    fetch('{{ route("account.scope2.heat-steam-usage.store") }}', {
         method: 'POST',
         body: formData,
         headers: {

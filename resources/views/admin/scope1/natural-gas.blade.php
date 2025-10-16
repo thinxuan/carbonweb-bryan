@@ -166,7 +166,7 @@
 <div class="sticky-continue-footer">
     <div class="container-fluid">
         <div class="d-flex justify-content-end">
-            <a href="{{ route('admin.vehicles.index') }}" class="btn btn-success btn-lg">
+            <a href="{{ route('account.vehicles.index') }}" class="btn btn-success btn-lg">
                 Continue to Vehicle Usage (Distance) <i class="fas fa-arrow-right ms-2"></i>
             </a>
         </div>
@@ -237,7 +237,7 @@ function saveNaturalGasData() {
     saveButton.disabled = true;
 
     // Send AJAX request
-    fetch('{{ route("admin.scope1.natural-gas.store") }}', {
+    fetch('{{ route("account.scope1.natural-gas.store") }}', {
         method: 'POST',
         body: formData,
         headers: {

@@ -2305,13 +2305,13 @@
             });
 
                 // Auto-select appropriate tab based on current route
-                if (currentPath.includes('/admin/locations') ||
-                    currentPath.includes('/admin/vehicles') ||
-                    currentPath.includes('/admin/equipment') ||
-                    currentPath.includes('/admin/scope1') ||
-                    currentPath.includes('/admin/scope2') ||
-                    currentPath.includes('/admin/scope3') ||
-                    currentPath === '/admin') {
+                if (currentPath.includes('/account/locations') ||
+                    currentPath.includes('/account/vehicles') ||
+                    currentPath.includes('/account/equipment') ||
+                    currentPath.includes('/account/scope1') ||
+                    currentPath.includes('/account/scope2') ||
+                    currentPath.includes('/account/scope3') ||
+                    currentPath === '/account') {
                     // Activate Measure tab
                     document.querySelector('[data-section="measure"]').classList.add('active');
                     document.getElementById('measure-section').classList.add('active');
@@ -2324,51 +2324,51 @@
                     });
 
                     // Set active state based on current route
-                    if (currentPath.includes('/admin/scope3/footprint-analytics')) {
+                    if (currentPath.includes('/account/scope3/footprint-analytics')) {
                         // Footprint Analytics is active
-                        document.querySelector('[data-route="admin.scope3.footprint-analytics"]').classList.add('active');
-                    } else if (currentPath.includes('/admin/scope3')) {
+                        document.querySelector('[data-route="account.scope3.footprint-analytics"]').classList.add('active');
+                    } else if (currentPath.includes('/account/scope3')) {
                         // Scope 3 index is active
-                        document.querySelector('[data-route="admin.scope3.index"]').classList.add('active');
+                        document.querySelector('[data-route="account.scope3.index"]').classList.add('active');
                     }
 
                     // Handle dropdown navigation items
-                    if (currentPath.includes('/admin/scope2/electricity-usage')) {
+                    if (currentPath.includes('/account/scope2/electricity-usage')) {
                         document.querySelector('a[href*="electricity-usage"]').classList.add('active');
-                    } else if (currentPath.includes('/admin/scope2/heat-steam-usage')) {
+                    } else if (currentPath.includes('/account/scope2/heat-steam-usage')) {
                         document.querySelector('a[href*="heat-steam-usage"]').classList.add('active');
-                    } else if (currentPath.includes('/admin/scope2/purchased-cooling')) {
+                    } else if (currentPath.includes('/account/scope2/purchased-cooling')) {
                         document.querySelector('a[href*="purchased-cooling"]').classList.add('active');
-                    } else if (currentPath.includes('/admin/scope1/natural-gas')) {
+                    } else if (currentPath.includes('/account/scope1/natural-gas')) {
                         document.querySelector('a[href*="natural-gas"]').classList.add('active');
-                    } else if (currentPath.includes('/admin/scope1/vehicle-usage-fuel')) {
+                    } else if (currentPath.includes('/account/scope1/vehicle-usage-fuel')) {
                         document.querySelector('a[href*="vehicle-usage-fuel"]').classList.add('active');
-                    } else if (currentPath.includes('/admin/scope1/vehicle-usage-distance')) {
+                    } else if (currentPath.includes('/account/scope1/vehicle-usage-distance')) {
                         document.querySelector('a[href*="vehicle-usage-distance"]').classList.add('active');
-                    } else if (currentPath.includes('/admin/scope1/fuel-consumption-equipment')) {
+                    } else if (currentPath.includes('/account/scope1/fuel-consumption-equipment')) {
                         document.querySelector('a[href*="fuel-consumption-equipment"]').classList.add('active');
-                    } else if (currentPath.includes('/admin/locations')) {
+                    } else if (currentPath.includes('/account/locations')) {
                         document.querySelector('a[href*="locations"]').classList.add('active');
-                    } else if (currentPath.includes('/admin/vehicles')) {
+                    } else if (currentPath.includes('/account/vehicles')) {
                         document.querySelector('a[href*="vehicles"]').classList.add('active');
-                    } else if (currentPath.includes('/admin/equipment')) {
+                    } else if (currentPath.includes('/account/equipment')) {
                         document.querySelector('a[href*="equipment"]').classList.add('active');
                     }
 
                     // Auto-expand My Organization dropdown if on those pages
-                    if (currentPath.includes('/admin/locations') ||
-                        currentPath.includes('/admin/vehicles') ||
-                        currentPath.includes('/admin/equipment')) {
+                    if (currentPath.includes('/account/locations') ||
+                        currentPath.includes('/account/vehicles') ||
+                        currentPath.includes('/account/equipment')) {
                         toggleDropdown('organization');
                     }
 
                     // Auto-expand Scope 1 dropdown if on scope1 pages
-                    if (currentPath.includes('/admin/scope1')) {
+                    if (currentPath.includes('/account/scope1')) {
                         toggleDropdown('scope1');
                     }
 
                     // Auto-expand Scope 2 dropdown if on scope2 pages
-                    if (currentPath.includes('/admin/scope2')) {
+                    if (currentPath.includes('/account/scope2')) {
                         toggleDropdown('scope2');
                     }
                 }

@@ -7,6 +7,10 @@ use App\Http\Controllers\VehicleController;
 use App\Http\Controllers\EquipmentController;
 use App\Http\Controllers\Auth\SocialAuthController;
 
+// Waitlist routes
+Route::get('/waitlist', [App\Http\Controllers\WaitlistController::class, 'index'])->name('waitlist');
+Route::post('/waitlist', [App\Http\Controllers\WaitlistController::class, 'store'])->name('waitlist.store');
+
 // Health check for Railway
 Route::get('/health', function () {
     $cssFiles = [];
@@ -51,8 +55,8 @@ Route::get('/auth/microsoft/callback', [SocialAuthController::class, 'handleMicr
 // Route::get('/auth/apple', [SocialAuthController::class, 'redirectToApple'])->name('auth.apple');
 // Route::get('/auth/apple/callback', [SocialAuthController::class, 'handleAppleCallback']);
 
-// Admin Dashboard Routes - Temporarily without authentication
-Route::prefix('admin')->name('admin.')->group(function () {
+// Account Dashboard Routes - Temporarily without authentication
+Route::prefix('account')->name('account.')->group(function () {
     Route::get('/', function () {
         return view('admin.index');
     })->name('index');
@@ -82,15 +86,15 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('scope2/purchased-cooling', [App\Http\Controllers\PurchasedCoolingController::class, 'index'])->name('scope2.purchased-cooling');
     Route::post('scope2/purchased-cooling', [App\Http\Controllers\PurchasedCoolingController::class, 'store'])->name('scope2.purchased-cooling.store');
 
-        // Scope 3 Routes
-        Route::get('scope3', [App\Http\Controllers\Scope3Controller::class, 'index'])->name('scope3.index');
-        Route::get('scope3/purchased-goods-services', [App\Http\Controllers\Scope3Controller::class, 'purchasedGoodsServices'])->name('scope3.purchased-goods-services');
-        Route::get('scope3/business-travel', [App\Http\Controllers\Scope3Controller::class, 'businessTravel'])->name('scope3.business-travel');
-        Route::post('scope3/remove-source', [App\Http\Controllers\Scope3Controller::class, 'removeSource'])->name('scope3.remove-source');
-        Route::post('scope3/restore-source', [App\Http\Controllers\Scope3Controller::class, 'restoreSource'])->name('scope3.restore-source');
-        Route::post('scope3/save-categories', [App\Http\Controllers\Scope3Controller::class, 'saveCategories'])->name('scope3.save-categories');
-        Route::get('scope3/category/{category}', [App\Http\Controllers\Scope3Controller::class, 'showCategory'])->name('scope3.category');
-        Route::get('scope3/footprint-analytics', [App\Http\Controllers\Scope3Controller::class, 'footprintAnalytics'])->name('scope3.footprint-analytics');
+    // Scope 3 Routes
+    Route::get('scope3', [App\Http\Controllers\Scope3Controller::class, 'index'])->name('scope3.index');
+    Route::get('scope3/purchased-goods-services', [App\Http\Controllers\Scope3Controller::class, 'purchasedGoodsServices'])->name('scope3.purchased-goods-services');
+    Route::get('scope3/business-travel', [App\Http\Controllers\Scope3Controller::class, 'businessTravel'])->name('scope3.business-travel');
+    Route::post('scope3/remove-source', [App\Http\Controllers\Scope3Controller::class, 'removeSource'])->name('scope3.remove-source');
+    Route::post('scope3/restore-source', [App\Http\Controllers\Scope3Controller::class, 'restoreSource'])->name('scope3.restore-source');
+    Route::post('scope3/save-categories', [App\Http\Controllers\Scope3Controller::class, 'saveCategories'])->name('scope3.save-categories');
+    Route::get('scope3/category/{category}', [App\Http\Controllers\Scope3Controller::class, 'showCategory'])->name('scope3.category');
+    Route::get('scope3/footprint-analytics', [App\Http\Controllers\Scope3Controller::class, 'footprintAnalytics'])->name('scope3.footprint-analytics');
 
     // Reports inside admin group (ensure only one admin prefix)
     Route::get('reports/cdp', [App\Http\Controllers\ReportsController::class, 'cdp'])->name('reports.cdp');

@@ -10,7 +10,7 @@
             <p class="text-muted mb-0">Add a new vehicle to your fleet</p>
         </div>
         <div>
-            <a href="{{ route('admin.vehicles.index') }}" class="btn btn-outline-secondary">
+            <a href="{{ route('account.vehicles.index') }}" class="btn btn-outline-secondary">
                 <i class="fas fa-arrow-left"></i> Back to Vehicles
             </a>
         </div>
@@ -36,7 +36,7 @@
         </div>
     @endif
 
-    <form action="{{ route('admin.vehicles.store') }}" method="POST">
+    <form action="{{ route('account.vehicles.store') }}" method="POST">
         @csrf
 
         <div class="text-center">
@@ -318,7 +318,7 @@
         </div>
 
         <div class="d-flex justify-content-end">
-            <a href="{{ route('admin.vehicles.index') }}" class="btn btn-outline-secondary me-2">
+            <a href="{{ route('account.vehicles.index') }}" class="btn btn-outline-secondary me-2">
                 Cancel
             </a>
             <button type="submit" class="btn btn-primary">

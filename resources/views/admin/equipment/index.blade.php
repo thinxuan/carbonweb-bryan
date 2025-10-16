@@ -10,7 +10,7 @@
             <p class="text-muted mb-0">Add your 2024 equipment data. We'll ask you for information such as the equipment type (e.g. generator) and usage data (e.g. amount of fuel consumed). <a href="">Learn More</a></p>
         </div>
         <div>
-            <a href="{{ route('admin.equipment.create') }}" class="btn btn-primary">
+            <a href="{{ route('account.equipment.create') }}" class="btn btn-primary">
                 <i class="fas fa-plus"></i> Add Equipment +
             </a>
             <button class="btn btn-outline-secondary ms-2">
@@ -32,7 +32,7 @@
     <div class="text-center mb-4">
         <div class="header">Add Equipment</div>
         <p>Add equipment to your 2024 reporting year. This includes backup generators, chillers, and other machinery used by your organization. <a href="">Learn more</a></p>
-        <a href="{{ route('admin.equipment.create') }}" class="btn btn-primary mt-3">
+        <a href="{{ route('account.equipment.create') }}" class="btn btn-primary mt-3">
             <i class="fas fa-plus"></i> Add Equipment
         </a>
     </div>
@@ -85,7 +85,7 @@
             <i class="fas fa-cogs fa-4x text-muted mb-3"></i>
             <h4 class="text-muted">No equipment found</h4>
             <p class="text-muted">Get started by adding your first piece of equipment.</p>
-            <a href="{{ route('admin.equipment.create') }}" class="btn btn-primary">
+            <a href="{{ route('account.equipment.create') }}" class="btn btn-primary">
                 <i class="fas fa-plus"></i> Add Equipment
             </a>
         </div>
@@ -96,7 +96,7 @@
 <div class="sticky-continue-footer">
     <div class="container-fluid">
         <div class="d-flex justify-content-end">
-            <a href="{{ route('admin.scope1.natural-gas') }}" class="btn btn-success btn-lg">
+            <a href="{{ route('account.scope1.natural-gas') }}" class="btn btn-success btn-lg">
                 Continue to Natural Gas Consumption (Location) <i class="fas fa-arrow-right ms-2"></i>
             </a>
         </div>

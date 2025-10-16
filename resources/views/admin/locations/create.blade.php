@@ -21,7 +21,7 @@
     {{-- Single Location Form --}}
     @if(request('type') !== 'multiple')
     <div id="single-location-form">
-        <form action="{{ route('admin.locations.store') }}" method="POST">
+        <form action="{{ route('account.locations.store') }}" method="POST">
             @csrf
 
         <div class="text-center">
@@ -222,7 +222,7 @@
         </div> --}}
 
         <div class="d-flex justify-content-end mt-3">
-            <a href="{{ route('admin.locations.index') }}" class="btn btn-outline-secondary me-2">
+            <a href="{{ route('account.locations.index') }}" class="btn btn-outline-secondary me-2">
                 Cancel
             </a>
             <button type="submit" class="btn btn-primary">
@@ -307,7 +307,7 @@
 <div class="sticky-continue-footer">
     <div class="container-fluid">
         <div class="d-flex justify-content-center">
-            <a href="{{ route('admin.vehicles.create') }}" class="btn btn-success btn-lg">
+            <a href="{{ route('account.vehicles.create') }}" class="btn btn-success btn-lg">
                 Continue to Vehicles <i class="fas fa-arrow-right ms-2"></i>
             </a>
         </div>

@@ -8,28 +8,28 @@
     {{-- Measure Section --}}
     <nav class="sidebar-nav sidebar-section active" id="measure-section">
         <div class="nav-item">
-            <a href="{{ route('admin.index') }}" class="nav-link {{ request()->routeIs('admin.index') ? 'active' : '' }}">
+            <a href="{{ route('account.index') }}" class="nav-link {{ request()->routeIs('account.index') ? 'active' : '' }}">
                 <i class="fas fa-user-circle"></i>
                 My Climate Profile
             </a>
         </div>
 
         <div class="nav-item">
-            <div class="nav-link nav-dropdown-toggle {{ request()->routeIs('admin.locations.*') || request()->routeIs('admin.vehicles.*') || request()->routeIs('admin.equipment.*') ? 'active' : '' }}" onclick="toggleDropdown('organization')">
+            <div class="nav-link nav-dropdown-toggle {{ request()->routeIs('account.locations.*') || request()->routeIs('account.vehicles.*') || request()->routeIs('account.equipment.*') ? 'active' : '' }}" onclick="toggleDropdown('organization')">
                 <i class="fas fa-building"></i>
                 My Organization
                 <i class="fas fa-chevron-down nav-dropdown-icon"></i>
             </div>
             <div class="nav-dropdown" id="organization-dropdown">
-                <a href="{{ route('admin.locations.index') }}" class="nav-link nav-dropdown-item {{ request()->routeIs('admin.locations.*') ? 'active' : '' }}">
+                <a href="{{ route('account.locations.index') }}" class="nav-link nav-dropdown-item {{ request()->routeIs('account.locations.*') ? 'active' : '' }}">
                     <i class="fas fa-map-marker-alt"></i>
                     Locations
                 </a>
-                <a href="{{ route('admin.vehicles.index') }}" class="nav-link nav-dropdown-item {{ request()->routeIs('admin.vehicles.*') ? 'active' : '' }}">
+                <a href="{{ route('account.vehicles.index') }}" class="nav-link nav-dropdown-item {{ request()->routeIs('account.vehicles.*') ? 'active' : '' }}">
                     <i class="fas fa-car"></i>
                     Vehicles
                 </a>
-                <a href="{{ route('admin.equipment.index') }}" class="nav-link nav-dropdown-item {{ request()->routeIs('admin.equipment.*') ? 'active' : '' }}">
+                <a href="{{ route('account.equipment.index') }}" class="nav-link nav-dropdown-item {{ request()->routeIs('account.equipment.*') ? 'active' : '' }}">
                     <i class="fas fa-cogs"></i>
                     Equipment
                 </a>
@@ -37,25 +37,25 @@
         </div>
 
         <div class="nav-item">
-            <div class="nav-link nav-dropdown-toggle {{ request()->routeIs('admin.scope1.*') ? 'active' : '' }}" onclick="toggleDropdown('scope1')">
+            <div class="nav-link nav-dropdown-toggle {{ request()->routeIs('account.scope1.*') ? 'active' : '' }}" onclick="toggleDropdown('scope1')">
                 <i class="fas fa-industry"></i>
                 Scope 1
                 <i class="fas fa-chevron-down nav-dropdown-icon"></i>
             </div>
             <div class="nav-dropdown" id="scope1-dropdown">
-                <a href="{{ route('admin.scope1.natural-gas') }}" class="nav-link nav-dropdown-item {{ request()->routeIs('admin.scope1.natural-gas') ? 'active' : '' }}">
+                <a href="{{ route('account.scope1.natural-gas') }}" class="nav-link nav-dropdown-item {{ request()->routeIs('account.scope1.natural-gas') ? 'active' : '' }}">
                     <i class="fas fa-fire"></i>
                     Natural Gas Consumption (Location)
                 </a>
-                <a href="{{ route('admin.scope1.vehicle-usage-fuel') }}" class="nav-link nav-dropdown-item {{ request()->routeIs('admin.scope1.vehicle-usage-fuel') ? 'active' : '' }}">
+                <a href="{{ route('account.scope1.vehicle-usage-fuel') }}" class="nav-link nav-dropdown-item {{ request()->routeIs('account.scope1.vehicle-usage-fuel') ? 'active' : '' }}">
                     <i class="fas fa-gas-pump"></i>
                     Vehicle Usage (Fuel)
                 </a>
-                <a href="{{ route('admin.scope1.vehicle-usage-distance') }}" class="nav-link nav-dropdown-item {{ request()->routeIs('admin.scope1.vehicle-usage-distance') ? 'active' : '' }}">
+                <a href="{{ route('account.scope1.vehicle-usage-distance') }}" class="nav-link nav-dropdown-item {{ request()->routeIs('account.scope1.vehicle-usage-distance') ? 'active' : '' }}">
                     <i class="fas fa-road"></i>
                     Vehicle Usage (Distance)
                 </a>
-                <a href="{{ route('admin.scope1.fuel-consumption-equipment') }}" class="nav-link nav-dropdown-item {{ request()->routeIs('admin.scope1.fuel-consumption-equipment') ? 'active' : '' }}">
+                <a href="{{ route('account.scope1.fuel-consumption-equipment') }}" class="nav-link nav-dropdown-item {{ request()->routeIs('account.scope1.fuel-consumption-equipment') ? 'active' : '' }}">
                     <i class="fas fa-fire"></i>
                     Fuel Consumption (Equipment)
                 </a>
@@ -63,21 +63,21 @@
         </div>
 
         <div class="nav-item">
-            <div class="nav-link nav-dropdown-toggle {{ request()->routeIs('admin.scope2.*') ? 'active' : '' }}" onclick="toggleDropdown('scope2')">
+            <div class="nav-link nav-dropdown-toggle {{ request()->routeIs('account.scope2.*') ? 'active' : '' }}" onclick="toggleDropdown('scope2')">
                 <i class="fas fa-bolt"></i>
                 Scope 2
                 <i class="fas fa-chevron-down nav-dropdown-icon"></i>
             </div>
             <div class="nav-dropdown" id="scope2-dropdown">
-                <a href="{{ route('admin.scope2.electricity-usage') }}" class="nav-link nav-dropdown-item {{ request()->routeIs('admin.scope2.electricity-usage') ? 'active' : '' }}">
+                <a href="{{ route('account.scope2.electricity-usage') }}" class="nav-link nav-dropdown-item {{ request()->routeIs('account.scope2.electricity-usage') ? 'active' : '' }}">
                     <i class="fas fa-bolt"></i>
                     Electricity Usage
                 </a>
-                <a href="{{ route('admin.scope2.heat-steam-usage') }}" class="nav-link nav-dropdown-item {{ request()->routeIs('admin.scope2.heat-steam-usage') ? 'active' : '' }}">
+                <a href="{{ route('account.scope2.heat-steam-usage') }}" class="nav-link nav-dropdown-item {{ request()->routeIs('account.scope2.heat-steam-usage') ? 'active' : '' }}">
                     <i class="fas fa-fire"></i>
                     Heat & Steam Usage
                 </a>
-                <a href="{{ route('admin.scope2.purchased-cooling') }}" class="nav-link nav-dropdown-item {{ request()->routeIs('admin.scope2.purchased-cooling') ? 'active' : '' }}">
+                <a href="{{ route('account.scope2.purchased-cooling') }}" class="nav-link nav-dropdown-item {{ request()->routeIs('account.scope2.purchased-cooling') ? 'active' : '' }}">
                     <i class="fas fa-snowflake"></i>
                     Purchased Cooling
                 </a>
@@ -85,14 +85,14 @@
         </div>
 
         <div class="nav-item">
-            <a href="{{ route('admin.scope3.index') }}" class="nav-link" data-route="admin.scope3.index">
+            <a href="{{ route('account.scope3.index') }}" class="nav-link" data-route="account.scope3.index">
                 <i class="fas fa-truck"></i>
                 Scope 3
             </a>
         </div>
 
         <div class="nav-item">
-            <a href="{{ route('admin.scope3.footprint-analytics') }}" class="nav-link" data-route="admin.scope3.footprint-analytics">
+            <a href="{{ route('account.scope3.footprint-analytics') }}" class="nav-link" data-route="account.scope3.footprint-analytics">
                 <i class="fas fa-chart-line"></i>
                 Footprint Analytics
             </a>
@@ -108,20 +108,20 @@
                 <i class="fas fa-chevron-down nav-dropdown-icon"></i>
             </div>
             <div class="nav-dropdown" id="ghg-reports-dropdown">
-                <a href="{{ route('admin.reports.cdp') }}" class="nav-link nav-dropdown-item">
+                <a href="{{ route('account.reports.cdp') }}" class="nav-link nav-dropdown-item">
                     CDP GHG Metrics Report
                 </a>
-                <a href="{{ route('admin.reports.methodology') }}" class="nav-link nav-dropdown-item">
+                <a href="{{ route('account.reports.methodology') }}" class="nav-link nav-dropdown-item">
                     GHG Methodology Report
                 </a>
-                <a href="{{ route('admin.reports.secr') }}" class="nav-link nav-dropdown-item">
+                <a href="{{ route('account.reports.secr') }}" class="nav-link nav-dropdown-item">
                     SECR GHG Metrics Report
                 </a>
             </div>
         </div>
 
         <div class="nav-item">
-            <a href="{{ route('admin.reports.sustainability') }}" class="nav-link">
+            <a href="{{ route('account.reports.sustainability') }}" class="nav-link">
                 <i class="fas fa-file-alt"></i>
                 Sustainability Reporting
             </a>

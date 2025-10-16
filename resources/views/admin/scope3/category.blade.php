@@ -3,7 +3,7 @@
 @section('content')
 <!-- Cancel Button -->
 <div class="mb-4">
-    <a href="{{ route('admin.scope3.index') }}" class="btn btn-outline-secondary">
+    <a href="{{ route('account.scope3.index') }}" class="btn btn-outline-secondary">
         <i class="fas fa-arrow-left me-2"></i> Cancel
     </a>
 </div>
@@ -339,7 +339,7 @@ async function removeSource(category) {
     }
 
     try {
-        const response = await fetch('{{ route("admin.scope3.remove-source") }}', {
+        const response = await fetch('{{ route("account.scope3.remove-source") }}', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -355,7 +355,7 @@ async function removeSource(category) {
 
         if (data.success) {
             alert('Category has been removed from your emissions sources. You can add it back anytime from the Edit Sources modal.');
-            window.location.href = '{{ route("admin.scope3.index") }}';
+            window.location.href = '{{ route("account.scope3.index") }}';
         } else {
             alert('Failed to remove source. Please try again.');
         }

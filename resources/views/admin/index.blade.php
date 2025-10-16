@@ -43,7 +43,7 @@
                                     </div>
                                     <h6 class="card-title">Add Vehicles</h6>
                                     <p class="card-text small">Vehicles form the backbone of your scope 1 (direct emissions) footprint.</p>
-                                    <a href="{{ route('admin.vehicles.index') }}" class="btn btn-primary btn-sm">
+                                    <a href="{{ route('account.vehicles.index') }}" class="btn btn-primary btn-sm">
                                         Vehicles <i class="fas fa-arrow-right"></i>
                                     </a>
                                 </div>
@@ -58,7 +58,7 @@
                                     </div>
                                     <h6 class="card-title">Add Equipment</h6>
                                     <p class="card-text small">Equipment form the backbone of your scope 1 (direct emissions) footprint.</p>
-                                    <a href="{{ route('admin.equipment.index') }}" class="btn btn-success btn-sm">
+                                    <a href="{{ route('account.equipment.index') }}" class="btn btn-success btn-sm">
                                         Equipment <i class="fas fa-arrow-right"></i>
                                     </a>
                                 </div>

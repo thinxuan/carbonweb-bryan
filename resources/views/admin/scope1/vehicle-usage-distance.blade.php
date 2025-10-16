@@ -122,7 +122,7 @@
 <div class="sticky-continue-footer">
     <div class="container-fluid">
         <div class="d-flex justify-content-end">
-            <a href="{{ route('admin.equipment.index') }}" class="btn btn-success btn-lg">
+            <a href="{{ route('account.equipment.index') }}" class="btn btn-success btn-lg">
                 Continue to Equipment <i class="fas fa-arrow-right ms-2"></i>
             </a>
         </div>
@@ -256,7 +256,7 @@ function saveVehicleDistanceData() {
     // Get CSRF token
     const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
-    fetch('{{ route("admin.scope1.vehicle-usage-distance.store") }}', {
+    fetch('{{ route("account.scope1.vehicle-usage-distance.store") }}', {
         method: 'POST',
         headers: {
             'X-CSRF-TOKEN': csrfToken,

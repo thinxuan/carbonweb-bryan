@@ -10,7 +10,7 @@
             <p class="text-muted mb-0">View equipment information and specifications</p>
         </div>
         <div>
-            <a href="{{ route('admin.equipment.index') }}" class="btn btn-outline-secondary">
+            <a href="{{ route('account.equipment.index') }}" class="btn btn-outline-secondary">
                 <i class="fas fa-arrow-left"></i> Back to Equipment
             </a>
         </div>
@@ -125,10 +125,10 @@
                 </div>
                 <div class="card-body">
                     <div class="d-grid gap-2">
-                        <a href="{{ route('admin.equipment.edit', $equipment) }}" class="btn btn-warning">
+                        <a href="{{ route('account.equipment.edit', $equipment) }}" class="btn btn-warning">
                             <i class="fas fa-edit"></i> Edit Equipment
                         </a>
-                        <form action="{{ route('admin.equipment.destroy', $equipment) }}" method="POST" class="d-inline">
+                        <form action="{{ route('account.equipment.destroy', $equipment) }}" method="POST" class="d-inline">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger w-100"

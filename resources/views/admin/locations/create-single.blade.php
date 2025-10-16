@@ -11,7 +11,7 @@
     </div>
 
     <div id="single-location-form">
-        <form action="{{ route('admin.locations.store') }}" method="POST">
+        <form action="{{ route('account.locations.store') }}" method="POST">
             @csrf
 
             <div class="text-center">
@@ -913,7 +913,7 @@
             </div>
 
             <div class="d-flex justify-content-end mt-3">
-                <a href="{{ route('admin.locations.index') }}" class="btn btn-outline-secondary me-2">
+                <a href="{{ route('account.locations.index') }}" class="btn btn-outline-secondary me-2">
                     Cancel
                 </a>
                 <button type="submit" class="btn btn-primary">

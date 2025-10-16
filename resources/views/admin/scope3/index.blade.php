@@ -611,7 +611,7 @@ async function saveSourceChanges() {
     saveButton.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>Saving...';
 
     try {
-        const response = await fetch('{{ route("admin.scope3.save-categories") }}', {
+        const response = await fetch('{{ route("account.scope3.save-categories") }}', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

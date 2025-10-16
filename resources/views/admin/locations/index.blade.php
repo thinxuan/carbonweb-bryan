@@ -51,10 +51,10 @@
                                 <i class="fas fa-plus"></i> Add location(s)
                             </button>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="{{ route('admin.locations.create.single') }}">
+                                <li><a class="dropdown-item" href="{{ route('account.locations.create.single') }}">
                                     <i class="fas fa-map-marker-alt"></i> Single Location
                                 </a></li>
-                                <li><a class="dropdown-item" href="{{ route('admin.locations.create.multiple') }}">
+                                <li><a class="dropdown-item" href="{{ route('account.locations.create.multiple') }}">
                                     <i class="fas fa-list"></i> Multiple Locations
                                 </a></li>
                             </ul>
@@ -107,15 +107,15 @@
                                             <i class="fas fa-ellipsis-v"></i>
                                         </button>
                                         <ul class="dropdown-menu">
-                                            <li><a class="dropdown-item" href="{{ route('admin.locations.show', $location) }}">
+                                            <li><a class="dropdown-item" href="{{ route('account.locations.show', $location) }}">
                                                 <i class="fas fa-eye"></i> View Details
                                             </a></li>
-                                            <li><a class="dropdown-item" href="{{ route('admin.locations.edit', $location) }}">
+                                            <li><a class="dropdown-item" href="{{ route('account.locations.edit', $location) }}">
                                                 <i class="fas fa-edit"></i> Edit
                                             </a></li>
                                             <li><hr class="dropdown-divider"></li>
                                             <li>
-                                                <form action="{{ route('admin.locations.destroy', $location) }}" method="POST" class="d-inline">
+                                                <form action="{{ route('account.locations.destroy', $location) }}" method="POST" class="d-inline">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="dropdown-item text-danger"
@@ -141,7 +141,7 @@
 <div class="sticky-continue-footer">
     <div class="container-fluid">
         <div class="d-flex justify-content-end">
-            <a href="{{ route('admin.vehicles.index') }}" class="btn btn-success btn-lg">
+            <a href="{{ route('account.vehicles.index') }}" class="btn btn-success btn-lg">
                 Continue to Vehicles <i class="fas fa-arrow-right ms-2"></i>
             </a>
         </div>
@@ -181,7 +181,7 @@ document.addEventListener('DOMContentLoaded', function() {
         tempMarker.bindPopup(`
             <strong>New Location</strong><br>
             Coordinates: ${lat.toFixed(6)}, ${lng.toFixed(6)}<br>
-            <a href="{{ route('admin.locations.create.single') }}?lat=${lat}&lng=${lng}" class="btn btn-primary btn-sm mt-2">
+            <a href="{{ route('account.locations.create.single') }}?lat=${lat}&lng=${lng}" class="btn btn-primary btn-sm mt-2">
                 <i class="fas fa-plus"></i> Add Location Here
             </a>
         `).openPopup();

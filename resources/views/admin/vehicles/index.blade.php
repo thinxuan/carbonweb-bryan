@@ -10,7 +10,7 @@
             <p class="text-muted mb-0">Add your 2024 vehicle data for your Internal Combustion Engine Vehicles (ICEVs). We'll ask you for information such as the vehicle type (e.g. passenger car), amount of fuel used (e.g. 740 liters), and distance driven (e.g. 982 kilometers). <a href="">Learn More</a>.</p>
         </div>
         <div>
-            <a href="{{ route('admin.vehicles.create') }}" class="btn btn-primary">
+            <a href="{{ route('account.vehicles.create') }}" class="btn btn-primary">
                 <i class="fas fa-plus"></i> Add Vehicles +
             </a>
             <button class="btn btn-outline-secondary ms-2">
@@ -32,7 +32,7 @@
     <div class="text-center mb-4">
         <div class="header">Add Vehicle Data</div>
         <p>Add an Internal Combustion Engine Vehicle (ICEV) to your 2024 reporting year. This includes cars, trucks, or other motorized vehicles used by your organization which do not run on electricity. To add data for electric vehicles, add their primary charging station as a "Location" <a href="">here</a>.</p>
-        <a href="{{ route('admin.vehicles.create') }}" class="btn btn-primary mt-3">
+        <a href="{{ route('account.vehicles.create') }}" class="btn btn-primary mt-3">
             <i class="fas fa-plus"></i> Add Vehicle
         </a>
     </div>
@@ -90,7 +90,7 @@
             <i class="fas fa-car fa-4x text-muted mb-3"></i>
             <h4 class="text-muted">No vehicles found</h4>
             <p class="text-muted">Start by adding your first vehicle using the form above.</p>
-            <a href="{{ route('admin.vehicles.create') }}" class="btn btn-primary">
+            <a href="{{ route('account.vehicles.create') }}" class="btn btn-primary">
                 <i class="fas fa-plus"></i> Add Vehicle
             </a>
         </div>
@@ -101,7 +101,7 @@
 <div class="sticky-continue-footer">
     <div class="container-fluid">
         <div class="d-flex justify-content-end">
-            <a href="{{ route('admin.equipment.index') }}" class="btn btn-success btn-lg">
+            <a href="{{ route('account.equipment.index') }}" class="btn btn-success btn-lg">
                 Continue to Equipment <i class="fas fa-arrow-right ms-2"></i>
             </a>
         </div>

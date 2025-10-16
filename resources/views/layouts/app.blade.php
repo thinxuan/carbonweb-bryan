@@ -97,7 +97,7 @@
 
             <!-- Right Nav -->
             <div class="nav-right">
-                {{-- <a href="{{ route('admin.index') }}" class="btn btn-outline me-2">Admin Dashboard</a> --}}
+                {{-- <a href="{{ route('account.index') }}" class="btn btn-outline me-2">Account Dashboard</a> --}}
                 <a href="#" class="btn">Start for Free</a>
                 <a href="#" class="btn-outline">Request a Demo</a>
             </div>

@@ -226,7 +226,7 @@ function savePurchasedCoolingData() {
         return;
     }
 
-    fetch('{{ route("admin.scope2.purchased-cooling.store") }}', {
+    fetch('{{ route("account.scope2.purchased-cooling.store") }}', {
         method: 'POST',
         body: formData,
         headers: {

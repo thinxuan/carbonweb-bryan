@@ -10,7 +10,7 @@
             <p class="text-muted mb-0">Update vehicle information</p>
         </div>
         <div>
-            <a href="{{ route('admin.vehicles.index') }}" class="btn btn-outline-secondary">
+            <a href="{{ route('account.vehicles.index') }}" class="btn btn-outline-secondary">
                 <i class="fas fa-arrow-left"></i> Back to Vehicles
             </a>
         </div>
@@ -18,7 +18,7 @@
 </div>
 
 <div class="content-body">
-    <form action="{{ route('admin.vehicles.update', $vehicle) }}" method="POST">
+    <form action="{{ route('account.vehicles.update', $vehicle) }}" method="POST">
         @csrf
         @method('PUT')
 
@@ -178,7 +178,7 @@
         </div>
 
         <div class="d-flex justify-content-end">
-            <a href="{{ route('admin.vehicles.index') }}" class="btn btn-outline-secondary me-2">
+            <a href="{{ route('account.vehicles.index') }}" class="btn btn-outline-secondary me-2">
                 Cancel
             </a>
             <button type="submit" class="btn btn-primary">
