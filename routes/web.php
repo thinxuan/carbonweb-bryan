@@ -58,7 +58,7 @@ Route::get('/auth/microsoft/callback', [SocialAuthController::class, 'handleMicr
 // Account Dashboard Routes - Temporarily without authentication
 Route::prefix('account')->name('account.')->group(function () {
     Route::get('/', function () {
-        return view('admin.index');
+        return view('account.index');
     })->name('index');
 
     Route::resource('locations', LocationController::class);

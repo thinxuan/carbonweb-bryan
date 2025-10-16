@@ -23,7 +23,7 @@ class Scope3Controller extends Controller
                 'title' => 'Purchased Goods and Services',
                 'category' => 'Category 1',
                 'description' => 'Track emissions from goods and services purchased by your organization',
-                'route' => 'admin.scope3.category',
+                'route' => 'account.scope3.category',
                 'route_params' => ['category' => 'purchased-goods'],
                 'source_key' => 'purchased_goods'
             ],
@@ -32,7 +32,7 @@ class Scope3Controller extends Controller
                 'title' => 'Capital Goods',
                 'category' => 'Category 2',
                 'description' => 'Track emissions from capital goods purchased',
-                'route' => 'admin.scope3.category',
+                'route' => 'account.scope3.category',
                 'route_params' => ['category' => 'capital-goods'],
                 'source_key' => 'capital_goods'
             ],
@@ -41,7 +41,7 @@ class Scope3Controller extends Controller
                 'title' => 'Fuel and Energy-Related Activities Not Included in Scope 1 or Scope 2',
                 'category' => 'Category 3',
                 'description' => 'Track emissions from fuel and energy-related activities',
-                'route' => 'admin.scope3.category',
+                'route' => 'account.scope3.category',
                 'route_params' => ['category' => 'fuel-energy'],
                 'source_key' => 'fuel_energy'
             ],
@@ -50,7 +50,7 @@ class Scope3Controller extends Controller
                 'title' => 'Upstream Transportation and Distribution',
                 'category' => 'Category 4',
                 'description' => 'Track emissions from upstream transportation',
-                'route' => 'admin.scope3.category',
+                'route' => 'account.scope3.category',
                 'route_params' => ['category' => 'upstream-transport'],
                 'source_key' => 'upstream_transport'
             ],
@@ -59,7 +59,7 @@ class Scope3Controller extends Controller
                 'title' => 'Waste Generated in Operations',
                 'category' => 'Category 5',
                 'description' => 'Track emissions from waste generated',
-                'route' => 'admin.scope3.category',
+                'route' => 'account.scope3.category',
                 'route_params' => ['category' => 'waste-operations'],
                 'source_key' => 'waste_operations'
             ],
@@ -68,7 +68,7 @@ class Scope3Controller extends Controller
                 'title' => 'Business Travel - Commercial Air Travel',
                 'category' => 'Category 6',
                 'description' => 'Track emissions from business air travel',
-                'route' => 'admin.scope3.category',
+                'route' => 'account.scope3.category',
                 'route_params' => ['category' => 'business-travel-air'],
                 'source_key' => 'business_travel_air'
             ],
@@ -77,7 +77,7 @@ class Scope3Controller extends Controller
                 'title' => 'Business Travel - Hotel Stay',
                 'category' => 'Category 6',
                 'description' => 'Track emissions from hotel stays',
-                'route' => 'admin.scope3.category',
+                'route' => 'account.scope3.category',
                 'route_params' => ['category' => 'business-travel-hotel'],
                 'source_key' => 'business_travel_hotel'
             ],
@@ -86,7 +86,7 @@ class Scope3Controller extends Controller
                 'title' => 'Business Travel - Private Air Travel',
                 'category' => 'Category 6',
                 'description' => 'Track emissions from private air travel',
-                'route' => 'admin.scope3.category',
+                'route' => 'account.scope3.category',
                 'route_params' => ['category' => 'business-travel-private'],
                 'source_key' => 'business_travel_private'
             ],
@@ -95,7 +95,7 @@ class Scope3Controller extends Controller
                 'title' => 'Business Travel - Ground Travel',
                 'category' => 'Category 6',
                 'description' => 'Track emissions from ground travel',
-                'route' => 'admin.scope3.category',
+                'route' => 'account.scope3.category',
                 'route_params' => ['category' => 'business-travel-ground'],
                 'source_key' => 'business_travel_ground'
             ],
@@ -104,7 +104,7 @@ class Scope3Controller extends Controller
                 'title' => 'Employee Commuting',
                 'category' => 'Category 7',
                 'description' => 'Track emissions from employee commuting',
-                'route' => 'admin.scope3.category',
+                'route' => 'account.scope3.category',
                 'route_params' => ['category' => 'employee-commuting'],
                 'source_key' => 'employee_commuting'
             ],
@@ -113,7 +113,7 @@ class Scope3Controller extends Controller
                 'title' => 'Upstream Leased Assets',
                 'category' => 'Category 8',
                 'description' => 'Track emissions from upstream leased assets',
-                'route' => 'admin.scope3.category',
+                'route' => 'account.scope3.category',
                 'route_params' => ['category' => 'upstream-leased'],
                 'source_key' => 'upstream_leased'
             ],
@@ -122,7 +122,7 @@ class Scope3Controller extends Controller
                 'title' => 'Downstream Transportation and Distribution',
                 'category' => 'Category 9',
                 'description' => 'Track emissions from downstream transportation',
-                'route' => 'admin.scope3.category',
+                'route' => 'account.scope3.category',
                 'route_params' => ['category' => 'downstream-transport'],
                 'source_key' => 'downstream_transport'
             ],
@@ -131,7 +131,7 @@ class Scope3Controller extends Controller
                 'title' => 'Downstream Processing of Sold Products',
                 'category' => 'Category 10',
                 'description' => 'Track emissions from processing of sold products',
-                'route' => 'admin.scope3.category',
+                'route' => 'account.scope3.category',
                 'route_params' => ['category' => 'downstream-processing'],
                 'source_key' => 'downstream_processing'
             ],
@@ -140,7 +140,7 @@ class Scope3Controller extends Controller
                 'title' => 'Use of Sold Products Direct Use Phase',
                 'category' => 'Category 11',
                 'description' => 'Track emissions from use of sold products',
-                'route' => 'admin.scope3.category',
+                'route' => 'account.scope3.category',
                 'route_params' => ['category' => 'use-sold-products'],
                 'source_key' => 'use_sold_products'
             ],
@@ -149,7 +149,7 @@ class Scope3Controller extends Controller
                 'title' => 'End of Life Treatment of Sold Products',
                 'category' => 'Category 12',
                 'description' => 'Track emissions from end of life treatment',
-                'route' => 'admin.scope3.category',
+                'route' => 'account.scope3.category',
                 'route_params' => ['category' => 'end-of-life'],
                 'source_key' => 'end_of_life'
             ],
@@ -158,7 +158,7 @@ class Scope3Controller extends Controller
                 'title' => 'Downstream Leased Asset',
                 'category' => 'Category 13',
                 'description' => 'Track emissions from downstream leased assets',
-                'route' => 'admin.scope3.category',
+                'route' => 'account.scope3.category',
                 'route_params' => ['category' => 'downstream-leased'],
                 'source_key' => 'downstream_leased'
             ],
@@ -167,7 +167,7 @@ class Scope3Controller extends Controller
                 'title' => 'Franchises',
                 'category' => 'Category 14',
                 'description' => 'Track emissions from franchises',
-                'route' => 'admin.scope3.category',
+                'route' => 'account.scope3.category',
                 'route_params' => ['category' => 'franchise'],
                 'source_key' => 'franchises'
             ],
@@ -176,7 +176,7 @@ class Scope3Controller extends Controller
                 'title' => 'Investment - Equity',
                 'category' => 'Category 15',
                 'description' => 'Track emissions from equity investments',
-                'route' => 'admin.scope3.category',
+                'route' => 'account.scope3.category',
                 'route_params' => ['category' => 'investment-equity'],
                 'source_key' => 'investment_equity'
             ],
@@ -190,7 +190,7 @@ class Scope3Controller extends Controller
         $inReviewItems = [];
         $doneItems = [];
 
-        return view('admin.scope3.index', compact('uploadDataItems', 'inReviewItems', 'doneItems'));
+        return view('account.scope3.index', compact('uploadDataItems', 'inReviewItems', 'doneItems'));
     }
 
     /**
@@ -198,7 +198,7 @@ class Scope3Controller extends Controller
      */
     public function purchasedGoodsServices()
     {
-        return view('admin.scope3.purchased-goods-services');
+        return view('account.scope3.purchased-goods-services');
     }
 
     /**
@@ -316,7 +316,7 @@ class Scope3Controller extends Controller
 
         $categoryData = $categories[$category];
 
-        return view('admin.scope3.category', compact('category', 'categoryData'));
+        return view('account.scope3.category', compact('category', 'categoryData'));
     }
 
     public function footprintAnalytics()
@@ -346,7 +346,7 @@ class Scope3Controller extends Controller
             ]
         ];
 
-        return view('admin.scope3.footprint-analytics', compact('footprintData'));
+        return view('account.scope3.footprint-analytics', compact('footprintData'));
     }
 
     /**

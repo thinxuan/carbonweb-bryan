@@ -15,7 +15,7 @@ class EquipmentController extends Controller
     public function index()
     {
         $equipment = Equipment::with(['location', 'vehicle'])->latest()->paginate(10);
-        return view('admin.equipment.index', compact('equipment'));
+        return view('account.equipment.index', compact('equipment'));
     }
 
     /**
@@ -25,7 +25,7 @@ class EquipmentController extends Controller
     {
         $locations = Location::all();
         $vehicles = Vehicle::all();
-        return view('admin.equipment.create', compact('locations', 'vehicles'));
+        return view('account.equipment.create', compact('locations', 'vehicles'));
     }
 
     /**
@@ -62,7 +62,7 @@ class EquipmentController extends Controller
 
         Equipment::create($validated);
 
-        return redirect()->route('admin.equipment.index')
+        return redirect()->route('account.equipment.index')
             ->with('success', 'Equipment created successfully.');
     }
 
@@ -72,7 +72,7 @@ class EquipmentController extends Controller
     public function show(Equipment $equipment)
     {
         $equipment->load('location', 'vehicle');
-        return view('admin.equipment.show', compact('equipment'));
+        return view('account.equipment.show', compact('equipment'));
     }
 
     /**
@@ -82,7 +82,7 @@ class EquipmentController extends Controller
     {
         $locations = Location::all();
         $vehicles = Vehicle::all();
-        return view('admin.equipment.edit', compact('equipment', 'locations', 'vehicles'));
+        return view('account.equipment.edit', compact('equipment', 'locations', 'vehicles'));
     }
 
     /**
@@ -119,7 +119,7 @@ class EquipmentController extends Controller
 
         $equipment->update($validated);
 
-        return redirect()->route('admin.equipment.index')
+        return redirect()->route('account.equipment.index')
             ->with('success', 'Equipment updated successfully.');
     }
 
@@ -130,7 +130,7 @@ class EquipmentController extends Controller
     {
         $equipment->delete();
 
-        return redirect()->route('admin.equipment.index')
+        return redirect()->route('account.equipment.index')
             ->with('success', 'Equipment deleted successfully.');
     }
 }

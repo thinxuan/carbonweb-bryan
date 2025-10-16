@@ -16,7 +16,7 @@ class VehicleUsageDistanceController extends Controller
         $vehiclesNeedingData = $vehicles->where('distance_data_added', false);
         $vehiclesCompleted = $vehicles->where('distance_data_added', true);
 
-        return view('admin.scope1.vehicle-usage-distance', compact('vehiclesNeedingData', 'vehiclesCompleted'));
+        return view('account.scope1.vehicle-usage-distance', compact('vehiclesNeedingData', 'vehiclesCompleted'));
     }
 
     /**

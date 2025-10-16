@@ -57,7 +57,7 @@ class ReportsController extends Controller
             ],
         ];
 
-        return view('admin.reports.cdp', compact('reportData'));
+        return view('account.reports.cdp', compact('reportData'));
     }
 
     public function methodology()
@@ -88,13 +88,13 @@ class ReportsController extends Controller
             ],
         ];
 
-        return view('admin.reports.methodology', compact('reportData'));
+        return view('account.reports.methodology', compact('reportData'));
     }
 
     public function sustainability()
     {
         $reportingYear = (int) date('Y') - 1; // example selection
-        return view('admin.reports.sustainability', [
+        return view('account.reports.sustainability', [
             'reportingYear' => $reportingYear,
             'supportsFromYear' => 2024,
         ]);
@@ -124,7 +124,7 @@ class ReportsController extends Controller
             ['unit' => 't CO2e', 'category' => 'Purchased Electricity - Market-Based', 'y1' => null, 'y2' => null, 'change' => null],
         ];
 
-        return view('admin.reports.secr', compact('reportingYear', 'periods', 'rowsScope1', 'rowsScope2Loc', 'rowsScope2Mkt'));
+        return view('account.reports.secr', compact('reportingYear', 'periods', 'rowsScope1', 'rowsScope2Loc', 'rowsScope2Mkt'));
     }
 }
 

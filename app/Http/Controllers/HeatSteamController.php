@@ -27,7 +27,7 @@ class HeatSteamController extends Controller
         $locationsNeedingData = (clone $locationsQuery)->where('heat_steam_data_added', false)->get();
         $locationsCompleted = (clone $locationsQuery)->where('heat_steam_data_added', true)->get();
 
-        return view('admin.scope2.heat-steam-usage', compact('locationsNeedingData', 'locationsCompleted'));
+        return view('account.scope2.heat-steam-usage', compact('locationsNeedingData', 'locationsCompleted'));
     }
 
     /**

@@ -14,7 +14,7 @@ class VehicleController extends Controller
     public function index()
     {
         $vehicles = Vehicle::with('location')->latest()->paginate(10);
-        return view('admin.vehicles.index', compact('vehicles'));
+        return view('account.vehicles.index', compact('vehicles'));
     }
 
     /**
@@ -23,7 +23,7 @@ class VehicleController extends Controller
     public function create()
     {
         $locations = Location::all();
-        return view('admin.vehicles.create', compact('locations'));
+        return view('account.vehicles.create', compact('locations'));
     }
 
     /**
@@ -56,7 +56,7 @@ class VehicleController extends Controller
 
         Vehicle::create($validated);
 
-        return redirect()->route('admin.vehicles.index')
+        return redirect()->route('account.vehicles.index')
             ->with('success', 'Vehicle created successfully.');
     }
 
@@ -66,7 +66,7 @@ class VehicleController extends Controller
     public function show(Vehicle $vehicle)
     {
         $vehicle->load('location', 'equipment');
-        return view('admin.vehicles.show', compact('vehicle'));
+        return view('account.vehicles.show', compact('vehicle'));
     }
 
     /**
@@ -75,7 +75,7 @@ class VehicleController extends Controller
     public function edit(Vehicle $vehicle)
     {
         $locations = Location::all();
-        return view('admin.vehicles.edit', compact('vehicle', 'locations'));
+        return view('account.vehicles.edit', compact('vehicle', 'locations'));
     }
 
     /**
@@ -107,7 +107,7 @@ class VehicleController extends Controller
 
         $vehicle->update($validated);
 
-        return redirect()->route('admin.vehicles.index')
+        return redirect()->route('account.vehicles.index')
             ->with('success', 'Vehicle updated successfully.');
     }
 
@@ -118,7 +118,7 @@ class VehicleController extends Controller
     {
         $vehicle->delete();
 
-        return redirect()->route('admin.vehicles.index')
+        return redirect()->route('account.vehicles.index')
             ->with('success', 'Vehicle deleted successfully.');
     }
 }

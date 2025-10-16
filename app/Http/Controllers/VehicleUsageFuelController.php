@@ -16,7 +16,7 @@ class VehicleUsageFuelController extends Controller
         $vehiclesNeedingData = $vehicles->where('fuel_data_added', false);
         $vehiclesCompleted = $vehicles->where('fuel_data_added', true);
 
-        return view('admin.scope1.vehicle-usage-fuel', compact('vehiclesNeedingData', 'vehiclesCompleted'));
+        return view('account.scope1.vehicle-usage-fuel', compact('vehiclesNeedingData', 'vehiclesCompleted'));
     }
 
     /**

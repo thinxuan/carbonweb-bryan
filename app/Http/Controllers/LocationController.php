@@ -13,7 +13,7 @@ class LocationController extends Controller
     public function index()
     {
         $locations = Location::latest()->paginate(10);
-        return view('admin.locations.index', compact('locations'));
+        return view('account.locations.index', compact('locations'));
     }
 
     /**
@@ -21,7 +21,7 @@ class LocationController extends Controller
      */
     public function create()
     {
-        return view('admin.locations.create');
+        return view('account.locations.create');
     }
 
     /**
@@ -29,7 +29,7 @@ class LocationController extends Controller
      */
     public function createSingle()
     {
-        return view('admin.locations.create-single');
+        return view('account.locations.create-single');
     }
 
     /**
@@ -37,7 +37,7 @@ class LocationController extends Controller
      */
     public function createMultiple()
     {
-        return view('admin.locations.create-multiple');
+        return view('account.locations.create-multiple');
     }
 
     /**
@@ -65,7 +65,7 @@ class LocationController extends Controller
 
         Location::create($validated);
 
-        return redirect()->route('admin.locations.index')
+        return redirect()->route('account.locations.index')
             ->with('success', 'Location created successfully.');
     }
 
@@ -74,7 +74,7 @@ class LocationController extends Controller
      */
     public function show(Location $location)
     {
-        return view('admin.locations.show', compact('location'));
+        return view('account.locations.show', compact('location'));
     }
 
     /**
@@ -82,7 +82,7 @@ class LocationController extends Controller
      */
     public function edit(Location $location)
     {
-        return view('admin.locations.edit', compact('location'));
+        return view('account.locations.edit', compact('location'));
     }
 
     /**
@@ -104,7 +104,7 @@ class LocationController extends Controller
 
         $location->update($validated);
 
-        return redirect()->route('admin.locations.index')
+        return redirect()->route('account.locations.index')
             ->with('success', 'Location updated successfully.');
     }
 
@@ -115,7 +115,7 @@ class LocationController extends Controller
     {
         $location->delete();
 
-        return redirect()->route('admin.locations.index')
+        return redirect()->route('account.locations.index')
             ->with('success', 'Location deleted successfully.');
     }
 }

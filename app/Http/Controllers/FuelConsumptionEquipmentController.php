@@ -16,7 +16,7 @@ class FuelConsumptionEquipmentController extends Controller
         $equipmentNeedingData = $equipment->where('fuel_consumption_data_added', false);
         $equipmentCompleted = $equipment->where('fuel_consumption_data_added', true);
 
-        return view('admin.scope1.fuel-consumption-equipment', compact('equipmentNeedingData', 'equipmentCompleted'));
+        return view('account.scope1.fuel-consumption-equipment', compact('equipmentNeedingData', 'equipmentCompleted'));
     }
 
     /**

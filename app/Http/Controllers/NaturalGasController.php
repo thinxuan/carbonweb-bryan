@@ -16,7 +16,7 @@ class NaturalGasController extends Controller
         $locationsNeedingData = $locations->where('natural_gas_data_added', false);
         $locationsCompleted = $locations->where('natural_gas_data_added', true);
 
-        return view('admin.scope1.natural-gas', compact('locationsNeedingData', 'locationsCompleted'));
+        return view('account.scope1.natural-gas', compact('locationsNeedingData', 'locationsCompleted'));
     }
 
     /**

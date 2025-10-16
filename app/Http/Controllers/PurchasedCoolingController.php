@@ -27,7 +27,7 @@ class PurchasedCoolingController extends Controller
         $locationsNeedingData = (clone $locationsQuery)->where('purchased_cooling_data_added', false)->get();
         $locationsCompleted = (clone $locationsQuery)->where('purchased_cooling_data_added', true)->get();
 
-        return view('admin.scope2.purchased-cooling', compact('locationsNeedingData', 'locationsCompleted'));
+        return view('account.scope2.purchased-cooling', compact('locationsNeedingData', 'locationsCompleted'));
     }
 
     /**
