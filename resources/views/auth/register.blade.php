@@ -261,11 +261,6 @@
             Sign up with Microsoft
         </a>
 
-        <a href="{{ route('auth.apple') }}" class="social-btn">
-            <i class="apple-icon"></i>
-            Sign up with Apple
-        </a>
-
         <!-- Divider -->
         <div class="divider">
             <span>OR</span>
