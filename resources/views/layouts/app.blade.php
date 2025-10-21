@@ -111,7 +111,7 @@
 
     <!-- Footer -->
     <footer class="footer text-white">
-        <div class="container py-5">
+        {{-- <div class="container py-5">
             <div class="row">
                 <!-- Newsletter -->
                 <div class="col-12 col-lg-5 mb-4 mb-lg-0">
@@ -146,7 +146,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
         <!-- Copyright -->
         <div class="footer-bottom text-center py-3">
