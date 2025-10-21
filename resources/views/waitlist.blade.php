@@ -35,9 +35,13 @@
         }
 
         .waitlist-form {
-            max-width: 800px;
             width: 100%;
+            max-width: 1200px;
             text-align: center;
+            justify-content: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .logo {
@@ -64,32 +68,43 @@
         }
 
         .main-title {
-            font-size: 32px;
-            font-weight: 300;
-            color: #e0e0e0;
+            font-size: 3.5rem;
+            font-weight: 700 !important;
+            color: #808080;
             margin-bottom: 8px;
             line-height: 1.2;
         }
 
         .accent-text {
-            font-size: 3rem;
+            font-size: 4.375rem;
             font-weight: 700;
-            background: linear-gradient(51deg, #e4e0e0 0%, #16d3ca 100%);
+            background: linear-gradient(90deg, #16D3CA 0%, #1AB3C5 50%, #0FA3B8 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            margin-bottom: 48px;
+            margin-bottom: 1rem;
+        }
+
+        .waitlist-form p {
+            font-weight: 500;
+            font-size: 1.25rem;
+            line-height: 30px;
+            color: #ffffff;
         }
 
         .form-group {
             margin-bottom: 24px;
             position: relative;
+            width: 100%;
+            display: flex;
+            justify-content: center;
         }
 
         .input-wrapper {
             position: relative;
             display: flex;
             align-items: center;
+            width: 100%;
         }
 
         .input-icon {
@@ -104,7 +119,7 @@
         .form-input {
             width: 100%;
             padding: 16px 16px 16px 48px;
-            background: rgba(30, 30, 30, 0.8);
+            background: #0B0B0B;
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 12px;
             color: #ffffff;
@@ -145,12 +160,11 @@
         .submit-btn {
             width: 100%;
             padding: 16px 24px;
-            background: rgba(30, 30, 30, 0.8);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: linear-gradient(90deg, #16D3CA 0%, #1AB3C5 50%, #0FA3B8 100%);
             border-radius: 12px;
             color: #ffffff;
-            font-size: 16px;
-            font-weight: 500;
+            font-size: 1.25rem;
+            font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
             display: flex;
@@ -182,12 +196,12 @@
 
         .footer-text {
             position: fixed;
-            bottom: 20px;
+            width: 100%;
+            bottom: 1%;
             left: 50%;
             transform: translateX(-50%);
             font-size: .75rem;
-            color: #888;
-            line-height: 1.6;
+            color: #ffffffa8;
             text-align: center;
             z-index: 4;
         }
@@ -214,14 +228,15 @@
         }
 
         .modal-content {
-            background: rgba(20, 20, 20, 0.95);
+            background: radial-gradient(circle at top center, #16D3CA 0%, rgba(22, 211, 202, 0.3) 0%, transparent 35%), linear-gradient(179deg, transparent 0%, #0a0a0a 10%);
             backdrop-filter: blur(20px);
+            background-repeat: no-repeat;
             border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 24px;
+            border-radius: 10px;
             margin: 15% auto;
             padding: 40px;
-            width: 90%;
-            max-width: 400px;
+            width: 100%;
+            max-width: 500px;
             text-align: center;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
             animation: modalSlideIn 0.3s ease-out;
@@ -241,7 +256,7 @@
         .modal-icon {
             width: 80px;
             height: 80px;
-            background: linear-gradient(324deg, #16d3ca, #f3f6f6);
+            background: linear-gradient(324deg, #47D67B, #16D3CA);
             border-radius: 50%;
             margin: 0 auto 24px;
             display: flex;
@@ -252,30 +267,35 @@
         }
 
         .modal-title {
-            font-size: 24px;
+            font-size: 2.188rem;
             font-weight: 600;
-            color: #ffffff;
             margin-bottom: 16px;
+            background: linear-gradient(90deg, #16D3CA 0%, #1AB3C5 50%, #0FA3B8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .modal-message {
-            font-size: .9rem;
-            color: #a0a0a0;
-            line-height: 1.5;
-            margin-bottom: 32px;
+            font-size: 1.25rem;
+            color: #fff;
+            line-height: 30px;
+            font-weight: 500;
         }
 
         .modal-btn {
-            background: #16d3ca;
+            background: #0d958f;
             border: none;
             border-radius: 12px;
             color: white;
-            padding: 12px 32px;
-            font-size: 16px;
-            font-weight: 500;
+            padding: 1rem 0rem;
+            font-size: 1.25rem;
+            font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
             font-family: Montserrat;
+            width: 100%;
+            margin-top: 2rem;
         }
 
         .modal-btn:hover {
@@ -324,8 +344,11 @@
     <div class="container">
         <div class="waitlist-form">
             <!-- Main title -->
-            <h1 class="main-title">Join the waitlist for the</h1>
-            <h1 class="accent-text">CarbonAI Tracking Platform</h1>
+            <img src="{{ asset('images/logo.svg') }}" class="carbon-logo">
+            <h1 class="main-title">Join the waitlist for</h1>
+            <h1 class="accent-text">CarbonAI</h1>
+
+            <p>Be among the first to access Carbon AI's audit-ready carbon accounting platform, purpose-built for <br>verified ESG reporting and measurable progress toward Net Zero.</p>
 
             <!-- Success/Error Messages -->
             @if(session('success'))
@@ -343,17 +366,16 @@
             @endif
 
             <!-- Waitlist Form -->
-            <form method="POST" action="{{ route('waitlist.store') }}">
+            <form method="POST" action="{{ route('waitlist.store') }}" style="width: 100%; max-width: 600px; padding-top: 2rem;">
                 @csrf
-
-                <div class="form-group">
+                <div class="form-group my-5">
                     <div class="input-wrapper">
                         <div class="input-icon"><i class="fa-solid fa-user"></i></div>
                         <input
                             type="text"
                             name="name"
                             class="form-input"
-                            placeholder="{{ old('name', 'Full Name...') }}"
+                            placeholder="{{ old('name', 'Name') }}"
                             value="{{ old('name') }}"
                             required
                         >
@@ -367,7 +389,7 @@
                             type="email"
                             name="email"
                             class="form-input"
-                            placeholder="{{ old('email', 'Email Address...') }}"
+                            placeholder="{{ old('email', 'Email Address') }}"
                             value="{{ old('email') }}"
                             required
                         >
@@ -381,7 +403,7 @@
                             type="text"
                             name="company"
                             class="form-input"
-                            placeholder="{{ old('company', 'Your Company...') }}"
+                            placeholder="{{ old('company', 'Company') }}"
                             value="{{ old('company') }}"
                         >
                     </div>
@@ -389,15 +411,13 @@
 
                 <button type="submit" class="submit-btn">
                     Join the waitlist
-                    <span class="arrow-icon">→</span>
                 </button>
             </form>
         </div>
 
         <!-- Footer text -->
         <div class="footer-text">
-            <p>CarbonWallet is coming soon.</p>
-            <p>Designed to help you track and reduce your carbon footprint.</p>
+            <p>By joining the waitlist, you consent to be contacted regarding early access and product updates. Your information will be managed in accordance with our Privacy Policy.</p>
         </div>
     </div>
 
@@ -407,9 +427,9 @@
             <div class="modal-icon">
                 <i class="fa-solid fa-check"></i>
             </div>
-            <h2 class="modal-title">We've added you to the waitlist!</h2>
-            <p class="modal-message">You'll be the first to know when we launch!</p>
-            <button class="modal-btn" onclick="closeModal()">Got it!</button>
+            <h2 class="modal-title">You're on the waitlist.</h2>
+            <p class="modal-message">Thank you for joining Carbon AI's early access program.<br><br>You'll receive a confirmation email shortly with more details about what's next.</p>
+            <button class="modal-btn" onclick="closeModal()">Go Back to Homepage</button>
         </div>
     </div>
 
