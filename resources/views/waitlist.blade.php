@@ -40,9 +40,19 @@
             padding: 20px;
         }
 
+        body {
+            background: #000 !important;
+            background-image: linear-gradient(rgba(255, 255, 255, 0.1) .6px, transparent 0.6px), linear-gradient(90deg, rgba(255, 255, 255, 0.1) .6px, transparent .6px) !important;
+            background-size: 160px 160px !important;
+            background-position: 0 0, 0 0 !important;
+            background-repeat: repeat !important;
+            min-height: 100vh !important;
+            position: relative !important;
+        }
+
         .waitlist-form {
             width: 100%;
-            max-width: 1200px;
+            max-width: 1000px;
             text-align: center;
             justify-content: center;
             display: flex;
@@ -95,14 +105,15 @@
         }
 
         .waitlist-form p {
-            font-weight: 500;
-            font-size: 1.25rem;
+            font-weight: 300;
+            font-size: 1rem;
             line-height: 30px;
-            color: #ffffff;
+            color: #666;
+            padding: 0 4rem;
         }
 
         .form-group {
-            margin-bottom: 24px;
+            margin-bottom: 14px;
             position: relative;
             width: 100%;
             display: flex;
@@ -113,7 +124,8 @@
             position: relative;
             display: flex;
             align-items: center;
-            width: 100%;
+            width: 70%;
+            margin: 0 auto; /* center the wrapper so the icon aligns with the input */
         }
 
         .input-icon {
@@ -123,6 +135,7 @@
             font-size: 16px;
             z-index: 1;
             opacity: 0.7;
+            pointer-events: none; /* allow clicks to pass through to the input */
         }
 
         .form-input {
@@ -169,7 +182,7 @@
             color: #ffffff !important;
         }
 
-        .submit-btn {
+        /* .submit-btn {
             width: 100%;
             padding: 16px 24px;
             background: linear-gradient(90deg, #16D3CA 0%, #1AB3C5 50%, #0FA3B8 100%);
@@ -193,6 +206,65 @@
 
         .submit-btn:active {
             transform: translateY(0);
+        } */
+
+        .waitlist-container {
+            width: 70%;
+            height: 50px;
+            position: relative;
+            border-radius: 10px;
+            margin: 0 auto;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .waitlist-container:hover {
+            transform: translateY(-2px);
+        }
+
+        .waitlist-overlay {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            border-radius: 10px;
+            background:
+                linear-gradient(180deg, rgba(102, 102, 102, 0.2) 0%, rgba(102, 102, 102, 0) 33%),
+                linear-gradient(180deg, rgba(102, 102, 102, 0) 50%, rgba(102, 102, 102, 0.4) 100%),
+                rgba(29, 29, 29, 0.2),
+                #1D1D1D;
+            box-shadow: inset 0 0 22px rgba(242, 242, 242, 0.5);
+            backdrop-filter: blur(12px);
+        }
+
+        .waitlist-gradient {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            border-radius: 10px;
+            background: linear-gradient(90deg, rgba(22, 211, 202, 0.66) 0%, rgba(26, 179, 197, 0.66) 100%);
+            box-shadow: inset 7px 7px 10px rgba(22, 211, 202, 0.4);
+        }
+
+        .waitlist-text {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            font-family: 'Montserrat';
+            font-weight: 500;
+            font-size: 16px;
+            color: #ffffff;
+            word-wrap: break-word;
         }
 
         .arrow-icon {
@@ -207,11 +279,11 @@
         .footer-text {
             position: fixed;
             width: 100%;
-            bottom: 1%;
+            bottom: 3%;
             left: 50%;
             transform: translateX(-50%);
-            font-size: .75rem;
-            color: #ffffffa8;
+            font-size: .625rem;
+            color: #a0a0a0;
             text-align: center;
             z-index: 4;
         }
@@ -245,7 +317,7 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 10px;
             margin: 15% auto;
-            padding: 40px;
+            padding: 60px;
             width: 100%;
             max-width: 500px;
             text-align: center;
@@ -278,7 +350,7 @@
         }
 
         .modal-title {
-            font-size: 2.188rem;
+            font-size: 1.875rem;
             font-weight: 600;
             margin-bottom: 16px;
             background: linear-gradient(90deg, #16D3CA 0%, #1AB3C5 50%, #0FA3B8 100%);
@@ -288,30 +360,68 @@
         }
 
         .modal-message {
-            font-size: 1.25rem;
-            color: #fff;
-            line-height: 30px;
-            font-weight: 500;
+            font-size: 0.875rem;
+            color: #b6b6b6;
+            line-height: 25px;
+            font-weight: 400;
         }
 
-        .modal-btn {
-            background: #0d958f;
-            border: none;
-            border-radius: 12px;
-            color: white;
-            padding: 1rem 0rem;
-            font-size: 1.25rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-family: Montserrat;
+        .modal-waitlist-container {
             width: 100%;
-            margin-top: 2rem;
+            height: 50px;
+            position: relative;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            margin-top: 4rem;
         }
 
-        .modal-btn:hover {
+        .modal-waitlist-container:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(22, 211, 202, 0.3);
+        }
+
+        .modal-waitlist-overlay {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            border-radius: 10px;
+            background:
+                linear-gradient(180deg, rgba(102, 102, 102, 0.2) 0%, rgba(102, 102, 102, 0) 33%),
+                linear-gradient(180deg, rgba(102, 102, 102, 0) 50%, rgba(102, 102, 102, 0.4) 100%),
+                rgba(29, 29, 29, 0.2),
+                #1D1D1D;
+            box-shadow: inset 0 0 22px rgba(242, 242, 242, 0.5);
+            backdrop-filter: blur(12px);
+        }
+
+        .modal-waitlist-gradient {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            border-radius: 10px;
+            background: linear-gradient(90deg, rgba(22, 211, 202, 0.66) 0%, rgba(26, 179, 197, 0.66) 100%);
+            box-shadow: inset 7px 7px 10px rgba(22, 211, 202, 0.4);
+        }
+
+        .modal-waitlist-text {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            font-family: 'Montserrat';
+            font-weight: 500;
+            font-size: 1rem;
+            word-wrap: break-word;
         }
 
         .success-message {
@@ -337,7 +447,7 @@
 
         @media (max-width: 1200px) {
             .main-title {
-                font-size: 2rem;
+                font-size: 3.5rem;
             }
 
             .modal-title {
@@ -356,7 +466,7 @@
             .waitlist-form p {
                 font-size: .95rem;
                 line-height: 20px;
-                padding: 0rem 3rem;
+                padding: 0rem 5rem;
             }
 
             .footer-text {
@@ -390,7 +500,7 @@
             .waitlist-form p {
                 font-size: 0.8rem;
                 line-height: 1.3;
-                padding: 0;
+                padding: 0rem 4rem;
                 margin-bottom: 1rem;
             }
 
@@ -438,9 +548,13 @@
                 font-size: 0.85rem;
             }
 
+            .modal-waitlist-text {
+                font-size: .875rem;
+            }
+
             .footer-text {
                 font-size: 0.45rem;
-                bottom: 1%;
+                bottom: 4%;
                 padding: 0 15px;
             }
         }
@@ -457,23 +571,24 @@
             }
 
             .main-title {
-                font-size: 2.5rem;
+                font-size: 3rem;
                 line-height: 1.2;
             }
 
             .accent-text {
-                font-size: 2.5rem;
+                font-size: 3.5rem;
                 line-height: 1.2;
             }
 
             .waitlist-form p {
                 font-size: .9rem;
                 line-height: 1.4;
-                padding: 0;
+                padding: 0rem 4rem;
             }
 
-            .form-group {
-                margin-bottom: 20px;
+            .waitlist-text {
+                font-weight: 500;
+                font-size: .875rem;
             }
 
             .form-input {
@@ -502,7 +617,7 @@
             }
 
             .modal-content h2 {
-                font-size: 1.5rem;
+                font-size: 1.75rem;
                 margin-bottom: 1rem;
             }
 
@@ -517,9 +632,10 @@
             }
 
             .footer-text {
-                font-size: 0.5rem;
-                bottom: 2%;
+                bottom: 4%;
                 padding: 0 20px;
+                font-size: .75rem;
+                line-height: 20px;
             }
         }
 
@@ -543,16 +659,17 @@
 
         @media (max-width: 578px) {
             .main-title {
-                font-size: 1.25rem;
+                font-size: 1.875rem;
             }
 
             .accent-text {
-                font-size: 1.5rem;
+                font-size: 2rem;
             }
 
             .waitlist-form p {
                 font-size: .75rem;
-                line-height: 25px;
+                line-height: 20px;
+                padding: 0 1rem;
             }
 
             .form-input {
@@ -569,7 +686,7 @@
             }
 
             .modal-content {
-                padding: 1.5rem 1rem;
+                padding: 4rem 1rem;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
@@ -577,7 +694,7 @@
             }
 
             .modal-content h2 {
-                font-size: 0.875rem;
+                font-size: 1.75rem;
             }
 
             .modal-content p {
@@ -591,6 +708,7 @@
 
             .footer-text {
                 font-size: 0.5rem;
+                line-height: 1;
             }
         }
     </style>
@@ -601,7 +719,7 @@
             <!-- Main title -->
             <img src="{{ asset('images/logo.svg') }}" class="carbon-logo">
             <h1 class="main-title">Join the waitlist for</h1>
-            <h1 class="accent-text">CarbonAI</h1>
+            <h1 class="accent-text">Carbon AI</h1>
 
             <p>Be among the first to access Carbon AI's audit-ready carbon accounting platform, purpose-built for verified ESG reporting and measurable progress toward Net Zero.</p>
 
@@ -658,9 +776,11 @@
                     </div>
                 </div>
 
-                <button type="button" class="submit-btn" onclick="submitForm()">
-                    Join the waitlist
-                </button>
+                <div class="waitlist-container" onclick="submitForm()">
+                    <div class="waitlist-overlay"></div>
+                    <div class="waitlist-gradient"></div>
+                    <div class="waitlist-text">Join the Waitlist</div>
+                </div>
             </form>
         </div>
 
@@ -676,20 +796,51 @@
             <div class="modal-icon">
                 <i class="fa-solid fa-check"></i>
             </div>
-            <h2 class="modal-title">You're on the waitlist.</h2>
-            <p class="modal-message">Thank you for joining Carbon AI's early access program.<br><br>You'll receive a confirmation email shortly with more details about what's next.</p>
-            <button class="modal-btn" onclick="closeModal()">Go Back to Homepage</button>
+            <h2 class="modal-title">You're on the waitlist</h2>
+            <p class="modal-message">Thank you for joining Carbon AI's early access program.<br><br><br><span style="color: #666;">You'll receive a confirmation email shortly with more details about what's next.</span></p>
+            <div class="modal-waitlist-container" onclick="closeModal()">
+                <div class="modal-waitlist-overlay"></div>
+                <div class="modal-waitlist-gradient"></div>
+                <div class="modal-waitlist-text">Go Back to Homepage</div>
+            </div>
         </div>
     </div>
 
     <script>
         function submitForm() {
-            // Get form data
-            const form = document.querySelector('form');
-            const formData = new FormData(form);
+            // Get form inputs
+            const nameInput = document.querySelector('input[name="name"]');
+            const emailInput = document.querySelector('input[name="email"]');
+            const companyInput = document.querySelector('input[name="company"]');
+            const messageInput = document.querySelector('textarea[name="message"]');
+
+            // Check if required fields are filled
+            if (!nameInput.value.trim()) {
+                alert('Please enter your full name');
+                nameInput.focus();
+                return;
+            }
+
+            if (!emailInput.value.trim()) {
+                alert('Please enter your email address');
+                emailInput.focus();
+                return;
+            }
+
+            // Basic email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(emailInput.value.trim())) {
+                alert('Please enter a valid email address');
+                emailInput.focus();
+                return;
+            }
 
             // Show modal immediately
             showModal();
+
+            // Get form data
+            const form = document.querySelector('form');
+            const formData = new FormData(form);
 
             // Submit form in background
             fetch(form.action, {
