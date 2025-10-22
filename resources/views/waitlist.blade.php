@@ -691,6 +691,7 @@
                 flex-direction: column;
                 align-items: center;
                 text-align: center;
+                justify-content: flex-start;
             }
 
             .modal-content h2 {
@@ -872,6 +873,8 @@
         function closeModal() {
             document.getElementById('successModal').style.display = 'none';
             document.body.style.overflow = 'auto'; // Restore scrolling
+            // Redirect to homepage
+            window.location.href = '/';
         }
 
         // Close modal when clicking outside
