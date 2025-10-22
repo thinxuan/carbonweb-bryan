@@ -33,6 +33,10 @@ Route::get('/', function () {
     return view('home');
 });
 
+Route::get('/solutions', function () {
+    return view('solutions');
+});
+
 // Test CSS loading
 Route::get('/test-css', function () {
     return '<html><head>
