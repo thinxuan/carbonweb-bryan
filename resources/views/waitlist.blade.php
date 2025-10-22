@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>CarbonWallet Waitlist</title>
 
     <!-- Google Fonts - Montserrat -->
@@ -75,7 +76,10 @@
         .main-title {
             font-size: 3.5rem;
             font-weight: 700 !important;
-            color: #808080;
+            background: linear-gradient(180deg, #212026 0%, #504f54 30%, #ffffff 90%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             margin-bottom: 8px;
             line-height: 1.2;
         }
@@ -128,6 +132,7 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 12px;
             color: #ffffff;
+            font-family: 'Montserrat', sans-serif;
             font-size: 16px;
             transition: all 0.3s ease;
             backdrop-filter: blur(10px);
@@ -143,6 +148,8 @@
         .form-input::placeholder {
             color: #666;
             font-family: Montserrat;
+            font-size: 1rem;
+            font-weight: 400;
         }
 
         /* Override browser autofill styling */
@@ -177,12 +184,10 @@
             justify-content: center;
             gap: 8px;
             backdrop-filter: blur(10px);
-            font-family: Montserrat;
+            font-family: 'Montserrat', sans-serif;
         }
 
         .submit-btn:hover {
-            background: rgba(50, 50, 50, 0.9);
-            border-color: #fff;
             transform: translateY(-2px);
         }
 
@@ -230,6 +235,7 @@
             height: 100%;
             background-color: rgba(0, 0, 0, 0.8);
             backdrop-filter: blur(10px);
+            align-items: center;
         }
 
         .modal-content {
@@ -329,6 +335,195 @@
             font-size: 14px;
         }
 
+        @media (max-width: 1200px) {
+            .main-title {
+                font-size: 2rem;
+            }
+
+            .modal-title {
+                font-size: 1.75rem;
+            }
+
+            .modal-message, .submit-btn {
+                font-size: .9rem;
+                line-height: 20px;
+            }
+
+            .modal-btn {
+                font-size: .75rem;
+            }
+
+            .waitlist-form p {
+                font-size: .95rem;
+                line-height: 20px;
+                padding: 0rem 3rem;
+            }
+
+            .footer-text {
+                font-size: .5rem;
+            }
+        }
+
+        /* Tablet Landscape Responsive Styles */
+        @media (max-width: 992px) and (orientation: landscape) {
+            .container {
+                padding: 10px;
+            }
+
+            .waitlist-form {
+                max-width: 100%;
+                padding: 0 5px;
+            }
+
+            .main-title {
+                font-size: 1.8rem;
+                line-height: 1.1;
+                margin-bottom: 0.5rem;
+            }
+
+            .accent-text {
+                font-size: 1.8rem;
+                line-height: 1.1;
+                margin-bottom: 0.5rem;
+            }
+
+            .waitlist-form p {
+                font-size: 0.8rem;
+                line-height: 1.3;
+                padding: 0;
+                margin-bottom: 1rem;
+            }
+
+            .form-group {
+                margin-bottom: 15px;
+            }
+
+            .form-input {
+                padding: 12px 16px 12px 40px;
+                font-size: 0.85rem;
+            }
+
+            .form-input::placeholder {
+                font-size: 0.8rem;
+            }
+
+            .submit-btn {
+                padding: 12px 20px;
+                font-size: 0.9rem;
+                margin-top: 1rem;
+            }
+
+            .modal-content {
+                width: 85%;
+                max-width: 350px;
+                padding: 1.5rem 1rem;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .modal-content h2 {
+                font-size: 1.2rem;
+                margin-bottom: 0.8rem;
+            }
+
+            .modal-content p {
+                font-size: 0.8rem;
+                line-height: 1.4;
+            }
+
+            .modal-btn {
+                padding: 10px 20px;
+                font-size: 0.85rem;
+            }
+
+            .footer-text {
+                font-size: 0.45rem;
+                bottom: 1%;
+                padding: 0 15px;
+            }
+        }
+
+        /* Mobile Responsive Styles */
+        @media (max-width: 992px) and (orientation: portrait) {
+            .container {
+                padding: 15px;
+            }
+
+            .waitlist-form {
+                max-width: 100%;
+                padding: 0 10px;
+            }
+
+            .main-title {
+                font-size: 2.5rem;
+                line-height: 1.2;
+            }
+
+            .accent-text {
+                font-size: 2.5rem;
+                line-height: 1.2;
+            }
+
+            .waitlist-form p {
+                font-size: .9rem;
+                line-height: 1.4;
+                padding: 0;
+            }
+
+            .form-group {
+                margin-bottom: 20px;
+            }
+
+            .form-input {
+                padding: 16px 20px 16px 48px;
+                font-size: .9rem;
+            }
+
+            .form-input::placeholder {
+                font-size: 1rem;
+            }
+
+            .submit-btn {
+                padding: 16px 24px;
+                font-size: 1rem;
+                margin-top: 1.5rem;
+            }
+
+            .modal-content {
+                width: 90%;
+                max-width: 400px;
+                padding: 2rem 1.5rem;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .modal-content h2 {
+                font-size: 1.5rem;
+                margin-bottom: 1rem;
+            }
+
+            .modal-content p {
+                font-size: .9rem;
+                line-height: 1.5;
+            }
+
+            .modal-btn {
+                padding: 12px 24px;
+                font-size: 1rem;
+            }
+
+            .footer-text {
+                font-size: 0.5rem;
+                bottom: 2%;
+                padding: 0 20px;
+            }
+        }
+
+
         /* Responsive design */
         @media (max-width: 640px) {
             .waitlist-form {
@@ -344,6 +539,60 @@
                 font-size: 32px;
             }
         }
+
+
+        @media (max-width: 578px) {
+            .main-title {
+                font-size: 1.25rem;
+            }
+
+            .accent-text {
+                font-size: 1.5rem;
+            }
+
+            .waitlist-form p {
+                font-size: .75rem;
+                line-height: 25px;
+            }
+
+            .form-input {
+                padding: 14px 16px 14px 48px;
+                font-size: .9rem;
+            }
+
+            .form-input::placeholder {
+                font-size: .75rem;
+            }
+
+            .submit-btn {
+                font-size: 0.75rem;
+            }
+
+            .modal-content {
+                padding: 1.5rem 1rem;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .modal-content h2 {
+                font-size: 0.875rem;
+            }
+
+            .modal-content p {
+                font-size: 0.75rem;
+                line-height: 25px;
+            }
+
+            .modal-btn {
+                font-size: 0.75rem;
+            }
+
+            .footer-text {
+                font-size: 0.5rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -354,15 +603,9 @@
             <h1 class="main-title">Join the waitlist for</h1>
             <h1 class="accent-text">CarbonAI</h1>
 
-            <p>Be among the first to access Carbon AI's audit-ready carbon accounting platform, purpose-built for <br>verified ESG reporting and measurable progress toward Net Zero.</p>
+            <p>Be among the first to access Carbon AI's audit-ready carbon accounting platform, purpose-built for verified ESG reporting and measurable progress toward Net Zero.</p>
 
-            <!-- Success/Error Messages -->
-            @if(session('success'))
-                <div class="success-message">
-                    {{ session('success') }}
-                </div>
-            @endif
-
+            <!-- Error Messages -->
             @if($errors->any())
                 <div class="error-message">
                     @foreach($errors->all() as $error)
@@ -415,7 +658,7 @@
                     </div>
                 </div>
 
-                <button type="submit" class="submit-btn">
+                <button type="button" class="submit-btn" onclick="submitForm()">
                     Join the waitlist
                 </button>
             </form>
@@ -440,15 +683,38 @@
     </div>
 
     <script>
-        // Show modal on successful form submission
-        @if(session('success'))
-            document.addEventListener('DOMContentLoaded', function() {
-                showModal();
+        function submitForm() {
+            // Get form data
+            const form = document.querySelector('form');
+            const formData = new FormData(form);
+
+            // Show modal immediately
+            showModal();
+
+            // Submit form in background
+            fetch(form.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Form submitted successfully, modal is already shown
+                    console.log('Form submitted successfully');
+                } else {
+                    // Handle error if needed
+                    console.error('Form submission failed');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
             });
-        @endif
+        }
 
         function showModal() {
-            document.getElementById('successModal').style.display = 'block';
+            document.getElementById('successModal').style.display = 'flex';
             document.body.style.overflow = 'hidden'; // Prevent background scrolling
         }
 
