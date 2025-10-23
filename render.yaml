@@ -1,15 +1,29 @@
 services:
   - type: web
     name: carbonwallet
-    env: php
-    buildCommand: composer install --no-dev --optimize-autoloader && php artisan migrate --force
-    startCommand: php artisan serve --host=0.0.0.0 --port=$PORT
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    plan: free
     envVars:
+      - key: APP_NAME
+        value: CarbonWallet
       - key: APP_ENV
         value: production
+      - key: APP_KEY
+        value: base64:ZdoWE9EGrVbNIu4bZ3bWWktww0F2UgSv5yi5up/10W8=
       - key: APP_DEBUG
         value: false
-      - key: APP_KEY
-        value: base64:WY2OfhYp+4/COu9opwC4zUK7010tT9J5010qrLvoAxs=
-      - key: APP_URL
-        value: https://carbonwallet.onrender.com
+      - key: DB_CONNECTION
+        value: sqlite
+      - key: DB_DATABASE
+        value: /var/www/html/database/database.sqlite
+      - key: SESSION_DRIVER
+        value: file
+      - key: CACHE_STORE
+        value: file
+      - key: QUEUE_CONNECTION
+        value: database
+      - key: LOG_CHANNEL
+        value: stack
+      - key: LOG_LEVEL
+        value: error

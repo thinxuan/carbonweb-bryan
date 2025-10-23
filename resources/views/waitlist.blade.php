@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>CarbonWallet Waitlist</title>
 
@@ -20,13 +20,6 @@
             box-sizing: border-box;
         }
 
-        html {
-            height: 100%;
-            overflow-x: hidden;
-            -webkit-text-size-adjust: 100%;
-            -ms-text-size-adjust: 100%;
-        }
-
         body {
             font-family: 'Montserrat', sans-serif;
             background: #0a0a0a;
@@ -34,8 +27,6 @@
             min-height: 100vh;
             overflow-x: hidden;
             position: relative;
-            -webkit-text-size-adjust: 100%;
-            -ms-text-size-adjust: 100%;
         }
 
         .container {
@@ -45,7 +36,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: space-between;
+            justify-content: center;
             padding: 20px;
         }
 
@@ -286,16 +277,15 @@
         }
 
         .footer-text {
-            position: sticky;
-            bottom: 0;
+            position: fixed;
+            width: 100%;
+            bottom: 3%;
+            left: 50%;
+            transform: translateX(-50%);
             font-size: .625rem;
             color: #a0a0a0;
             text-align: center;
-            margin-top: 2rem;
-            padding: 1rem 0;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(10px);
-            z-index: 10;
+            z-index: 4;
         }
 
         .footer-text p {
@@ -701,7 +691,6 @@
                 flex-direction: column;
                 align-items: center;
                 text-align: center;
-                justify-content: flex-start;
             }
 
             .modal-content h2 {
@@ -719,7 +708,7 @@
 
             .footer-text {
                 font-size: 0.5rem;
-                line-height: 15px;
+                line-height: 1;
             }
         }
     </style>
@@ -818,24 +807,6 @@
     </div>
 
     <script>
-        // Prevent iOS zoom on orientation change
-        window.addEventListener('orientationchange', function() {
-            setTimeout(function() {
-                document.body.style.zoom = '1';
-                document.documentElement.style.zoom = '1';
-            }, 100);
-        });
-
-        // Prevent zoom on double tap
-        let lastTouchEnd = 0;
-        document.addEventListener('touchend', function(event) {
-            const now = (new Date()).getTime();
-            if (now - lastTouchEnd <= 300) {
-                event.preventDefault();
-            }
-            lastTouchEnd = now;
-        }, false);
-
         function submitForm() {
             // Get form inputs
             const nameInput = document.querySelector('input[name="name"]');
@@ -876,40 +847,20 @@
                 method: 'POST',
                 body: formData,
                 headers: {
-                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-                    'Accept': 'application/json',
-                    'X-Requested-With': 'XMLHttpRequest'
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
                 }
             })
             .then(response => {
-                console.log('Response status:', response.status);
-                console.log('Response ok:', response.ok);
-
                 if (response.ok) {
                     // Form submitted successfully, modal is already shown
                     console.log('Form submitted successfully');
-                    return response.json();
                 } else {
-                    // Handle error - close modal and show error
-                    document.getElementById('successModal').style.display = 'none';
-                    document.body.style.overflow = 'auto';
-
-                    return response.json().then(data => {
-                        console.error('Form submission failed:', data);
-                        alert(data.message || 'There was an error submitting the form. Please try again or contact support.');
-                    });
-                }
-            })
-            .then(data => {
-                if (data && data.success) {
-                    console.log('Success response:', data.message);
+                    // Handle error if needed
+                    console.error('Form submission failed');
                 }
             })
             .catch(error => {
-                // Handle network errors
-                console.error('Network error:', error);
-                // Don't close modal for network errors since email might have been sent
-                console.log('Network error occurred, but email may have been sent successfully');
+                console.error('Error:', error);
             });
         }
 
@@ -921,16 +872,6 @@
         function closeModal() {
             document.getElementById('successModal').style.display = 'none';
             document.body.style.overflow = 'auto'; // Restore scrolling
-
-            // Use setTimeout to ensure modal closes before redirect (iOS fix)
-            setTimeout(function() {
-                // Try multiple redirect methods for iOS compatibility
-                if (window.location.replace) {
-                    window.location.replace('/');
-                } else {
-                    window.location.href = '/';
-                }
-            }, 100);
         }
 
         // Close modal when clicking outside

@@ -11,30 +11,11 @@ use App\Http\Controllers\Auth\SocialAuthController;
 Route::get('/waitlist', [App\Http\Controllers\WaitlistController::class, 'index'])->name('waitlist');
 Route::post('/waitlist', [App\Http\Controllers\WaitlistController::class, 'store'])->name('waitlist.store');
 
-// Debug route for testing waitlist functionality
-Route::post('/waitlist-debug', function(\Illuminate\Http\Request $request) {
-    \Illuminate\Support\Facades\Log::info('Debug waitlist submission', $request->all());
-    return response()->json([
-        'success' => true,
-        'message' => 'Debug endpoint working',
-        'data' => $request->all()
-    ]);
-});
-
 // Health check for Railway
 Route::get('/health', function () {
     $cssFiles = [];
     if (is_dir(public_path('css'))) {
         $cssFiles = array_values(array_diff(scandir(public_path('css')), ['.', '..']));
-    }
-
-    // Check database connection
-    $dbStatus = 'unknown';
-    try {
-        \Illuminate\Support\Facades\DB::connection()->getPdo();
-        $dbStatus = 'connected';
-    } catch (\Exception $e) {
-        $dbStatus = 'error: ' . $e->getMessage();
     }
 
     return response()->json([
@@ -43,29 +24,8 @@ Route::get('/health', function () {
         'env' => config('app.env'),
         'url' => config('app.url'),
         'database' => config('database.default'),
-        'database_status' => $dbStatus,
         'css_files' => $cssFiles,
         'css_path' => public_path('css'),
-    ]);
-});
-
-// Database initialization route for production
-Route::get('/init-db', function () {
-    try {
-        \Illuminate\Support\Facades\Artisan::call('migrate', ['--force' => true]);
-        return response()->json(['status' => 'success', 'message' => 'Database initialized']);
-    } catch (\Exception $e) {
-        return response()->json(['status' => 'error', 'message' => $e->getMessage()], 500);
-    }
-});
-
-// Simple test route
-Route::get('/test', function () {
-    return response()->json([
-        'status' => 'working',
-        'message' => 'CarbonWallet is running!',
-        'time' => now(),
-        'php_version' => phpversion()
     ]);
 });
 

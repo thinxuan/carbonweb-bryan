@@ -1,80 +1,114 @@
-FROM php:8.2-fpm-alpine
+# Use PHP 8.2 with Apache
+FROM php:8.2-apache
 
 # Install system dependencies
-RUN apk add --no-cache \
-    nginx \
-    curl \
+RUN apt-get update && apt-get install -y \
     git \
+    curl \
+    libpng-dev \
+    libonig-dev \
+    libxml2-dev \
     zip \
     unzip \
-    libpng-dev \
-    libjpeg-turbo-dev \
-    freetype-dev \
-    libzip-dev \
-    oniguruma-dev \
-    sqlite \
-    sqlite-dev
+    sqlite3 \
+    libsqlite3-dev \
+    nodejs \
+    npm
+
+# Clear cache
+RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Install PHP extensions
-RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install -j$(nproc) \
-        pdo \
-        pdo_sqlite \
-        mbstring \
-        zip \
-        exif \
-        pcntl \
-        gd \
-        bcmath
+RUN docker-php-ext-install pdo pdo_sqlite mbstring exif pcntl bcmath gd
 
 # Install Composer
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 # Set working directory
 WORKDIR /var/www/html
 
-# Copy composer files
-COPY composer.json composer.lock ./
+# Copy application files
+COPY . /var/www/html
 
-# Copy application files first
-COPY . .
-
-# Install PHP dependencies
+# Install dependencies
 RUN composer install --no-dev --optimize-autoloader --no-interaction
 
-# Create database file and set permissions
-RUN touch /var/www/html/database/database.sqlite && \
-    chown www-data:www-data /var/www/html/database/database.sqlite && \
-    chmod 664 /var/www/html/database/database.sqlite
+# Install Node dependencies and build assets
+RUN npm install --prefer-offline --no-audit
+RUN npm run build
 
-# Initialize database
-RUN php artisan migrate --force
+# Ensure static assets are accessible (CSS/Images/Fonts)
+# Set directory permissions to 755 and file permissions to 644 recursively
+RUN if [ -d public/images ]; then \
+      find public/images -type d -exec chmod 755 {} \; && \
+      find public/images -type f -exec chmod 644 {} \; && \
+      chown -R www-data:www-data public/images; \
+    fi
+RUN if [ -d public/css ]; then \
+      chmod 644 public/css/* || true && \
+      chown -R www-data:www-data public/css; \
+    fi
+RUN if [ -d public/font ]; then \
+      chmod 644 public/font/* || true && \
+      chown -R www-data:www-data public/font; \
+    fi
 
-# Set permissions
-RUN chown -R www-data:www-data /var/www/html \
-    && chmod -R 755 /var/www/html
+# Create storage directories and set permissions
+RUN mkdir -p storage/framework/{sessions,views,cache} \
+    && mkdir -p storage/logs \
+    && mkdir -p bootstrap/cache \
+    && chmod -R 775 storage bootstrap/cache \
+    && chown -R www-data:www-data /var/www/html
 
-# Create nginx config
-RUN echo 'server { \
-    listen 80; \
-    server_name _; \
-    root /var/www/html/public; \
-    index index.php; \
-    \
-    location / { \
-        try_files $uri $uri/ /index.php?$query_string; \
-    } \
-    \
-    location ~ \.php$ { \
-        fastcgi_pass 127.0.0.1:9000; \
-        fastcgi_index index.php; \
-        fastcgi_param SCRIPT_FILENAME $realpath_root$fastcgi_script_name; \
-        include fastcgi_params; \
-    } \
-}' > /etc/nginx/http.d/default.conf
+# Create SQLite database
+RUN touch database/database.sqlite \
+    && chmod 664 database/database.sqlite \
+    && chown www-data:www-data database/database.sqlite
+
+# Enable Apache mod_rewrite
+RUN a2enmod rewrite
+
+# Configure Apache DocumentRoot to Laravel's public directory
+ENV APACHE_DOCUMENT_ROOT=/var/www/html/public
+RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
+RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
+
+# Copy custom Apache config
+RUN echo '<Directory /var/www/html/public>\n\
+    Options Indexes FollowSymLinks\n\
+    AllowOverride All\n\
+    Require all granted\n\
+</Directory>\n\
+\n\
+<Directory /var/www/html/public/css>\n\
+    Options Indexes FollowSymLinks\n\
+    AllowOverride None\n\
+    Require all granted\n\
+</Directory>\n\
+\n\
+<Directory /var/www/html/public/js>\n\
+    Options Indexes FollowSymLinks\n\
+    AllowOverride None\n\
+    Require all granted\n\
+</Directory>\n\
+\n\
+<Directory /var/www/html/public/images>\n\
+    Options Indexes FollowSymLinks\n\
+    AllowOverride None\n\
+    Require all granted\n\
+</Directory>\n\
+\n\
+<Directory /var/www/html/public/font>\n\
+    Options Indexes FollowSymLinks\n\
+    AllowOverride None\n\
+    Require all granted\n\
+</Directory>' > /etc/apache2/conf-available/laravel.conf
+
+RUN a2enconf laravel
 
 # Expose port
 EXPOSE 80
 
-# Start services
-CMD php-fpm -D && nginx -g 'daemon off;'
+# Start Apache
+CMD php artisan migrate --force && php artisan config:cache && apache2-foreground
+

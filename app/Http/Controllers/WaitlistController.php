@@ -24,59 +24,48 @@ class WaitlistController extends Controller
      */
     public function store(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email|unique:waitlist,email',
+            'name' => 'required|string|max:255',
+            'company' => 'nullable|string|max:255',
+            'message' => 'nullable|string|max:1000',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
         try {
-            // Simple validation
-            $request->validate([
-                'email' => 'required|email',
-                'name' => 'required|string|max:255',
-                'company' => 'nullable|string|max:255',
+            // Create waitlist entry
+            $waitlistEntry = Waitlist::create([
+                'email' => $request->email,
+                'name' => $request->name,
+                'company' => $request->company,
+                'message' => $request->message,
             ]);
 
-            // Try to create waitlist entry (ignore if database fails)
-            try {
-                $waitlistEntry = Waitlist::create([
-                    'email' => $request->email,
-                    'name' => $request->name,
-                    'company' => $request->company ?? null,
-                    'message' => null,
-                ]);
-            } catch (\Exception $e) {
-                // If database fails, just log it but continue
-                Log::info('Database save failed (normal in some environments): ' . $e->getMessage());
-            }
+            // Send confirmation email
+            Notification::route('mail', $request->email)
+                ->notify(new WaitlistConfirmation($waitlistEntry));
 
-            // Always return success - don't let database issues break the form
-            if ($request->ajax() || $request->wantsJson()) {
-                return response()->json([
-                    'success' => true,
-                    'message' => 'Thank you for joining our waitlist!'
-                ]);
-            }
+            // Update email sent status
+            $waitlistEntry->update([
+                'email_sent' => true,
+                'email_sent_at' => now(),
+            ]);
 
-            return redirect()->back()->with('success', 'Thank you for joining our waitlist!');
-
-        } catch (\Illuminate\Validation\ValidationException $e) {
-            // Handle validation errors
-            if ($request->ajax() || $request->wantsJson()) {
-                return response()->json([
-                    'success' => false,
-                    'message' => 'Please check your input and try again.',
-                    'errors' => $e->errors()
-                ], 422);
-            }
-            throw $e;
+            return redirect()->back()->with('success', 'Thank you for joining our waitlist! Check your email for confirmation.');
 
         } catch (\Exception $e) {
-            Log::error('Waitlist error: ' . $e->getMessage());
+            // Log the actual error for debugging
+            Log::error('Waitlist submission error: ' . $e->getMessage());
+            Log::error('Stack trace: ' . $e->getTraceAsString());
 
-            if ($request->ajax() || $request->wantsJson()) {
-                return response()->json([
-                    'success' => false,
-                    'message' => 'Please try again later.'
-                ], 500);
-            }
-
-            return redirect()->back()->with('error', 'Please try again later.');
+            return redirect()->back()
+                ->withErrors(['error' => 'Something went wrong. Please try again. Error: ' . $e->getMessage()])
+                ->withInput();
         }
     }
 }
