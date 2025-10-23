@@ -28,15 +28,35 @@ Route::get('/health', function () {
         $cssFiles = array_values(array_diff(scandir(public_path('css')), ['.', '..']));
     }
 
+    // Check database connection
+    $dbStatus = 'unknown';
+    try {
+        \Illuminate\Support\Facades\DB::connection()->getPdo();
+        $dbStatus = 'connected';
+    } catch (\Exception $e) {
+        $dbStatus = 'error: ' . $e->getMessage();
+    }
+
     return response()->json([
         'status' => 'ok',
         'app' => config('app.name'),
         'env' => config('app.env'),
         'url' => config('app.url'),
         'database' => config('database.default'),
+        'database_status' => $dbStatus,
         'css_files' => $cssFiles,
         'css_path' => public_path('css'),
     ]);
+});
+
+// Database initialization route for production
+Route::get('/init-db', function () {
+    try {
+        \Illuminate\Support\Facades\Artisan::call('migrate', ['--force' => true]);
+        return response()->json(['status' => 'success', 'message' => 'Database initialized']);
+    } catch (\Exception $e) {
+        return response()->json(['status' => 'error', 'message' => $e->getMessage()], 500);
+    }
 });
 
 Route::get('/', function () {
