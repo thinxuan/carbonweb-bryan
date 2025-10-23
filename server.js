@@ -23,20 +23,20 @@ app.use('/build', express.static('public/build'));
 // Handle specific routes
 app.get('/', async (req, res) => {
     try {
-        // Read the actual home Blade template
+        // Read your existing home.blade.php exactly as you created it
         const homeTemplate = fs.readFileSync(path.join(__dirname, 'resources/views/home.blade.php'), 'utf8');
         const layoutTemplate = fs.readFileSync(path.join(__dirname, 'resources/views/layouts/app.blade.php'), 'utf8');
         
-        // Replace Blade syntax with static content
+        // Minimal Blade syntax replacement to make it work
         let html = homeTemplate
             .replace(/@extends\('layouts\.app'\)/g, '')
-            .replace(/@section\('title',\s*'([^']+)'\)/g, '<title>$1</title>')
+            .replace(/@section\('title',\s*'([^']+)'\)/g, '')
             .replace(/@section\('content'\)/g, '')
             .replace(/@endsection/g, '')
             .replace(/{{ asset\('([^']+)'\) }}/g, '/$1')
             .replace(/{{ url\('([^']+)'\) }}/g, '/$1');
         
-        // Combine with layout
+        // Combine with your existing layout
         let layoutHtml = layoutTemplate
             .replace(/@yield\('title',\s*'([^']+)'\)/g, '<title>$1</title>')
             .replace(/{{ asset\('([^']+)'\) }}/g, '/$1')
@@ -51,14 +51,15 @@ app.get('/', async (req, res) => {
 
 app.get('/waitlist', (req, res) => {
     try {
-        // Read the actual Blade template
+        // Read your existing waitlist.blade.php exactly as you created it
         const waitlistTemplate = fs.readFileSync(path.join(__dirname, 'resources/views/waitlist.blade.php'), 'utf8');
         
-        // Replace Blade syntax with static content
+        // Minimal Blade syntax replacement to make it work
         let html = waitlistTemplate
             .replace(/{{ csrf_token\(\) }}/g, 'static-token')
             .replace(/{{ old\('([^']+)',\s*'([^']+)'\) }}/g, '$2')
             .replace(/{{ old\('([^']+)'\) }}/g, '')
+            .replace(/{{ route\('waitlist\.store'\) }}/g, '/waitlist')
             .replace(/{{ route\('([^']+)'\) }}/g, '/$1');
         
         res.send(html);
@@ -73,7 +74,7 @@ app.get('/solutions', (req, res) => {
         // Read the actual solutions Blade template
         const solutionsTemplate = fs.readFileSync(path.join(__dirname, 'resources/views/solutions.blade.php'), 'utf8');
         const layoutTemplate = fs.readFileSync(path.join(__dirname, 'resources/views/layouts/app.blade.php'), 'utf8');
-        
+
         // Replace Blade syntax with static content
         let html = solutionsTemplate
             .replace(/@extends\('layouts\.app'\)/g, '')
@@ -82,13 +83,13 @@ app.get('/solutions', (req, res) => {
             .replace(/@endsection/g, '')
             .replace(/{{ asset\('([^']+)'\) }}/g, '/$1')
             .replace(/{{ url\('([^']+)'\) }}/g, '/$1');
-        
+
         // Combine with layout
         let layoutHtml = layoutTemplate
             .replace(/@yield\('title',\s*'([^']+)'\)/g, '<title>$1</title>')
             .replace(/{{ asset\('([^']+)'\) }}/g, '/$1')
             .replace(/{{ url\('([^']+)'\) }}/g, '/$1');
-        
+
         res.send(layoutHtml.replace('@yield(\'content\')', html));
     } catch (error) {
         console.error('Error reading solutions template:', error);
@@ -101,7 +102,7 @@ app.get('/contact', (req, res) => {
         // Read the actual contact Blade template
         const contactTemplate = fs.readFileSync(path.join(__dirname, 'resources/views/contact.blade.php'), 'utf8');
         const layoutTemplate = fs.readFileSync(path.join(__dirname, 'resources/views/layouts/app.blade.php'), 'utf8');
-        
+
         // Replace Blade syntax with static content
         let html = contactTemplate
             .replace(/@extends\('layouts\.app'\)/g, '')
@@ -110,13 +111,13 @@ app.get('/contact', (req, res) => {
             .replace(/@endsection/g, '')
             .replace(/{{ asset\('([^']+)'\) }}/g, '/$1')
             .replace(/{{ url\('([^']+)'\) }}/g, '/$1');
-        
+
         // Combine with layout
         let layoutHtml = layoutTemplate
             .replace(/@yield\('title',\s*'([^']+)'\)/g, '<title>$1</title>')
             .replace(/{{ asset\('([^']+)'\) }}/g, '/$1')
             .replace(/{{ url\('([^']+)'\) }}/g, '/$1');
-        
+
         res.send(layoutHtml.replace('@yield(\'content\')', html));
     } catch (error) {
         console.error('Error reading contact template:', error);
