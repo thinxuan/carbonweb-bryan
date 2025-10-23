@@ -1,33 +1,44 @@
 #!/bin/bash
 echo "Starting CarbonWallet application..."
 
-# Check if we're in Docker mode
-if [ -f "/.dockerenv" ]; then
-    echo "Running in Docker mode - starting PHP-FPM and Nginx"
-    php-fpm -D && nginx -g 'daemon off;'
-else
-    echo "Running in Node.js environment - installing PHP and starting Laravel"
+# Since we're in Node.js environment, let's use a simple Node.js server
+echo "Starting simple Node.js server for Laravel..."
 
-    # Install PHP if not available
-    if ! command -v php &> /dev/null; then
-        echo "Installing PHP..."
-        curl -fsSL https://packages.sury.org/php/apt.gpg | apt-key add -
-        echo "deb https://packages.sury.org/php/ bullseye main" | tee /etc/apt/sources.list.d/sury-php.list
-        apt-get update
-        apt-get install -y php8.2-cli php8.2-mbstring php8.2-xml php8.2-curl php8.2-sqlite3
-    fi
+# Create a simple server.js file
+cat > server.js << 'EOF'
+const express = require('express');
+const path = require('path');
+const { exec } = require('child_process');
 
-    # Install Composer if not available
-    if ! command -v composer &> /dev/null; then
-        echo "Installing Composer..."
-        curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-    fi
+const app = express();
+const port = process.env.PORT || 3000;
 
-    # Install PHP dependencies
-    echo "Installing PHP dependencies..."
-    composer install --no-dev --optimize-autoloader
+// Serve static files from public directory
+app.use(express.static('public'));
 
-    # Start Laravel development server
-    echo "Starting Laravel server..."
-    php artisan serve --host=0.0.0.0 --port=$PORT
-fi
+// Handle all routes by serving index.php
+app.get('*', (req, res) => {
+    // For now, just serve a simple message
+    res.send(`
+        <html>
+            <head><title>CarbonWallet</title></head>
+            <body>
+                <h1>CarbonWallet is running!</h1>
+                <p>PHP is not available in this environment.</p>
+                <p>Please update Render dashboard to use Docker mode for full Laravel functionality.</p>
+                <p>Visit: <a href="/waitlist">Waitlist</a></p>
+            </body>
+        </html>
+    `);
+});
+
+app.listen(port, '0.0.0.0', () => {
+    console.log(`Server running on port ${port}`);
+});
+EOF
+
+# Install express if not available
+npm install express
+
+# Start the server
+node server.js
