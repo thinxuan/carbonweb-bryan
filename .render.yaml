@@ -2,6 +2,8 @@ services:
   - type: web
     name: carbonwallet
     env: php
+    region: singapore
+    plan: free
     buildCommand: composer install --no-dev --optimize-autoloader
     startCommand: php artisan serve --host=0.0.0.0 --port=$PORT
     envVars:
@@ -11,3 +13,5 @@ services:
         value: false
       - key: APP_KEY
         value: base64:WY2OfhYp+4/COu9opwC4zUK7010tT9J5010qrLvoAxs=
+      - key: PHP_VERSION
+        value: 8.2
