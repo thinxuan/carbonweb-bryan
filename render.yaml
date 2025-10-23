@@ -2,24 +2,5 @@ services:
   - type: web
     name: carbonwallet
     env: php
-    buildCommand: composer install --no-dev --optimize-autoloader
-    startCommand: ./start.sh
-    envVars:
-      - key: APP_ENV
-        value: production
-      - key: APP_DEBUG
-        value: false
-      - key: LOG_LEVEL
-        value: error
-      - key: DB_CONNECTION
-        value: sqlite
-      - key: DB_DATABASE
-        value: /tmp/database.sqlite
-      - key: MAIL_MAILER
-        value: log
-      - key: SESSION_DRIVER
-        value: database
-      - key: CACHE_STORE
-        value: database
-      - key: QUEUE_CONNECTION
-        value: database
+    buildCommand: composer install --no-dev
+    startCommand: php -S 0.0.0.0:$PORT -t public

@@ -59,6 +59,16 @@ Route::get('/init-db', function () {
     }
 });
 
+// Simple test route
+Route::get('/test', function () {
+    return response()->json([
+        'status' => 'working',
+        'message' => 'CarbonWallet is running!',
+        'time' => now(),
+        'php_version' => phpversion()
+    ]);
+});
+
 Route::get('/', function () {
     return view('home');
 });
