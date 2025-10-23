@@ -3,8 +3,6 @@ FROM php:8.2-fpm-alpine
 # Install system dependencies
 RUN apk add --no-cache \
     nginx \
-    nodejs \
-    npm \
     curl \
     git \
     zip \
@@ -14,7 +12,8 @@ RUN apk add --no-cache \
     freetype-dev \
     libzip-dev \
     oniguruma-dev \
-    sqlite
+    sqlite \
+    sqlite-dev
 
 # Install PHP extensions
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
@@ -37,20 +36,19 @@ WORKDIR /var/www/html
 # Copy composer files
 COPY composer.json composer.lock ./
 
+# Copy application files first
+COPY . .
+
 # Install PHP dependencies
 RUN composer install --no-dev --optimize-autoloader --no-interaction
 
-# Copy package files
-COPY package.json package-lock.json ./
+# Create database file and set permissions
+RUN touch /var/www/html/database/database.sqlite && \
+    chown www-data:www-data /var/www/html/database/database.sqlite && \
+    chmod 664 /var/www/html/database/database.sqlite
 
-# Install Node.js dependencies
-RUN npm ci --only=production
-
-# Copy application files
-COPY . .
-
-# Build assets
-RUN npm run build
+# Initialize database
+RUN php artisan migrate --force
 
 # Set permissions
 RUN chown -R www-data:www-data /var/www/html \
