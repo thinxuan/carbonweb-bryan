@@ -69,9 +69,9 @@
 </head>
 <body>
     <div class="email-container">
-        <div class="header">
+        {{-- <div class="header">
             <img src="https://laravel.com/img/notification-logo.png" alt="Laravel Logo" class="logo">
-        </div>
+        </div> --}}
 
         <div class="content">
             <!-- Banner Image -->
@@ -87,7 +87,7 @@
             <p>We're excited to have you on board as we work towards launching our carbon footprint tracking platform.</p>
             <p>We'll keep you updated on our progress and notify you as soon as CarbonWallet is ready for you to use.</p>
             <p>If you have any questions in the meantime, feel free to reach out to us.</p>
-            <p><strong>Best regards, The CarbonWallet Team</strong></p>
+            <p><strong>Best regards, <br>The CarbonWallet Team</strong></p>
         </div>
 
         <div class="footer">
