@@ -1,20 +1,23 @@
-FROM php:8.2-fpm-alpine
+# Render-optimized Dockerfile for Laravel
+FROM php:8.2-cli
 
 # Install system dependencies
-RUN apk add --no-cache \
+RUN apt-get update && apt-get install -y \
     git \
     curl \
     libpng-dev \
     libxml2-dev \
     zip \
     unzip \
-    postgresql-dev \
-    redis \
-    nginx \
-    supervisor
+    libpq-dev \
+    libfreetype6-dev \
+    libjpeg62-turbo-dev \
+    libwebp-dev \
+    && rm -rf /var/lib/apt/lists/*
 
 # Install PHP extensions
-RUN docker-php-ext-install pdo_pgsql mbstring exif pcntl bcmath gd
+RUN docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp \
+    && docker-php-ext-install pdo pdo_pgsql mbstring exif pcntl bcmath gd
 
 # Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
@@ -22,7 +25,7 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 # Set working directory
 WORKDIR /var/www
 
-# Copy composer files
+# Copy composer files first for better caching
 COPY composer.json composer.lock ./
 
 # Install dependencies
@@ -39,14 +42,8 @@ RUN chown -R www-data:www-data /var/www
 RUN chmod -R 755 /var/www/storage
 RUN chmod -R 755 /var/www/bootstrap/cache
 
-# Copy nginx configuration
-COPY docker/nginx.conf /etc/nginx/nginx.conf
+# Expose port (Render uses $PORT environment variable)
+EXPOSE $PORT
 
-# Copy supervisor configuration
-COPY docker/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-
-# Expose port
-EXPOSE 8080
-
-# Start supervisor
-CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
+# Start PHP built-in server
+CMD php artisan serve --host=0.0.0.0 --port=$PORT
