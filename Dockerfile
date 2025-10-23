@@ -1,39 +1,82 @@
-FROM php:8.2-fpm
+FROM php:8.2-fpm-alpine
 
 # Install system dependencies
-RUN apt-get update && apt-get install -y \
-    git \
+RUN apk add --no-cache \
+    nginx \
+    nodejs \
+    npm \
     curl \
-    libpng-dev \
-    libonig-dev \
-    libxml2-dev \
+    git \
     zip \
-    unzip
-
-# Clear cache
-RUN apt-get clean && rm -rf /var/lib/apt/lists/*
+    unzip \
+    libpng-dev \
+    libjpeg-turbo-dev \
+    freetype-dev \
+    libzip-dev \
+    oniguruma-dev \
+    sqlite
 
 # Install PHP extensions
-RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
+RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install -j$(nproc) \
+        pdo \
+        pdo_sqlite \
+        mbstring \
+        zip \
+        exif \
+        pcntl \
+        gd \
+        bcmath
 
-# Get latest Composer
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+# Install Composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 # Set working directory
-WORKDIR /var/www
+WORKDIR /var/www/html
 
-# Copy existing application directory contents
-COPY . /var/www
+# Copy composer files
+COPY composer.json composer.lock ./
 
-# Copy existing application directory permissions
-COPY --chown=www-data:www-data . /var/www
+# Install PHP dependencies
+RUN composer install --no-dev --optimize-autoloader --no-interaction
 
-# Install dependencies
-RUN composer install --no-dev --optimize-autoloader
+# Copy package files
+COPY package.json package-lock.json ./
 
-# Change current user to www
-USER www-data
+# Install Node.js dependencies
+RUN npm ci --only=production
 
-# Expose port 8000 and start php-fpm server
-EXPOSE 8000
-CMD php artisan serve --host=0.0.0.0 --port=8000
+# Copy application files
+COPY . .
+
+# Build assets
+RUN npm run build
+
+# Set permissions
+RUN chown -R www-data:www-data /var/www/html \
+    && chmod -R 755 /var/www/html
+
+# Create nginx config
+RUN echo 'server { \
+    listen 80; \
+    server_name _; \
+    root /var/www/html/public; \
+    index index.php; \
+    \
+    location / { \
+        try_files $uri $uri/ /index.php?$query_string; \
+    } \
+    \
+    location ~ \.php$ { \
+        fastcgi_pass 127.0.0.1:9000; \
+        fastcgi_index index.php; \
+        fastcgi_param SCRIPT_FILENAME $realpath_root$fastcgi_script_name; \
+        include fastcgi_params; \
+    } \
+}' > /etc/nginx/http.d/default.conf
+
+# Expose port
+EXPOSE 80
+
+# Start services
+CMD php-fpm -D && nginx -g 'daemon off;'
