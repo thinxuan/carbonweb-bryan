@@ -1,23 +1,19 @@
-# Render-optimized Dockerfile for Laravel
+# Simple Dockerfile for Render deployment
 FROM php:8.2-cli
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
     git \
     curl \
-    libpng-dev \
     libxml2-dev \
     zip \
     unzip \
     libpq-dev \
-    libfreetype6-dev \
-    libjpeg62-turbo-dev \
-    libwebp-dev \
+    libonig-dev \
     && rm -rf /var/lib/apt/lists/*
 
-# Install PHP extensions
-RUN docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp \
-    && docker-php-ext-install pdo pdo_pgsql mbstring exif pcntl bcmath gd
+# Install PHP extensions (essential only)
+RUN docker-php-ext-install pdo pdo_pgsql mbstring exif pcntl bcmath
 
 # Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
