@@ -19,7 +19,7 @@
         </div>
     </div>
 
-    <img src="/images/home/greenball-side.png" style="max-width: 100%; position: absolute; right: 0; top: 80%;">
+    <img src="/images/home/greenball-side.png" style="max-width: 100%; position: absolute; right: 0; bottom: -70%;">
 
     <!-- Blog Tabs Section -->
     <div class="blog-tabs-section">
@@ -43,7 +43,11 @@
                                 <img src="{{ asset('images/blogs/pic1.png') }}" alt="Blog Post">
                             </div>
                             <div class="blog-card-content">
-                                <div class="blog-category">Carbon Accounting</div>
+                                <div class="author d-flex">
+                                    <h6 class="blog-author">Author name</h6>
+                                    <span class="blog-separator">•</span>
+                                    <h6 class="blog-date">Date</h6>
+                                </div>
                                 <h3 class="blog-title">Why audit ready ESG software is a competitive edge</h3>
                                 <p class="blog-excerpt">Learn how trusted carbon accounting software strengthens assurance and financing while reducing carbon emissions on the path to net zero.</p>
                                 <h6 class="blog-read-more">Read More <img src="/images/home/arrow.svg"></h6>
@@ -55,7 +59,11 @@
                                 <img src="{{ asset('images/blogs/pic2.png') }}" alt="Blog Post">
                             </div>
                             <div class="blog-card-content">
-                                <div class="blog-category">ESG Reporting</div>
+                                <div class="author d-flex">
+                                    <h6 class="blog-author">Author name</h6>
+                                    <span class="blog-separator">•</span>
+                                    <h6 class="blog-date">Date</h6>
+                                </div>
                                 <h3 class="blog-title">AI anomaly detection for a more accurate carbon footprint</h3>
                                 <p class="blog-excerpt">See how data validation and localized factors improve precision and accelerate decarbonization across Scope 1, 2, and 3.</p>
                                 <h6 class="blog-read-more">Read More <img src="/images/home/arrow.svg"></h6>
@@ -67,7 +75,11 @@
                                 <img src="{{ asset('images/blogs/pic3.png') }}" alt="Blog Post">
                             </div>
                             <div class="blog-card-content">
-                                <div class="blog-category">Decarbonization</div>
+                                <div class="author d-flex">
+                                    <h6 class="blog-author">Author name</h6>
+                                    <span class="blog-separator">•</span>
+                                    <h6 class="blog-date">Date</h6>
+                                </div>
                                 <h3 class="blog-title">Climate tech in hospitality</h3>
                                 <p class="blog-excerpt"> From guest activity data to verified reporting.
                                     How digital passports turn operations data into trusted carbon accounting software outputs and measurable decarbonization.</p>
@@ -80,7 +92,11 @@
                                 <img src="{{ asset('images/blogs/pic4.png') }}" alt="Blog Post">
                             </div>
                             <div class="blog-card-content">
-                                <div class="blog-category">Climate Tech</div>
+                                <div class="author d-flex">
+                                    <h6 class="blog-author">Author name</h6>
+                                    <span class="blog-separator">•</span>
+                                    <h6 class="blog-date">Date</h6>
+                                </div>
                                 <h3 class="blog-title">Malaysia reporting updates for SMEs</h3>
                                 <p class="blog-excerpt">What to know now.
                                     Practical steps to improve ESG software readiness and manage carbon emissions while moving toward net zero.</p>

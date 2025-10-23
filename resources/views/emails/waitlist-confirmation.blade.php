@@ -19,12 +19,12 @@
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             overflow: hidden;
         }
-        .header {
+        /* .header {
             background-color: #ffffff;
             padding: 25px;
             text-align: center;
             border-bottom: 1px solid #e8e5ef;
-        }
+        } */
         .logo {
             max-width: 75px;
             height: auto;
@@ -69,14 +69,14 @@
 </head>
 <body>
     <div class="email-container">
-        <div class="header">
+        {{-- <div class="header">
             <img src="https://laravel.com/img/notification-logo.png" alt="Laravel Logo" class="logo">
-        </div>
+        </div> --}}
 
         <div class="content">
             <!-- Banner Image -->
             <div class="banner">
-                <img src="http://carbonwallet.test:8002/images/logo.svg" alt="CarbonWallet">
+                <img src="{{ asset('images/logo.svg') }}" alt="CarbonWallet" style="max-width: 200px; height: auto;">
             </div>
 
             <!-- Greeting -->
@@ -87,7 +87,7 @@
             <p>We're excited to have you on board as we work towards launching our carbon footprint tracking platform.</p>
             <p>We'll keep you updated on our progress and notify you as soon as CarbonWallet is ready for you to use.</p>
             <p>If you have any questions in the meantime, feel free to reach out to us.</p>
-            <p><strong>Best regards, The CarbonWallet Team</strong></p>
+            <p><strong>Best regards, <br>The CarbonWallet Team</strong></p>
         </div>
 
         <div class="footer">

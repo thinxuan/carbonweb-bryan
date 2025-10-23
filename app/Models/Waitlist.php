@@ -3,9 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 
 class Waitlist extends Model
 {
+    use Notifiable;
+
     protected $table = 'waitlist';
     protected $fillable = [
         'email',

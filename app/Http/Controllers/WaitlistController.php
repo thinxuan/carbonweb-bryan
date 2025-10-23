@@ -56,12 +56,29 @@ class WaitlistController extends Controller
                 'email_sent_at' => now(),
             ]);
 
+            // Return JSON response for AJAX requests
+            if ($request->ajax() || $request->wantsJson()) {
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Thank you for joining our waitlist! Check your email for confirmation.'
+                ]);
+            }
+
             return redirect()->back()->with('success', 'Thank you for joining our waitlist! Check your email for confirmation.');
 
         } catch (\Exception $e) {
             // Log the actual error for debugging
             Log::error('Waitlist submission error: ' . $e->getMessage());
             Log::error('Stack trace: ' . $e->getTraceAsString());
+
+            // Return JSON response for AJAX requests
+            if ($request->ajax() || $request->wantsJson()) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Something went wrong. Please try again.',
+                    'error' => $e->getMessage()
+                ], 500);
+            }
 
             return redirect()->back()
                 ->withErrors(['error' => 'Something went wrong. Please try again. Error: ' . $e->getMessage()])
