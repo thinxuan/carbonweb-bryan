@@ -1,0 +1,13 @@
+{
+  "name": "carbonwallet",
+  "private": true,
+  "scripts": {
+    "build": "vite build",
+    "dev": "vite"
+  },
+  "devDependencies": {
+    "axios": "^1.1.2",
+    "laravel-vite-plugin": "^0.8.1",
+    "vite": "^4.0.0"
+  }
+}
