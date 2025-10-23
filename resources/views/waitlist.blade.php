@@ -787,7 +787,7 @@
 
         <!-- Footer text -->
         <div class="footer-text">
-            <p>By joining the waitlist, you consent to be contacted regarding early access and product updates. Your information will be managed in accordance with our Privacy Policy.</p>
+            <p>Be among the first to access Carbon AI, the audit ready carbon accounting platform built for verified ESG reporting and progress towards Net Zero.</p>
         </div>
     </div>
 
