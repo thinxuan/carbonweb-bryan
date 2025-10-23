@@ -2,7 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>CarbonWallet Waitlist</title>
 
@@ -36,7 +40,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
+            justify-content: space-between;
             padding: 20px;
         }
 
@@ -149,6 +153,8 @@
             font-size: 16px;
             transition: all 0.3s ease;
             backdrop-filter: blur(10px);
+            /* Prevent iOS zoom on focus */
+            font-size: max(16px, 1em);
         }
 
         .form-input:focus {
@@ -277,15 +283,12 @@
         }
 
         .footer-text {
-            position: fixed;
             width: 100%;
-            bottom: 3%;
-            left: 50%;
-            transform: translateX(-50%);
+            margin-top: 2rem;
+            padding: 1rem 2rem;
             font-size: .625rem;
             color: #a0a0a0;
             text-align: center;
-            z-index: 4;
         }
 
         .footer-text p {
@@ -553,8 +556,7 @@
             }
 
             .footer-text {
-                font-size: 0.45rem;
-                bottom: 4%;
+                font-size: .5rem;
                 padding: 0 15px;
             }
         }
@@ -632,7 +634,6 @@
             }
 
             .footer-text {
-                bottom: 4%;
                 padding: 0 20px;
                 font-size: .75rem;
                 line-height: 20px;
@@ -708,7 +709,7 @@
 
             .footer-text {
                 font-size: 0.5rem;
-                line-height: 1;
+                line-height: 15px
             }
         }
     </style>
@@ -807,6 +808,29 @@
     </div>
 
     <script>
+        // Prevent iOS Safari zoom on page load and input focus
+        document.addEventListener('DOMContentLoaded', function() {
+            // Prevent zoom on page load
+            if (window.DeviceOrientationEvent) {
+                window.addEventListener('orientationchange', function() {
+                    setTimeout(function() {
+                        document.body.style.zoom = '1';
+                    }, 100);
+                });
+            }
+
+            // Prevent zoom on input focus
+            const inputs = document.querySelectorAll('input, textarea, select');
+            inputs.forEach(function(input) {
+                input.addEventListener('focus', function() {
+                    // Ensure font size is at least 16px to prevent zoom
+                    if (parseInt(window.getComputedStyle(this).fontSize) < 16) {
+                        this.style.fontSize = '16px';
+                    }
+                });
+            });
+        });
+
         function submitForm() {
             // Get form inputs
             const nameInput = document.querySelector('input[name="name"]');
