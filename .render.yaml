@@ -2,10 +2,7 @@ services:
   - type: web
     name: carbonwallet
     env: node
-    buildCommand: |
-      npm install
-      npm run build
-      composer install --no-dev --optimize-autoloader
+    buildCommand: ./build.sh
     startCommand: php artisan serve --host=0.0.0.0 --port=$PORT
     envVars:
       - key: APP_ENV
