@@ -11,6 +11,16 @@ use App\Http\Controllers\Auth\SocialAuthController;
 Route::get('/waitlist', [App\Http\Controllers\WaitlistController::class, 'index'])->name('waitlist');
 Route::post('/waitlist', [App\Http\Controllers\WaitlistController::class, 'store'])->name('waitlist.store');
 
+// Debug route for testing waitlist functionality
+Route::post('/waitlist-debug', function(\Illuminate\Http\Request $request) {
+    \Illuminate\Support\Facades\Log::info('Debug waitlist submission', $request->all());
+    return response()->json([
+        'success' => true,
+        'message' => 'Debug endpoint working',
+        'data' => $request->all()
+    ]);
+});
+
 // Health check for Railway
 Route::get('/health', function () {
     $cssFiles = [];

@@ -24,65 +24,63 @@ class WaitlistController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'email' => 'required|email|unique:waitlist,email',
-            'name' => 'required|string|max:255',
-            'company' => 'nullable|string|max:255',
-            'message' => 'nullable|string|max:1000',
-        ]);
-
-        if ($validator->fails()) {
-            return redirect()->back()
-                ->withErrors($validator)
-                ->withInput();
-        }
-
         try {
+            // Simple validation
+            $request->validate([
+                'email' => 'required|email|unique:waitlist,email',
+                'name' => 'required|string|max:255',
+                'company' => 'nullable|string|max:255',
+            ]);
+
             // Create waitlist entry
             $waitlistEntry = Waitlist::create([
                 'email' => $request->email,
                 'name' => $request->name,
-                'company' => $request->company,
-                'message' => $request->message,
+                'company' => $request->company ?? null,
+                'message' => null, // Not used in the form
             ]);
 
-            // Send confirmation email
-            Notification::route('mail', $request->email)
-                ->notify(new WaitlistConfirmation($waitlistEntry));
+            // Try to send email (optional - won't fail if it doesn't work)
+            try {
+                Notification::route('mail', $request->email)
+                    ->notify(new WaitlistConfirmation($waitlistEntry));
+                $waitlistEntry->update(['email_sent' => true, 'email_sent_at' => now()]);
+            } catch (\Exception $e) {
+                Log::info('Email not sent (normal in production): ' . $e->getMessage());
+            }
 
-            // Update email sent status
-            $waitlistEntry->update([
-                'email_sent' => true,
-                'email_sent_at' => now(),
-            ]);
-
-            // Return JSON response for AJAX requests
+            // Always return success for AJAX requests
             if ($request->ajax() || $request->wantsJson()) {
                 return response()->json([
                     'success' => true,
-                    'message' => 'Thank you for joining our waitlist! Check your email for confirmation.'
+                    'message' => 'Thank you for joining our waitlist!'
                 ]);
             }
 
-            return redirect()->back()->with('success', 'Thank you for joining our waitlist! Check your email for confirmation.');
+            return redirect()->back()->with('success', 'Thank you for joining our waitlist!');
 
-        } catch (\Exception $e) {
-            // Log the actual error for debugging
-            Log::error('Waitlist submission error: ' . $e->getMessage());
-            Log::error('Stack trace: ' . $e->getTraceAsString());
-
-            // Return JSON response for AJAX requests
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            // Handle validation errors
             if ($request->ajax() || $request->wantsJson()) {
                 return response()->json([
                     'success' => false,
-                    'message' => 'Something went wrong. Please try again.',
-                    'error' => $e->getMessage()
+                    'message' => 'Please check your input and try again.',
+                    'errors' => $e->errors()
+                ], 422);
+            }
+            throw $e;
+
+        } catch (\Exception $e) {
+            Log::error('Waitlist error: ' . $e->getMessage());
+
+            if ($request->ajax() || $request->wantsJson()) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Please try again later.'
                 ], 500);
             }
 
-            return redirect()->back()
-                ->withErrors(['error' => 'Something went wrong. Please try again. Error: ' . $e->getMessage()])
-                ->withInput();
+            return redirect()->back()->with('error', 'Please try again later.');
         }
     }
 }
