@@ -11,7 +11,7 @@
         <div class="container">
             <div class="row-centered">
                 <div class="header">
-                    <h1><span>Blogs</span></h1>
+                    <h1>Blogs</h1>
                     <h3 style="line-height: 40px;">Turning sustainability intelligence into action.</h3>
                     <h3 style="line-height: 40px;">Explore insights on carbon accounting software, ESG reporting, decarbonization, climate technology, and the path to Net Zero.</h3>
                 </div>
@@ -23,7 +23,7 @@
 
     <!-- Blog Tabs Section -->
     <div class="blog-tabs-section">
-        <div class="container">
+        <div class="container p-0">
             <!-- Tab Navigation -->
             <div class="tab-navigation">
                 <button class="tab-btn active" onclick="showTab('all')">All</button>
@@ -37,13 +37,16 @@
             <div class="tab-content">
                 <!-- All Blogs Tab -->
                 <div id="all" class="tab-panel active">
-                    <div class="blog-cards-grid">
+                    <div class="blog-cards-grid p-0">
                         <div class="blog-card">
                             <div class="blog-card-image">
                                 <img src="{{ asset('images/blogs/pic1.png') }}" alt="Blog Post">
                             </div>
                             <div class="blog-card-content">
-                                <div class="blog-category">Carbon Accounting</div>
+                                <div class="author mt-3">
+                                    <div class="blog-author">Author name</div>
+                                    <div class="blog-date">Date</div>
+                                </div>
                                 <h3 class="blog-title">Why audit ready ESG software is a competitive edge</h3>
                                 <p class="blog-excerpt">Learn how trusted carbon accounting software strengthens assurance and financing while reducing carbon emissions on the path to net zero.</p>
                                 <h6 class="blog-read-more">Read More <img src="/images/home/arrow.svg"></h6>
@@ -55,9 +58,14 @@
                                 <img src="{{ asset('images/blogs/pic2.png') }}" alt="Blog Post">
                             </div>
                             <div class="blog-card-content">
-                                <div class="blog-category">ESG Reporting</div>
-                                <h3 class="blog-title">AI anomaly detection for a more accurate carbon footprint</h3>
-                                <p class="blog-excerpt">See how data validation and localized factors improve precision and accelerate decarbonization across Scope 1, 2, and 3.</p>
+                                <div class="blog-content-wrapper">
+                                    <div class="author mt-3">
+                                        <div class="blog-author">Author name</div>
+                                        <div class="blog-date">Date</div>
+                                    </div>
+                                    <h3 class="blog-title">AI anomaly detection for a more accurate carbon footprint</h3>
+                                    <p class="blog-excerpt">See how data validation and localized factors improve precision and accelerate decarbonization across Scope 1, 2, and 3.</p>
+                                </div>
                                 <h6 class="blog-read-more">Read More <img src="/images/home/arrow.svg"></h6>
                             </div>
                         </div>
@@ -67,10 +75,15 @@
                                 <img src="{{ asset('images/blogs/pic3.png') }}" alt="Blog Post">
                             </div>
                             <div class="blog-card-content">
-                                <div class="blog-category">Decarbonization</div>
-                                <h3 class="blog-title">Climate tech in hospitality</h3>
-                                <p class="blog-excerpt"> From guest activity data to verified reporting.
-                                    How digital passports turn operations data into trusted carbon accounting software outputs and measurable decarbonization.</p>
+                                <div class="blog-content-wrapper">
+                                    <div class="author mt-3">
+                                        <div class="blog-author">Author name</div>
+                                        <div class="blog-date">Date</div>
+                                    </div>
+                                    <h3 class="blog-title">Climate tech in hospitality</h3>
+                                    <p class="blog-excerpt"> From guest activity data to verified reporting.
+                                        How digital passports turn operations data into trusted carbon accounting software outputs and measurable decarbonization.</p>
+                                </div>
                                 <h6 class="blog-read-more">Read More <img src="/images/home/arrow.svg"></h6>
                             </div>
                         </div>
@@ -80,10 +93,15 @@
                                 <img src="{{ asset('images/blogs/pic4.png') }}" alt="Blog Post">
                             </div>
                             <div class="blog-card-content">
-                                <div class="blog-category">Climate Tech</div>
-                                <h3 class="blog-title">Malaysia reporting updates for SMEs</h3>
-                                <p class="blog-excerpt">What to know now.
-                                    Practical steps to improve ESG software readiness and manage carbon emissions while moving toward net zero.</p>
+                                <div class="blog-content-wrapper">
+                                    <div class="author mt-3">
+                                        <div class="blog-author">Author name</div>
+                                        <div class="blog-date">Date</div>
+                                    </div>
+                                    <h3 class="blog-title">Malaysia reporting updates for SMEs</h3>
+                                    <p class="blog-excerpt">What to know now.
+                                        Practical steps to improve ESG software readiness and manage carbon emissions while moving toward net zero.</p>
+                                </div>
                                 <h6 class="blog-read-more">Read More <img src="/images/home/arrow.svg"></h6>
                             </div>
                         </div>
@@ -98,7 +116,10 @@
                                 <img src="{{ asset('images/blog1.jpg') }}" alt="Blog Post">
                             </div>
                             <div class="blog-card-content">
-                                <div class="blog-category">Carbon Accounting</div>
+                                <div class="author">
+                                    <div class="blog-author">Alex Thompson</div>
+                                    <div class="blog-date">Dec 15, 2024</div>
+                                </div>
                                 <h3 class="blog-title">Understanding Scope 1, 2, and 3 Emissions</h3>
                                 <p class="blog-excerpt">A comprehensive guide to carbon footprint measurement and reporting standards.</p>
                                 <div class="blog-meta">
@@ -113,7 +134,10 @@
                                 <img src="{{ asset('images/blog2.jpg') }}" alt="Blog Post">
                             </div>
                             <div class="blog-card-content">
-                                <div class="blog-category">Carbon Accounting</div>
+                                <div class="author">
+                                    <div class="blog-author">Lisa Wang</div>
+                                    <div class="blog-date">Dec 5, 2024</div>
+                                </div>
                                 <h3 class="blog-title">Carbon Footprint Calculation Methods</h3>
                                 <p class="blog-excerpt">Different approaches to calculating your organization's carbon footprint.</p>
                                 <div class="blog-meta">
@@ -133,7 +157,10 @@
                                 <img src="{{ asset('images/blog2.jpg') }}" alt="Blog Post">
                             </div>
                             <div class="blog-card-content">
-                                <div class="blog-category">ESG Reporting</div>
+                                <div class="author">
+                                    <div class="blog-author">James Wilson</div>
+                                    <div class="blog-date">Dec 12, 2024</div>
+                                </div>
                                 <h3 class="blog-title">ESG Reporting Best Practices for 2025</h3>
                                 <p class="blog-excerpt">Learn how to create compelling ESG reports that drive stakeholder engagement.</p>
                                 <div class="blog-meta">
@@ -148,7 +175,10 @@
                                 <img src="{{ asset('images/blog3.jpg') }}" alt="Blog Post">
                             </div>
                             <div class="blog-card-content">
-                                <div class="blog-category">ESG Reporting</div>
+                                <div class="author">
+                                    <div class="blog-author">Maria Garcia</div>
+                                    <div class="blog-date">Dec 3, 2024</div>
+                                </div>
                                 <h3 class="blog-title">ESG Data Collection Strategies</h3>
                                 <p class="blog-excerpt">Effective methods for gathering and validating ESG data across your organization.</p>
                                 <div class="blog-meta">
@@ -168,7 +198,10 @@
                                 <img src="{{ asset('images/blog2.jpg') }}" alt="Blog Post">
                             </div>
                             <div class="blog-card-content">
-                                <div class="blog-category">Net Zero</div>
+                                <div class="author">
+                                    <div class="blog-author">Robert Brown</div>
+                                    <div class="blog-date">Nov 25, 2024</div>
+                                </div>
                                 <h3 class="blog-title">Net Zero Roadmap for Enterprises</h3>
                                 <p class="blog-excerpt">Step-by-step guide to developing a comprehensive net zero strategy.</p>
                                 <div class="blog-meta">
@@ -183,7 +216,10 @@
                                 <img src="{{ asset('images/blog3.jpg') }}" alt="Blog Post">
                             </div>
                             <div class="blog-card-content">
-                                <div class="blog-category">Net Zero</div>
+                                <div class="author">
+                                    <div class="blog-author">Jennifer Lee</div>
+                                    <div class="blog-date">Nov 22, 2024</div>
+                                </div>
                                 <h3 class="blog-title">Carbon Offsetting Strategies</h3>
                                 <p class="blog-excerpt">Understanding when and how to use carbon offsets in your net zero journey.</p>
                                 <div class="blog-meta">
@@ -203,7 +239,10 @@
                                 <img src="{{ asset('images/blog2.jpg') }}" alt="Blog Post">
                             </div>
                             <div class="blog-card-content">
-                                <div class="blog-category">Insights</div>
+                                <div class="author">
+                                    <div class="blog-author">Thomas Anderson</div>
+                                    <div class="blog-date">Nov 15, 2024</div>
+                                </div>
                                 <h3 class="blog-title">Industry Trends in Carbon Management</h3>
                                 <p class="blog-excerpt">Latest trends and developments in the carbon management industry.</p>
                                 <div class="blog-meta">
@@ -218,7 +257,10 @@
                                 <img src="{{ asset('images/blog3.jpg') }}" alt="Blog Post">
                             </div>
                             <div class="blog-card-content">
-                                <div class="blog-category">Insights</div>
+                                <div class="author">
+                                    <div class="blog-author">Amanda Taylor</div>
+                                    <div class="blog-date">Nov 12, 2024</div>
+                                </div>
                                 <h3 class="blog-title">Future of Climate Technology</h3>
                                 <p class="blog-excerpt">Predictions and insights into the future of climate technology solutions.</p>
                                 <div class="blog-meta">
@@ -233,20 +275,27 @@
         </div>
     </div>
 
-
-
-
-
-
-    <!-- Bottom -->
-    <div class="container bottom">
-        <h1 style="font-weight: 700; font-size: 1.875rem; line-height: 40px;">Experience the power of AI-driven carbon accounting built for assurance,<br> engagement, and measurable impact.</h1>
-        <div class="my-5">
-            <a href="#" class="start-for-free-btn">Start for Free</a>
-            <a href="#" class="request-demo-btn">Request a Demo</a>
+    <!-- Subscribe -->
+    <div class="container subscribe px-5">
+        <h1>Subscribe</h1>
+        <p class="my-4">Receive monthly insights on carbon accounting, ESG software, climate technology, and credible decarbonization strategies for enterprises and SMEs.</p>
+        <div class="subscribe-form my-5">
+            <div class="form-row">
+                <div class="email-subscription">
+                    <input type="email" placeholder="Enter your email" required>
+                </div>
+                <a href="#" class="subscribe-btn">Subscribe</a>
+            </div>
+            <div class="button-row">
+                <a href="#" class="readmore-btn">Read More</a>
+            </div>
+        </div>
+        <div class="" style="border-top: 1px solid #595959; padding-top: 3rem;">
+            <p>Carbon AI publishes guidance and analysis on ESG software, carbon accounting, climate technology adoption, carbon footprint measurement, decarbonization planning, and verified pathways to Net Zero.</p>
         </div>
     </div>
 </div>
+
 <script>
 function showTab(tabId) {
     // Hide all tab panels
