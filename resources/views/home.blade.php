@@ -11,10 +11,10 @@
         <div class="container">
             <div class="row-centered">
                 <div class="header">
-                    <h1>AI for Net Zero:</h1>
+                    <h1>AI for Net Zero</h1>
                     <h3>The audit-ready ESG and carbon accounting platform that validates Scope 1–3 data with AI precision.</h3>
                 </div>
-                <div class="header-btn mt-5">
+                <div class="header-btn">
                     <a href="#" class="start-for-free-btn">Start for Free</a> &nbsp;&nbsp;
                     <a href="#" class="request-demo-btn">Request a Demo</a>
                 </div>
@@ -22,18 +22,28 @@
         </div>
     </div>
 
-    <!-- Display Images -->
-    <div class="container-fluid display-section p-0" style="background-image: url('{{ asset('images/home/faded-green.png') }}'); background-size: contain; background-position: center; background-repeat: no-repeat;">
+    <!-- Display Images - Desktop -->
+    <div class="container-fluid display-section p-0 d-md-block d-none" style="background-image: url('{{ asset('images/home/faded-green.png') }}'); background-size: contain; background-position: center; background-repeat: no-repeat;">
         <div class="display-wrapper">
             <img src="{{ asset('images/home/display-top.png') }}" alt="Display Top" class="display-image">
             <img src="{{ asset('images/home/display-btm.png') }}" alt="Display Bottom" class="display-image">
         </div>
     </div>
 
+    <!-- Display Images - Mobile -->
+    <div class="container">
+        <div class="display-wrapper d-block d-md-none px-3" style="margin-top: -15rem;">
+            <img src="{{ asset('images/home/display-top.png') }}" alt="Display Top" class="display-image">
+            <img src="{{ asset('images/home/display-btm.png') }}" alt="Display Bottom" class="display-image mt-4">
+        </div>
+    </div>
+
+
     <!-- Value Proposition -->
     <div class="value-proposition">
         <div class="container">
-            <div class="row align-items-center" style="padding-top: 5rem; padding-bottom: 5rem; min-height: 500px;">
+            <h3>Value Proposition</h3>
+            <div class="row align-items-center value-proposition-content">
                 <div class="col-12 col-md-6 text-center">
                     <img src="{{ asset('images/home/pic6.png') }}" class="img-fluid rounded shadow">
                 </div>
@@ -70,11 +80,11 @@
                 </div>
             </div>
         </div>
-        <img src="/images/home/greenball-side.png" style="max-width: 100%; position: absolute; left: 0; top: 250%; transform: scaleX(-1);">
+        <img src="/images/home/greenball-side.png" style="max-width: 100%; position: absolute; left: 0; top: 250%; transform: scaleX(-1);" class="greenball-side">
     </div>
 
     <!-- Case Tiles -->
-    <div class="cards">
+    <div class="cards d-none d-md-block">
         <div class="container">
             <div class="row g-4 mt-4">
                 <div class="col-12 col-sm-6 col-lg-3">
@@ -116,7 +126,7 @@
                 <div class="col-12 col-sm-6 col-lg-3">
                     <div class="card h-100" style="background-image: url('{{ asset('images/home/pic4.png') }}'); background-size: cover; background-position: center;">
                         <div class="card-body">
-                            <h4 style="color: #1AB3C5">Corporate & Integration</h4>
+                            <h4 style="color: #1AB3C5">Corporate &<br> Integration</h4>
                             <div class="content-row">
                                 <p>Plug Carbon AI into your ESG, POS, or ERP systems seamlessly.</p>
                                 <a href=""><img src="/images/home/arrow.svg"></a>
@@ -126,34 +136,86 @@
                 </div>
             </div>
         </div>
-        <img src="/images/home/greenball-side.png" style="max-width: 100%; position: absolute; right: 0; top: 330%;">
+        <img src="/images/home/greenball-side.png" style="max-width: 100%; position: absolute; right: 0; top: 330%;" class="greenball-side">
+    </div>
+
+    <!-- Cards - Mobile Version -->
+    <div class="cards-mobile d-block d-md-none px-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-6 my-4">
+                    <div class="card-mobile h-100" style="background-image: url('{{ asset('images/home/pic1.png') }}'); background-size: cover; background-position: center;">
+                        <div class="card-body-mobile">
+                            <h4>Hospitality &amp; <br>Tourism</h4>
+                            <div class="content-row-mobile">
+                                <p>Guest-level sustainability data that converts into verified carbon savings.</p>
+                                <a href=""><img src="{{ asset('images/home/arrow.svg') }}"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-6 my-4">
+                    <div class="card-mobile h-100" style="background-image: url('{{ asset('images/home/pic2.png') }}'); background-size: cover; background-position: center;">
+                        <div class="card-body-mobile">
+                            <h4 style="color: #1AB3C5">Finance &amp; <br>Investments</h4>
+                            <div class="content-row-mobile">
+                                <p>Verified ESG data for green loans, bonds, and carbon-linked financing.</p>
+                                <a href=""><img src="{{ asset('images/home/arrow.svg') }}"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-6">
+                    <div class="card-mobile h-100" style="background-image: url('{{ asset('images/home/pic3.png') }}'); background-size: cover; background-position: center;">
+                        <div class="card-body-mobile">
+                            <h4>Supply Chain &amp; Manufacturing</h4>
+                            <div class="content-row-mobile">
+                                <p>AI validation for supplier Scope 1-3 disclosures and benchmarking.</p>
+                                <a href=""><img src="{{ asset('images/home/arrow.svg') }}"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-6">
+                    <div class="card-mobile h-100" style="background-image: url('{{ asset('images/home/pic4.png') }}'); background-size: cover; background-position: center;">
+                        <div class="card-body-mobile">
+                            <h4 style="color: #1AB3C5">Corporate &amp; Integration</h4>
+                            <div class="content-row-mobile">
+                                <p>Plug Carbon AI into your ESG, POS, or ERP systems seamlessly.</p>
+                                <a href=""><img src="{{ asset('images/home/arrow.svg') }}"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- Differentiation -->
     <div class="differentiation">
-        <div class="container" style="padding-top: 10rem; padding-bottom: 10rem;">
+        <div class="container differentiation-content">
             <div class="row">
-                <div class="col-12 col-md-6">
+                <div class="col-12 col-md-6" style="display: flex; flex-direction: column; justify-content: center;">
                     <h1 style="-webkit-text-fill-color: #fff;">Others measure.</h1>
                     <h1>We validate.</h1>
                     <div class="my-3">
                         <h3>Carbon AI isn’t just a reporting platform. It is an AI driven verification layer linking ESG and carbon accounting data to financial markets.</h3>
                     </div>
-                    <div class="my-5"><a href="#">Request a Demo</a></div>
+                    <div class="my-3"><a href="#" class="request-demo-btn m-0">Request a Demo</a></div>
                 </div>
                 <div class="col-12 col-md-6">
-                    <img src="{{ asset('images/home/pic5.png') }}" class="img-fluid rounded shadow" style="float: right;">
+                    <img src="{{ asset('images/home/pic5.png') }}" class="differentiation-img img-fluid rounded shadow" style="float: right;">
                 </div>
             </div>
         </div>
-        {{-- <div class="w-100 justify-content-center d-flex">
-            <div class="line"></div>
-        </div> --}}
     </div>
 
     <!-- Logos -->
     <div class="logos" style="background: #fff; position: relative;">
-        <div class="logos-wrapper" style="padding-top: 8rem; padding-bottom: 8rem;">
+        <div class="logos-wrapper"">
             <div class="logos-slider" id="logosSlider">
                 <img src="{{ asset('images/home/logo1.svg') }}" alt="Logo 1">
                 <img src="{{ asset('images/home/logo2.svg') }}" alt="Logo 2">
@@ -166,132 +228,134 @@
             </div>
         </div>
     </div>
-    <img src="/images/home/greenball-side.png" style="max-width: 100%; position: absolute; left: 0; top: 455%; transform: scaleX(-1); z-index: 1;">
+    <img src="/images/home/greenball-side.png" style="max-width: 100%; position: absolute; left: 0; top: 455%; transform: scaleX(-1); z-index: 1;" class="greenball-side">
 
-    <!-- Insights -->
-    <div class="insights">
+    <!-- Insights - Desktop Version -->
+    <div class="insights d-none d-md-block">
         <div class="container">
             <h3>Stay Ahead of the Curve</h3>
             <h5>Discover verified carbon data and decarbonization insights aligned with SBTi and global disclosure standards.</h5>
 
-            <div id="insightsCarousel"  class="carousel slide mt-4" data-bs-wrap="true" data-bs-touch="false"  data-bs-keyboard="false">
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <div class="row my-5">
-                            <div class="col-12 col-sm-6 col-lg-4">
-                                <div class="card h-100">
-                                    <div class="card-body">
-                                        <h4>Finance Emissions Guide</h4>
-                                        <div class="insights-content-row">
-                                            <a href="">Explore Insights</a>
-                                            <a href="" class="insights-arrow">
-                                                <i class="fa-solid fa-arrow-up"></i>
-                                            </a>
-                                        </div>
-                                        <img src="{{ asset('images/blog1.jpg') }}" alt="Finance Emission">
-                                    </div>
-                                </div>
+            <div class="row my-5">
+                <div class="col-12 col-sm-6 col-lg-4">
+                    <div class="insights-card">
+                        <div class="insights-card-body">
+                            <h4>Finance Emissions Guide</h4>
+                            <div class="insights-content-row">
+                                <a href="#" class="insights-link">Explore Insights</a>
+                                <a href="#" class="insights-arrow">
+                                    <i class="fa-solid fa-arrow-up"></i>
+                                </a>
                             </div>
-
-                            <div class="col-12 col-sm-6 col-lg-4">
-                                <div class="card h-100">
-                                    <div class="card-body">
-                                        <h4 style="color: #1AB3C5;">Supplier Data Exchange</h4>
-                                        <div class="insights-content-row">
-                                            <a href="">Explore Insights</a>
-                                            <a href="" class="insights-arrow">
-                                                <i class="fa-solid fa-arrow-up"></i>
-                                            </a>
-                                        </div>
-                                        <img src="{{ asset('images/blog2.jpg') }}" alt="Supplier Data Exchange">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-12 col-sm-6 col-lg-4">
-                                <div class="card h-100">
-                                    <div class="card-body">
-                                        <h4>Scope 3 Decarbonization Insights (Asia & GBA)</h4>
-                                        <div class="insights-content-row">
-                                            <a href="">Explore Insights</a>
-                                            <a href="" class="insights-arrow">
-                                                <i class="fa-solid fa-arrow-up"></i>
-                                            </a>
-                                        </div>
-                                        <img src="{{ asset('images/blog3.jpg') }}" alt="Corporate Integration">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="carousel-item">
-                        <div class="row my-5">
-                            <div class="col-12 col-sm-6 col-lg-4">
-                                <div class="card h-100">
-                                    <div class="card-body">
-                                        <h4>Finance Emissions Guide</h4>
-                                        <div class="insights-content-row">
-                                            <a href="">Explore Insights</a>
-                                            <a href="" class="insights-arrow">
-                                                <i class="fa-solid fa-arrow-up"></i>
-                                            </a>
-                                        </div>
-                                        <img src="{{ asset('images/blog1.jpg') }}" alt="Finance Emission">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-12 col-sm-6 col-lg-4">
-                                <div class="card h-100">
-                                    <div class="card-body">
-                                        <h4 style="color: #1AB3C5;">Supplier Data Exchange</h4>
-                                        <div class="insights-content-row">
-                                            <a href="">Explore Insights</a>
-                                            <a href="" class="insights-arrow">
-                                                <i class="fa-solid fa-arrow-up"></i>
-                                            </a>
-                                        </div>
-                                        <img src="{{ asset('images/blog2.jpg') }}" alt="Supplier Data Exchange">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-12 col-sm-6 col-lg-4">
-                                <div class="card h-100">
-                                    <div class="card-body">
-                                        <h4>Scope 3 Decarbonization Insights (Asia & GBA)</h4>
-                                        <div class="insights-content-row">
-                                            <a href="">Explore Insights</a>
-                                            <a href="" class="insights-arrow">
-                                                <i class="fa-solid fa-arrow-up"></i>
-                                            </a>
-                                        </div>
-                                        <img src="{{ asset('images/blog3.jpg') }}" alt="Corporate Integration">
-                                    </div>
-                                </div>
-                            </div>
+                            <img src="{{ asset('images/blog1.jpg') }}" alt="Finance Emission" class="insights-image">
                         </div>
                     </div>
                 </div>
 
-                <!-- Prev/Next buttons -->
-                <button class="carousel-control-prev" type="button" data-bs-target="#insightsCarousel" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon"></span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#insightsCarousel" data-bs-slide="next">
-                    <span class="carousel-control-next-icon"></span>
-                </button>
+                <div class="col-12 col-sm-6 col-lg-4">
+                    <div class="insights-card">
+                        <div class="insights-card-body">
+                            <h4 class="insights-title-cyan">Supplier Data Exchange</h4>
+                            <div class="insights-content-row">
+                                <a href="#" class="insights-link">Explore Insights</a>
+                                <a href="#" class="insights-arrow">
+                                    <i class="fa-solid fa-arrow-up"></i>
+                                </a>
+                            </div>
+                            <img src="{{ asset('images/blog2.jpg') }}" alt="Supplier Data Exchange" class="insights-image">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-6 col-lg-4">
+                    <div class="insights-card">
+                        <div class="insights-card-body">
+                            <h4>Scope 3 Decarbonization Insights (Asia & GBA)</h4>
+                            <div class="insights-content-row">
+                                <a href="#" class="insights-link">Explore Insights</a>
+                                <a href="#" class="insights-arrow">
+                                    <i class="fa-solid fa-arrow-up"></i>
+                                </a>
+                            </div>
+                            <img src="{{ asset('images/blog3.jpg') }}" alt="Corporate Integration" class="insights-image">
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- Bottom -->
-    <div class="container bottom">
+    <!-- Insights - Mobile Version -->
+    <div class="insights-mobile d-block d-md-none">
+        <div class="container">
+            <h3>Stay Ahead of the Curve</h3>
+            <h5 class="my-3">Discover verified carbon data and decarbonization insights aligned with SBTi and global disclosure standards.</h5>
+            <div class="row mt-5">
+                <div class="col-6">
+                    <div class="insights-card-mobile">
+                        <div class="insights-card-body-mobile">
+                            <h4>Finance Emissions Guide</h4>
+                            <div class="insights-content-row-mobile">
+                                <a href="#" class="insights-link-mobile">Explore Insights</a>
+                                <a href="#" class="insights-arrow-mobile">
+                                    <img src="{{ asset('images/home/arrow.svg') }}" alt="Arrow">
+                                </a>
+                            </div>
+                            <img src="{{ asset('images/blog1.jpg') }}" alt="Finance Emission" class="insights-image-mobile">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-6">
+                    <div class="insights-card-mobile">
+                        <div class="insights-card-body-mobile">
+                            <h4 class="insights-title-cyan-mobile">Supplier Data Exchange</h4>
+                            <div class="insights-content-row-mobile">
+                                <a href="#" class="insights-link-mobile">Explore Insights</a>
+                                <a href="#" class="insights-arrow-mobile">
+                                    <img src="{{ asset('images/home/arrow.svg') }}" alt="Arrow">
+                                </a>
+                            </div>
+                            <img src="{{ asset('images/blog2.jpg') }}" alt="Supplier Data Exchange" class="insights-image-mobile">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-6">
+                    <div class="insights-card-mobile">
+                        <div class="insights-card-body-mobile">
+                            <h4>Scope 3 Decarbonization Insights (Asia & GBA)</h4>
+                            <div class="insights-content-row-mobile">
+                                <a href="#" class="insights-link-mobile">Explore Insights</a>
+                                <a href="#" class="insights-arrow-mobile">
+                                    <img src="{{ asset('images/home/arrow.svg') }}" alt="Arrow">
+                                </a>
+                            </div>
+                            <img src="{{ asset('images/blog3.jpg') }}" alt="Corporate Integration" class="insights-image-mobile">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom - Desktop Version -->
+    <div class="container bottom d-none d-md-block">
         <h1>Carbon data you can trust</h1>
         <div class="my-5">
             <a href="#" class="start-for-free-btn">Start for Free</a>
             <a href="#" class="request-demo-btn">Request a Demo</a>
+        </div>
+    </div>
+
+    <!-- Bottom - Mobile Version -->
+    <div class="container bottom-mobile d-flex d-md-none mb-5">
+        <div class="bottom-card-mobile">
+            <h1>Carbon data you can trust</h1>
+            <div class="bottom-buttons mt-4" style="display: flex; flex-direction: column; align-items: center;">
+                <a href="#" class="start-for-free-btn">Start for Free</a>
+                <a href="#" class="request-demo-btn mt-3">Request a Demo</a>
+            </div>
         </div>
     </div>
 </div>

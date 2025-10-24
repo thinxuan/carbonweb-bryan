@@ -41,6 +41,10 @@ Route::get('/blogs', function () {
     return view('blogs');
 });
 
+Route::get('/about', function () {
+    return view('about');
+});
+
 // Test CSS loading
 Route::get('/test-css', function () {
     return '<html><head>
