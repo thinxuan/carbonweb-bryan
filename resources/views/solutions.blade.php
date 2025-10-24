@@ -11,7 +11,7 @@
         <div class="container">
             <div class="row-centered">
                 <div class="header">
-                    <h1><span>AI for Net Zero:</span></h1>
+                    <h1>AI for Net Zero:</h1>
                     <h3 style="line-height: 40px;">Automated, high-quality carbon and ESG data for every organization.<br>Accelerate your path to Net Zero with confidence and verified accuracy.</h3>
                 </div>
                 <div class="header-btn mt-5">

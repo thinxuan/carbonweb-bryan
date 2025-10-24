@@ -11,7 +11,7 @@
         <div class="container">
             <div class="row-centered">
                 <div class="header">
-                    <h1><span>AI for Net Zero:</span></h1>
+                    <h1>AI for Net Zero:</h1>
                     <h3>The audit-ready ESG and carbon accounting platform that validates Scope 1–3 data with AI precision.</h3>
                 </div>
                 <div class="header-btn mt-5">
