@@ -142,10 +142,10 @@
     </div>
 
     <!-- Bottom -->
-    <div class="container about-bottom">
-        <h1>We are building the trust layer for ESG software, setting a new standard for verified sustainability data.</h1>
+    <div class="container bottom">
+        <h1 style="font-weight: 700; font-size: 1.875rem; line-height: 40px;">We are building the trust layer for ESG software, setting a new standard for verified sustainability data.</h1>
         <p>Collaborate with us through pilots, partnerships, or integrations and be part of the movement to make audit-ready climate data the norm for every organization.</p>
-        <div class="my-5">
+        <div class="mt-5">
             <a href="#" class="start-for-free-btn">Start for Free</a>
             <a href="#" class="request-demo-btn">Request a Demo</a>
         </div>

@@ -301,6 +301,7 @@ body {
     line-height: 36px;
 }
 
+
 /* Team Cards */
 .team-card {
     background: #0a0a0a;
@@ -1232,7 +1233,7 @@ body {
 }
 
 /* Bottom Section - Dark Theme with Grid */
-.bottom, .ai-bottom, .about-bottom {
+.bottom, .ai-bottom {
     background: #0A0A0A;
     position: relative;
     overflow: hidden;
@@ -1242,7 +1243,7 @@ body {
     margin-bottom: 3rem;
 }
 
-.bottom::before, .ai-bottom::before, .subscribe::before, .about-bottom::before {
+.bottom::before, .ai-bottom::before, .subscribe::before {
     content: '';
     position: absolute;
     top: 0;
@@ -1258,7 +1259,7 @@ body {
     border-radius: 10px;
 }
 
-.bottom::after, .ai-bottom::after, .about-bottom::after {
+.bottom::after, .ai-bottom::after {
     content: '';
     position: absolute;
     top: -90%;
@@ -1270,7 +1271,7 @@ body {
     z-index: 2;
 }
 
-.bottom h1, .about-bottom h1 {
+.bottom h1 {
     font-weight: 800;
     font-size: 2.8rem;
     color: #fff;
@@ -1279,7 +1280,7 @@ body {
     margin-bottom: 2rem;
 }
 
-.bottom .my-5, .about-bottom .my-5 {
+.bottom .my-5, .bottom .mt-5 {
     position: relative;
     z-index: 3;
     display: flex;
@@ -1287,6 +1288,65 @@ body {
     justify-content: center;
     gap: 2rem;
     flex-wrap: wrap;
+}
+
+.bottom p {
+    font-size: 1.25rem;
+    line-height: 30px;
+    padding: 0rem 5rem;
+}
+
+/* About page bottom section */
+.about-bottom::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+    background-size: 150px 100px;
+    background-position: 0 0, 0 0;
+    opacity: 0.3;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.about-bottom::after {
+    content: '';
+    position: absolute;
+    top: -90%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 560px;
+    background: radial-gradient(ellipse, #1AB3C5 0%, rgba(26, 179, 197, 0.2) 50%, transparent 70%);
+    z-index: 2;
+}
+
+.about-bottom h1 {
+    font-weight: 800;
+    font-size: 2.8rem;
+    color: #fff;
+    text-align: center;
+    margin-bottom: 2rem;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.about-bottom .my-5, .about-bottom .mt-5 {
+    position: relative;
+    z-index: 3;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.about-bottom p {
+    font-size: 1.25rem;
+    line-height: 30px;
+    padding: 0rem 5rem;
 }
 
 .start-for-free-btn {
@@ -2190,7 +2250,7 @@ body {
         font-weight: 700;
         margin-bottom: 0;
         text-align: left;
-        font-size: 14px;
+        font-size: 16px;
         line-height: 20px;
     }
 
@@ -2211,7 +2271,7 @@ body {
         color: #ffffff;
         text-decoration: none;
         font-weight: 500;
-        font-size: 12px;
+        font-size: 10px;
         transition: color 0.3s ease;
     }
 
@@ -2248,7 +2308,7 @@ body {
         height: 150px;
         object-fit: cover;
         border-radius: 8px;
-        margin-top: auto;
+        margin-top: .5rem;
     }
 
     /* Mobile Bottom Section */
@@ -2289,7 +2349,6 @@ body {
     }
 
     .bottom-card-mobile {
-        border: 2px solid #272727;
         border-radius: 5px;
         padding: 3rem 1.5rem;
         text-align: center;
