@@ -32,84 +32,193 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
-            <!-- Left Nav -->
-            <div class="nav-left d-flex align-items-center">
-                <div class="" style="display: flex; align-items: center; flex-direction: row;">
-                    <a href="{{ url('/') }}" class="me-4" style="    margin-right: 0 !important;"><img src="/images/logo.svg"></a>
-                    <h5>CarbonAI</h5>
-                </div>
-
-                <div class="">
-                    <ul class="navbar-nav">
-                        <li class="nav-item dropdown me-4">
-                            <a class="nav-link" href="{{ url('/') }}" id="homeDropdown">
-                                Home
-                            </a>
-                        </li>
-                        <li class="nav-item dropdown me-4">
-                            <a class="nav-link dropdown-toggle" href="{{ url('/ai') }}" id="aiDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                AI
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="aiDropdown">
-                                <li><a class="dropdown-item" href="#">AI & Validation Engine</a></li>
-                                <li><a class="dropdown-item" href="#">Interoperability & Connectors</a></li>
-                                <li><a class="dropdown-item" href="#">Engagement Layer</a></li>
-                                <li><a class="dropdown-item" href="#">Data Exchange Hub</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown me-4">
-                            <a class="nav-link dropdown-toggle" href="{{ url('/customers') }}" id="customersDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Customers
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="customersDropdown">
-                                <li><a class="dropdown-item" href="#">Finance Emissions</a></li>
-                                <li><a class="dropdown-item" href="#">Supplier & Corporate Integration</a></li>
-                                <li><a class="dropdown-item" href="#">Low-Altitude Economy </a></li>
-                                <li><a class="dropdown-item" href="#">Hospitality & Logistics</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown me-4">
-                            <a class="nav-link dropdown-toggle" href="{{ url('/industries') }}" id="industriesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Industries
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="industriesDropdown">
-                                <li><a class="dropdown-item" href="#">Finance</a></li>
-                                <li><a class="dropdown-item" href="#">Hospitality</a></li>
-                                <li><a class="dropdown-item" href="#">Logistics</a></li>
-                                <li><a class="dropdown-item" href="#">Consumer Goods</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown me-4">
-                            <a class="nav-link dropdown-toggle" href="{{ url('/insights') }}" id="insightsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Insights
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="insightsDropdown">
-                                <li><a class="dropdown-item" href="#">Blog</a></li>
-                                <li><a class="dropdown-item" href="#">Glossary</a></li>
-                                <li><a class="dropdown-item" href="#">Events</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown me-4">
-                            <a class="nav-link dropdown-toggle" href="{{ url('/company') }}" id="companyDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Company
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="companyDropdown">
-                                <li><a class="dropdown-item" href="#">About</a></li>
-                                <li><a class="dropdown-item" href="#">Careers</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
+            <!-- Logo -->
+            <div class="navbar-brand d-flex align-items-center">
+                <a href="{{ url('/') }}" class="logo-link">
+                    <img src="/images/logo.svg" class="logo-img">
+                </a>
+                <span class="logo-text">Carbon AI</span>
             </div>
 
-            <!-- Right Nav -->
-            <div class="nav-right">
-                {{-- <a href="{{ route('account.index') }}" class="btn btn-outline me-2">Account Dashboard</a> --}}
-                <a href="#" class="btn">Start for Free</a>
-                <a href="#" class="btn-outline">Request a Demo</a>
+            <!-- Action Buttons (Desktop) -->
+            <div class="navbar-actions d-none d-lg-flex">
+                <a href="#" class="start-for-free-btn">Start for Free</a>
+                <a href="#" class="request-demo-btn">Request a Demo</a>
+            </div>
+
+            <!-- Hamburger Menu Button (Mobile) -->
+            <button class="navbar-toggler d-lg-none" type="button" id="navbarToggler">
+                <div class="hamburger-icon" id="hamburgerIcon">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </button>
+
+            <!-- Navigation Links -->
+            <div class="navbar-nav-container" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="aiDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            AI
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="aiDropdown">
+                            <li><a class="dropdown-item" href="#">AI & Validation Engine</a></li>
+                            <li><a class="dropdown-item" href="#">Interoperability & Connectors</a></li>
+                            <li><a class="dropdown-item" href="#">Engagement Layer</a></li>
+                            <li><a class="dropdown-item" href="#">Data Exchange Hub</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('/') }}">Home</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="industriesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Industries
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="industriesDropdown">
+                            <li><a class="dropdown-item" href="#">Finance</a></li>
+                            <li><a class="dropdown-item" href="#">Hospitality</a></li>
+                            <li><a class="dropdown-item" href="#">Logistics</a></li>
+                            <li><a class="dropdown-item" href="#">Consumer Goods</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="insightsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Insights
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="insightsDropdown">
+                            <li><a class="dropdown-item" href="{{ url('/blogs') }}">Blog</a></li>
+                            <li><a class="dropdown-item" href="#">Glossary</a></li>
+                            <li><a class="dropdown-item" href="#">Events</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="companyDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Company
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="companyDropdown">
+                            <li><a class="dropdown-item" href="{{ url('/about') }}">About</a></li>
+                            <li><a class="dropdown-item" href="#">Careers</a></li>
+                            <li><a class="dropdown-item" href="{{ url('/contact') }}">Contact</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <!-- Action Buttons (Mobile) -->
+                <div class="navbar-actions d-lg-none">
+                    <a href="#" class="start-for-free-btn">Start for Free</a>
+                    <a href="#" class="request-demo-btn">Request a Demo</a>
+                </div>
             </div>
         </div>
     </nav>
+
+    <!-- Hamburger Menu JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const navbarToggler = document.getElementById('navbarToggler');
+            const navbarNav = document.getElementById('navbarNav');
+            const hamburgerIcon = document.getElementById('hamburgerIcon');
+
+            navbarToggler.addEventListener('click', function() {
+                navbarNav.classList.toggle('active');
+                hamburgerIcon.classList.toggle('active');
+            });
+
+            // Close menu when clicking outside
+            document.addEventListener('click', function(event) {
+                const isClickInsideNav = navbarNav.contains(event.target);
+                const isClickOnToggler = navbarToggler.contains(event.target);
+
+                if (!isClickInsideNav && !isClickOnToggler && navbarNav.classList.contains('active')) {
+                    navbarNav.classList.remove('active');
+                    hamburgerIcon.classList.remove('active');
+                }
+            });
+
+            // Set active navigation link based on current page
+            const currentPath = window.location.pathname;
+            const navLinks = document.querySelectorAll('.nav-link');
+            const dropdownItems = document.querySelectorAll('.dropdown-item');
+
+            // Check main nav links
+            navLinks.forEach(link => {
+                const linkPath = link.getAttribute('href');
+                if (linkPath && linkPath !== '#' && currentPath === linkPath) {
+                    link.classList.add('active');
+                    link.closest('.nav-item')?.classList.add('active');
+                }
+            });
+
+            // Check dropdown items
+            dropdownItems.forEach(item => {
+                const itemPath = item.getAttribute('href');
+                if (itemPath && itemPath !== '#' && currentPath === itemPath) {
+                    item.classList.add('active');
+                    // Also activate the parent dropdown toggle
+                    const dropdownToggle = item.closest('.dropdown').querySelector('.dropdown-toggle');
+                    if (dropdownToggle) {
+                        dropdownToggle.classList.add('active');
+                        dropdownToggle.closest('.nav-item')?.classList.add('active');
+                    }
+                }
+            });
+
+            // Add click handlers for nav links to show gradient effect
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    // Remove active class from all nav links
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    navLinks.forEach(l => l.closest('.nav-item')?.classList.remove('active'));
+
+                    // Add active class to clicked link
+                    this.classList.add('active');
+                    this.closest('.nav-item')?.classList.add('active');
+                });
+            });
+
+            // Initialize Bootstrap dropdowns
+            const dropdownElements = document.querySelectorAll('.dropdown-toggle');
+            dropdownElements.forEach(dropdown => {
+                dropdown.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const dropdownMenu = this.nextElementSibling;
+                    const isCurrentlyOpen = dropdownMenu.classList.contains('show');
+
+                    // Close all other dropdowns first
+                    const allDropdownMenus = document.querySelectorAll('.dropdown-menu.show');
+                    allDropdownMenus.forEach(menu => {
+                        menu.classList.remove('show');
+                        const toggle = menu.previousElementSibling;
+                        if (toggle) {
+                            toggle.setAttribute('aria-expanded', 'false');
+                        }
+                    });
+
+                    // Toggle current dropdown only if it wasn't already open
+                    if (!isCurrentlyOpen && dropdownMenu.classList.contains('dropdown-menu')) {
+                        dropdownMenu.classList.add('show');
+                        this.setAttribute('aria-expanded', 'true');
+                    }
+                });
+            });
+
+            // Close dropdowns when clicking outside
+            document.addEventListener('click', function(event) {
+                if (!event.target.closest('.dropdown')) {
+                    const openDropdowns = document.querySelectorAll('.dropdown-menu.show');
+                    openDropdowns.forEach(dropdown => {
+                        dropdown.classList.remove('show');
+                        const toggle = dropdown.previousElementSibling;
+                        if (toggle) {
+                            toggle.setAttribute('aria-expanded', 'false');
+                        }
+                    });
+                }
+            });
+        });
+    </script>
 
     <!-- Main content -->
     <main class="">

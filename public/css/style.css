@@ -1,50 +1,61 @@
+/* Navbar Styles */
 .navbar {
-    /* background: linear-gradient(rgb(64, 224, 219) 30%, rgb(39 184 119) 100%); */
-    padding: 0 3rem !important;
-    display: flex !important;
-    justify-content: space-between !important;
-    align-items: center !important;
-    flex-wrap: wrap !important;
-    position: fixed !important;
+    background: #9E9E9E3B;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    z-index: 9;
-
-    display: none !important;
+    z-index: 1000;
+    border-bottom: 1px solid #333;
 }
 
-.dropdown-menu li {
-    border-bottom: 1px solid #40e0db;
+.navbar .container-fluid {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
 }
 
-.nav-left {
+.navbar-brand {
     display: flex;
     align-items: center;
-    gap: 3rem;
-    position: relative;
+    gap: 0.75rem;
 }
 
-.nav-left h5 {
-    color: #16d3ca;
-    font-weight: 600;
-    font-size: 2.25rem;
+.logo-link {
+    display: flex;
+    align-items: center;
+    justify-content: right;
 }
 
-.navbar a, .btn-outline{
-    color: #16d3ca !important;
-    text-decoration: none !important;
-    font-weight: 600 !important;
-    transition: color 0.3s ease;
-    font-size: 1.125rem;
+.logo-img {
+    max-width: 80%;
 }
 
-.navbar-nav .dropdown-item, .form-submit-btn {
-    color: #fff !important;
+.logo-text {
+    color: #ffffff;
+    font-size: 1.5rem;
+    font-weight: 700;
 }
 
-.navbar a:hover {
-    color: #16d3ca;
+.navbar-nav-container {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.navbar-nav {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
 }
 
 .nav-item {
@@ -52,7 +63,189 @@
 }
 
 .nav-link {
+    color: #ffffff !important;
+    text-decoration: none;
+    font-weight: 600 !important;
+    font-size: 1rem !important;
+    font-family: 'Montserrat', sans-serif;
+    transition: color 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.nav-link:hover,
+.nav-link.active,
+.nav-item.active .nav-link {
+    background: linear-gradient(90deg, #0FA3B8 10%, #1AB3C5 30%, #2bd7bd 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.dropdown-toggle:hover,
+.dropdown-toggle.active,
+.nav-item.active .dropdown-toggle {
+    color: #1AB3C5 !important;
+}
+
+.dropdown-toggle:hover::after,
+.dropdown-toggle.active::after,
+.nav-item.active .dropdown-toggle::after {
+    border-top-color: #1AB3C5 !important;
+}
+
+
+.dropdown-menu {
+    background: #2a2a2a;
+    border: 1px solid #333;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    padding: 0.5rem 0;
+    margin-top: 0.5rem;
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    min-width: 200px;
+}
+
+.dropdown-menu.show {
+    display: block;
+}
+
+.dropdown-item {
+    color: #ffffff;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease;
+}
+
+.dropdown-item:hover,
+.dropdown-item.active {
+    background-color: #333;
+    color: #16D3CA;
+}
+
+.navbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.navbar-actions .start-for-free-btn,
+.navbar-actions .request-demo-btn {
+    margin: 0;
+    padding: 0.7rem 1.4rem;
+    font-size: 12px;
+    border-radius: 30px;
+}
+
+/* Mobile Hamburger Menu */
+.navbar-toggler {
+    display: none;
+    background: none;
+    border: none !important;
     cursor: pointer;
+    padding: 0.5rem;
+}
+
+.hamburger-icon {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    width: 24px;
+    height: 18px;
+}
+
+.hamburger-icon span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: #ffffff;
+    transition: all 0.3s ease;
+    border-radius: 2px;
+}
+
+.hamburger-icon.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger-icon.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger-icon.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -6px);
+}
+
+/* Mobile Responsive */
+@media (max-width: 991px) {
+    .navbar-toggler {
+        display: block;
+    }
+
+    .navbar-nav-container {
+        position: fixed;
+        top: 60px;
+        left: 0 !important;
+        right: 0;
+        transform: none !important;
+        background: #2a2a2a;
+        display: none;
+        flex-direction: column;
+        padding: 1rem;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        border-top: 1px solid #333;
+    }
+
+    .navbar-nav-container.active {
+        display: flex;
+    }
+
+    .navbar-nav {
+        flex-direction: column;
+        width: 100%;
+        gap: 0;
+    }
+
+    .nav-item {
+        width: 100%;
+        border-bottom: 1px solid #333;
+    }
+
+    .nav-link {
+        padding: 1rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .dropdown-menu {
+        position: static;
+        width: 100%;
+        margin-top: 0;
+        border: none;
+        border-top: 1px solid #333;
+        background: #1a1a1a;
+    }
+
+    .navbar-actions {
+        flex-direction: column;
+        width: 100%;
+        gap: 0.75rem;
+        padding: 1rem;
+    }
+
+    .navbar-actions .start-for-free-btn,
+    .navbar-actions .request-demo-btn {
+        width: auto;
+        min-width: 150px;
+        max-width: 250px;
+        text-align: center;
+        margin: 0 auto;
+    }
 }
 
 .nav-item {
@@ -1665,6 +1858,25 @@ body {
     .banner-subtitle {
         font-size: 1rem;
     }
+
+    .navbar-brand {
+        justify-content: flex-start;
+        gap: 0.25rem;
+    }
+
+    .logo-link {
+        justify-content: left;
+    }
+
+    .logo-img {
+        width: 32px;
+        height: 32px;
+        max-width: none;
+    }
+
+    .logo-text {
+        font-size: 1.25rem;
+    }
 }
 
 @media (max-width: 576px) {
@@ -2122,7 +2334,7 @@ body {
 
     .card-body-mobile h4 {
         color: #2BD7BD;
-        font-size: 12px;
+        font-size: 14px;
         font-weight: 700;
         margin-bottom: 0.5rem;
     }
@@ -2250,7 +2462,7 @@ body {
         font-weight: 700;
         margin-bottom: 0;
         text-align: left;
-        font-size: 16px;
+        font-size: 14px;
         line-height: 20px;
     }
 
