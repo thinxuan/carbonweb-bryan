@@ -851,10 +851,24 @@
                 return;
             }
 
-            // Basic email validation
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(emailInput.value.trim())) {
-                alert('Please enter a valid email address');
+            // Enhanced email validation
+            function isValidEmail(email) {
+                // More comprehensive email validation
+                const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+                // Additional checks
+                if (!emailRegex.test(email)) return false;
+
+                // Check for common invalid patterns
+                if (email.includes('..')) return false; // No consecutive dots
+                if (email.startsWith('.') || email.endsWith('.')) return false; // No leading/trailing dots
+                if (email.includes('@.') || email.includes('.@')) return false; // No dots around @
+
+                return true;
+            }
+
+            if (!isValidEmail(emailInput.value.trim())) {
+                alert('Please enter a valid email address (e.g., name@company.com, user@gmail.com)');
                 emailInput.focus();
                 return;
             }
