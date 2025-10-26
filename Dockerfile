@@ -106,9 +106,9 @@ RUN echo '<Directory /var/www/html/public>\n\
 
 RUN a2enconf laravel
 
-# Expose port
-EXPOSE 80
+# Expose port (Cloud Run sets PORT env var)
+EXPOSE 8080
 
-# Start Apache
-CMD php artisan migrate --force && php artisan config:cache && apache2-foreground
+# Start Apache with dynamic port support for Cloud Run
+CMD php artisan migrate --force && php artisan config:cache && php artisan serve --host=0.0.0.0 --port=${PORT:-8080}
 
