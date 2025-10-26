@@ -1,0 +1,49 @@
+# This file specifies files that are ignored when uploading to Google Cloud Platform.
+
+# Git
+.git
+.gitignore
+
+# Node modules
+node_modules/
+
+# Vendor directory (will be reinstalled during build)
+vendor/
+
+# Storage and cache
+storage/logs/*
+storage/framework/cache/*
+storage/framework/sessions/*
+storage/framework/views/*
+!storage/.gitignore
+
+# Testing
+tests/
+.phpunit.result.cache
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Local environment files
+.env
+.env.local
+.env.*.local
+.env.backup
+
+# Build artifacts
+*.log
+npm-debug.log*
+
+# Documentation
+*.md
+!README.md
+google-cloud-deployment.md
+
