@@ -13,12 +13,30 @@
 
 Install Google Cloud SDK if you haven't already:
 
+**Option 1: Direct Download (Recommended for macOS without Homebrew)**
 ```bash
-# Install gcloud CLI
-# Visit: https://cloud.google.com/sdk/docs/install
-# Or use Homebrew on macOS:
-brew install google-cloud-sdk
+# Download the package
+curl -O https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-cli-darwin-arm64.tar.gz
+
+# Extract
+tar -xf google-cloud-cli-darwin-arm64.tar.gz
+
+# Run the installer
+./google-cloud-cli-darwin-arm64/install.sh
+
+# Reload shell
+source ~/.zshrc  # or source ~/.bash_profile
+
+# Verify installation
+gcloud --version
 ```
+
+**Option 2: Download from Website**
+1. Visit: https://cloud.google.com/sdk/docs/install
+2. Download Google Cloud SDK for your system
+3. Follow the installation instructions
+
+**Note:** The direct download works without requiring Homebrew or any package manager
 
 ### Step 1: Login to GCP
 
