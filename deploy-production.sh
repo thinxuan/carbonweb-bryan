@@ -7,6 +7,7 @@ set -e
 
 echo "🚀 Deploying CarbonWallet to GCP Production..."
 echo "Project: carbonwallet-prod-476112"
+echo "Region: asia-southeast1"
 echo ""
 
 # Set the production project
@@ -21,12 +22,12 @@ echo ""
 echo "✅ Deployment complete!"
 echo ""
 echo "Getting service URL..."
-SERVICE_URL=$(gcloud run services describe carbonwallet-prod --region=us-central1 --format="value(status.url)")
+SERVICE_URL=$(gcloud run services describe carbonwallet-prod --region=asia-southeast1 --format="value(status.url)")
 
 echo ""
 echo "🌐 Your application is live at:"
 echo "$SERVICE_URL"
 echo ""
 echo "To view logs, run:"
-echo "gcloud run services logs read carbonwallet-prod --region=us-central1"
+echo "gcloud run services logs read carbonwallet-prod --region=asia-southeast1"
 
