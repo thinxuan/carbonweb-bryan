@@ -1,0 +1,16 @@
+✅ PRODUCTION DEPLOYMENT SUCCESSFUL
+
+Deployment Time: 2025-10-26 11:37:17 UTC
+Build Duration: 4 minutes 54 seconds
+Build ID: 373e98f4-fc62-4fae-bee4-6a38ea83a84a
+
+🌐 Production URLs:
+- Custom Domain: https://www.carbon2030.ai/
+- Cloud Run URL: https://carbonwallet-prod-486326684341.asia-southeast1.run.app
+
+✅ Service: carbonwallet-prod
+✅ Region: asia-southeast1
+✅ Project: carbonwallet-prod-476112
+
+🎉 Your application is live on production!
+
