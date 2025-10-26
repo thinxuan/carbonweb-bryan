@@ -1,12 +1,12 @@
 steps:
   # Build the container image
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'gcr.io/${PROJECT_ID}/carbonwallet-staging:$COMMIT_SHA', '.']
+    args: ['build', '-t', 'gcr.io/${PROJECT_ID}/carbonwallet-staging:latest', '.']
     id: 'build-image'
   
   # Push the container image to Artifact Registry
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'gcr.io/${PROJECT_ID}/carbonwallet-staging:$COMMIT_SHA']
+    args: ['push', 'gcr.io/${PROJECT_ID}/carbonwallet-staging:latest']
     id: 'push-image'
   
   # Deploy container image to Cloud Run
@@ -16,7 +16,7 @@ steps:
       - 'deploy'
       - 'carbonwallet-staging'
       - '--image'
-      - 'gcr.io/${PROJECT_ID}/carbonwallet-staging:$COMMIT_SHA'
+      - 'gcr.io/${PROJECT_ID}/carbonwallet-staging:latest'
       - '--region'
       - 'us-central1'
       - '--platform'
@@ -41,5 +41,5 @@ options:
 timeout: 1200s
 
 images:
-  - 'gcr.io/${PROJECT_ID}/carbonwallet-staging:$COMMIT_SHA'
+  - 'gcr.io/${PROJECT_ID}/carbonwallet-staging:latest'
 
