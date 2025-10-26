@@ -20,11 +20,12 @@ Visit: https://carbonwallet-staging-675299815262.us-central1.run.app
 ## 🚀 Production Environment
 
 **Project:** carbonwallet-prod-476112  
-**Status:** ✅ Deployed  
-**URL:** https://carbonwallet-prod-5argpeh6mq-uc.a.run.app
+**Status:** ✅ Deployed (Existing Service)  
+**Region:** asia-southeast1  
+**URL:** https://carbonwallet-prod-5argpeh6mq-as.a.run.app
 
 ### Access Production
-Visit: https://carbonwallet-prod-486326684341.us-central1.run.app
+Visit: https://carbonwallet-prod-486326684341.asia-southeast1.run.app
 
 ---
 
@@ -39,7 +40,7 @@ gcloud run services logs read carbonwallet-staging --region=us-central1 --limit=
 ### View Production Logs
 ```bash
 gcloud config set project carbonwallet-prod-476112
-gcloud run services logs read carbonwallet-prod --region=us-central1 --limit=50
+gcloud run services logs read carbonwallet-prod --region=asia-southeast1 --limit=50
 ```
 
 ### Redeploy Staging
@@ -52,13 +53,16 @@ gcloud builds submit --config cloudbuild-staging.yaml
 ```bash
 gcloud config set project carbonwallet-prod-476112
 gcloud builds submit --config cloudbuild-production.yaml
+
+# Or use the deployment script
+./deploy-production.sh
 ```
 
 ### Update Service Configuration
 ```bash
 # Increase memory for production
 gcloud run services update carbonwallet-prod \
-  --region=us-central1 \
+  --region=asia-southeast1 \
   --memory=4Gi \
   --cpu=4
 ```
@@ -159,7 +163,7 @@ All deployment files are committed and pushed:
 ## 🔗 Useful Links
 
 - **Staging:** https://carbonwallet-staging-675299815262.us-central1.run.app
-- **Production:** https://carbonwallet-prod-486326684341.us-central1.run.app
+- **Production:** https://carbonwallet-prod-486326684341.asia-southeast1.run.app
 - **GitHub Repo:** https://github.com/thinxuan/carbonweb-bryan
 - **GCP Console - Staging:** https://console.cloud.google.com/run/detail/us-central1/carbonwallet-staging?project=carbonwallet-staging
 - **GCP Console - Production:** https://console.cloud.google.com/run/detail/us-central1/carbonwallet-prod?project=carbonwallet-prod-476112
