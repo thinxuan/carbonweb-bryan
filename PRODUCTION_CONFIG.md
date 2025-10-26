@@ -46,9 +46,12 @@ gcloud builds submit --config cloudbuild-production.yaml
 ## 📊 Current Service Status
 
 **Production Service:**
-- URL: https://carbonwallet-prod-5argpeh6mq-as.a.run.app
+- Custom Domain: https://www.carbon2030.ai/
+- Cloud Run URL: https://carbonwallet-prod-5argpeh6mq-as.a.run.app
 - Region: asia-southeast1
 - Last Deployed: Check GCP Console for latest deployment time
+
+**Note:** Production uses custom domain (carbon2030.ai) from Render, now pointing to GCP Cloud Run
 
 ## 🔍 Check Service Status
 
