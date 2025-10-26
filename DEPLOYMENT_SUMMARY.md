@@ -22,10 +22,12 @@ Visit: https://carbonwallet-staging-675299815262.us-central1.run.app
 **Project:** carbonwallet-prod-476112  
 **Status:** ✅ Deployed (Existing Service)  
 **Region:** asia-southeast1  
-**URL:** https://carbonwallet-prod-5argpeh6mq-as.a.run.app
+**Custom Domain:** https://www.carbon2030.ai/
+**Default Cloud Run URL:** https://carbonwallet-prod-5argpeh6mq-as.a.run.app
 
 ### Access Production
-Visit: https://carbonwallet-prod-486326684341.asia-southeast1.run.app
+- **Main URL:** https://www.carbon2030.ai/
+- **Backup URL:** https://carbonwallet-prod-486326684341.asia-southeast1.run.app
 
 ---
 
@@ -120,19 +122,29 @@ gcloud run services update carbonwallet-prod \
 
 ---
 
-## 🌐 Custom Domain Setup (Optional)
+## 🌐 Custom Domain Setup
 
-To add a custom domain:
+Production uses custom domain: **https://www.carbon2030.ai/**
+
+To update or verify the domain mapping:
 
 ```bash
+# View current domain mappings
+gcloud run domain-mappings list \
+  --region=asia-southeast1 \
+  --project=carbonwallet-prod-476112
+
+# Create/update domain mapping (if needed)
 gcloud run domain-mappings create \
   --service=carbonwallet-prod \
-  --domain=yourdomain.com \
-  --region=us-central1 \
+  --domain=www.carbon2030.ai \
+  --region=asia-southeast1 \
   --project=carbonwallet-prod-476112
 ```
 
-SSL certificates are managed automatically by Cloud Run.
+**DNS Configuration:**
+- Update DNS records to point www.carbon2030.ai to Cloud Run
+- SSL certificates are managed automatically by Cloud Run
 
 ---
 
