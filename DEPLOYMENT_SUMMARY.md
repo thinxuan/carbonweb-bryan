@@ -166,7 +166,7 @@ All deployment files are committed and pushed:
 - **Production:** https://carbonwallet-prod-486326684341.asia-southeast1.run.app
 - **GitHub Repo:** https://github.com/thinxuan/carbonweb-bryan
 - **GCP Console - Staging:** https://console.cloud.google.com/run/detail/us-central1/carbonwallet-staging?project=carbonwallet-staging
-- **GCP Console - Production:** https://console.cloud.google.com/run/detail/us-central1/carbonwallet-prod?project=carbonwallet-prod-476112
+- **GCP Console - Production:** https://console.cloud.google.com/run/detail/asia-southeast1/carbonwallet-prod?project=carbonwallet-prod-476112
 
 ---
 
