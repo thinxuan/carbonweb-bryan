@@ -35,9 +35,7 @@ steps:
       - '--concurrency'
       - '160'
       - '--update-env-vars'
-      - 'APP_ENV=production,APP_DEBUG=false'
-      - '--set-env-vars'
-      - 'APP_KEY=base64:h9mEjSzE6+zkxaKeWAHvc5NO7y5/gedKTPpWy/WNhFw='
+      - 'APP_ENV=production,APP_DEBUG=false,APP_KEY=base64:h9mEjSzE6+zkxaKeWAHvc5NO7y5/gedKTPpWy/WNhFw='
     id: 'deploy-service'
 
 options:
